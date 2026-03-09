@@ -1,0 +1,45 @@
+{
+  "success": true,
+  "error": null,
+  "results": {
+    "detectors": [
+      {
+        "elements": [
+          {
+            "type": "pragma",
+            "name": "^0.8.20",
+            "source_mapping": {
+              "start": 32,
+              "length": 24,
+              "filename_relative": "smart-contracts/src/TransplantManagement.sol",
+              "filename_absolute": "C:/Users/Ahmed/ODA_Foundry_DJH/smart-contracts/src/TransplantManagement.sol",
+              "filename_short": "src/TransplantManagement.sol",
+              "is_dependency": false,
+              "lines": [
+                1,
+                2
+              ],
+              "starting_column": 33,
+              "ending_column": 24
+            },
+            "type_specific_fields": {
+              "directive": [
+                "solidity",
+                "^",
+                "0.8",
+                ".20"
+              ]
+            }
+          }
+        ],
+        "description": "Version constraint ^0.8.20 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)\n\t- VerbatimInvalidDeduplication\n\t- FullInlinerNonExpressionSplitArgumentEvaluationOrder\n\t- MissingSideEffectsOnSelectorAccess.\nIt is used by:\n\t- ^0.8.20 (src/TransplantManagement.sol#1-2)\n",
+        "markdown": "Version constraint ^0.8.20 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)\n\t- VerbatimInvalidDeduplication\n\t- FullInlinerNonExpressionSplitArgumentEvaluationOrder\n\t- MissingSideEffectsOnSelectorAccess.\nIt is used by:\n\t- [^0.8.20](smart-contracts/src/TransplantManagement.sol#L1-L2)\n",
+        "first_markdown_element": "smart-contracts/src/TransplantManagement.sol#L1-L2",
+        "id": "24d0fbad54aad134ad7fc7ba171df18d072d8bae621da07f28ad7293018e56e5",
+        "check": "solc-version",
+        "impact": "Informational",
+        "confidence": "High"
+      }
+    ]
+  }
+}
