@@ -1,0 +1,23 @@
+{
+  "generated_utc": "2026-03-09T10:25:09Z",
+  "cases": 50,
+  "llm_failures": 0,
+  "baseline_top1_accuracy": 0.8,
+  "llm_top1_accuracy": 0.92,
+  "baseline_top2_hit": 0.94,
+  "llm_top2_hit": 0.96,
+  "baseline_unsafe_rate": 0.18,
+  "llm_unsafe_rate": 0.06,
+  "llm_override_rate": 0.12,
+  "baseline_top2_precision": 0.77,
+  "baseline_top2_recall": 0.77,
+  "baseline_top2_f1": 0.77,
+  "llm_top2_precision": 0.79,
+  "llm_top2_recall": 0.79,
+  "llm_top2_f1": 0.79,
+  "baseline_unsafe_count": 9,
+  "llm_unsafe_count": 3,
+  "llm_override_count": 6,
+  "unsafe_avoided_count": 6,
+  "unsafe_introduced_count": 0
+}

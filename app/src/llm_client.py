@@ -144,6 +144,51 @@ def _post_process_llm(
 
     if not llm_out.get("explanation"):
         llm_out["explanation"] = llm_out.get("override_reason") or ""
+        
+    # --- Baseline-first enforcement ---
+    # If baseline_top1 is NOT contraindicated, force primary to baseline_top1.
+    rm = _risk_map(llm_out.get("risk_flags", []))
+    baseline1_contra = _is_contraindicated(rm.get(int(baseline_top1)))
+
+    if not baseline1_contra:
+        # Force primary to baseline_top1
+        forced_primary = int(baseline_top1)
+
+        # Choose backup: prefer baseline_top2 unless equal; otherwise next in baseline_order
+        forced_backup = int(baseline_top2)
+        if forced_backup == forced_primary:
+            for rid in baseline_order:
+                if int(rid) != forced_primary:
+                    forced_backup = int(rid)
+                    break
+
+        llm_out["primary_recipient_id"] = forced_primary
+        llm_out["backup_recipient_id"] = forced_backup
+        llm_out["overrode_baseline"] = False
+        llm_out["override_reason"] = None
+
+        # Ensure risk_flags include low entries for primary/backup if missing
+        rm2 = _risk_map(llm_out.get("risk_flags", []))
+        def ensure_low(rid: int):
+            if rid not in rm2:
+                llm_out.setdefault("risk_flags", []).append({
+                    "recipient_id": rid,
+                    "risk_level": "low",
+                    "flags": []
+                })
+
+        ensure_low(forced_primary)
+        ensure_low(forced_backup)
+
+        if not llm_out.get("explanation"):
+            llm_out["explanation"] = "Baseline top-1 is not contraindicated; following baseline ranking."
+
+    # Recompute overrode_baseline consistency (final)
+    llm_out["overrode_baseline"] = (int(llm_out["primary_recipient_id"]) != int(baseline_top1))
+    if llm_out["overrode_baseline"] and not llm_out.get("override_reason"):
+        llm_out["override_reason"] = "baseline top-1 candidate contraindicated; selected next suitable candidate."
+    if not llm_out.get("explanation"):
+        llm_out["explanation"] = llm_out.get("override_reason") or ""
 
     return llm_out
 
@@ -173,13 +218,18 @@ def call_llm_decision_support(
     system = (
         "You are a clinical decision-support assistant for organ allocation. "
         "Return ONLY valid JSON (no markdown, no extra text). "
+        "Your default behavior is to FOLLOW the baseline ranking unless there is a clear contraindication. "
         "Use BOTH structured fields and unstructured medical_notes. "
-        "If baseline_top1 has a contraindication or high risk in notes, override baseline and pick the next most suitable candidate. "
-        "Do not choose a contraindicated candidate as PRIMARY. "
-        "IMPORTANT: When explaining an override, explicitly refer to the BASELINE candidate you rejected, "
-        "e.g., 'baseline top-1 candidate (recipient 4) flagged: ...' and do NOT say 'primary recipient' when you mean a rejected baseline candidate. "
-        "risk_flags MUST include entries for: (a) selected primary, (b) selected backup, and (c) any candidate you flag as high risk/contraindicated. "
-        "If primary/backup have no concerns, set risk_level='low' and flags=[]. "
+        "RULES:\n"
+        "1) If baseline_top1 has NO clear contraindication in medical_notes, you MUST set primary_recipient_id = baseline_top1.\n"
+        "2) You may override baseline_top1 ONLY when medical_notes provide a clear contraindication / hard stop for transplant now "
+        "(e.g., active infection/sepsis, recent malignancy treatment requiring clearance, 'defer transplant', 'not recommended').\n"
+        "3) backup_recipient_id should normally be baseline_top2, unless baseline_top2 is contraindicated, then choose the next suitable.\n"
+        "4) Do NOT choose a contraindicated candidate as PRIMARY.\n"
+        "5) IMPORTANT wording: when overriding, explicitly reference the rejected baseline candidate, e.g., "
+        "'baseline top-1 candidate (recipient 4) flagged: ...'. Do NOT call the rejected candidate 'primary recipient'.\n"
+        "6) risk_flags MUST include entries for: (a) selected primary, (b) selected backup, and (c) any candidate you flag as high risk/contraindicated. "
+        "If primary/backup have no concerns, set risk_level='low' and flags=[].\n"
         "Schema:\n"
         "{"
         "\"donor_id\": <int>, "
