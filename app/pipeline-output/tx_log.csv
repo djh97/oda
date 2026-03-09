@@ -5,3 +5,9 @@ timestamp_utc,network,role,function,tx_hash,gas_used,notes
 2026-03-08T23:08:36Z,sepolia,LLM,createMatch,50d4351cd5e3a4ea2e6fbd370891c471a6ad2b1e17d7262bca6ab724b3e4a937,244060,"benchmark donor=1,primary=1,backup=7,cid=bafkreihvk4p44xgtdag7ija7h73vd4damdg5tymyzu6d2jmw7glpcaen3m"
 2026-03-08T23:57:13Z,sepolia,LLM,createMatch,d5be21561b9d7e544390416f65634fba6882273b0d244fe621c260c8e22e06e3,244060,"donor=1,primary=1,backup=7,cid=bafkreifyiqpi25boamjtk2r5vdypbzvo3m7z2souc57dtcajpprefqj3am"
 2026-03-09T00:12:00Z,sepolia,LLM,createMatch,9352830f8447ee88b9c3b52f99b5aa312b00303ea1a98ecd112aee06180f8260,244060,"donor=1,primary=1,backup=7,cid=bafkreigifrqfkzwil34epyn777dlpybjzmdup7ir5rfpkdzyabwysn56p4"
+2026-03-09T11:32:25Z,sepolia,MedicalTeam,approveMedicalTeam,3b804a4b134595800c779200b3356c73c40fb42c6d88a0a45c7c06832a828d1a,50135,match=1
+2026-03-09T11:32:37Z,sepolia,Hospital,approveHospital,45b4adb0f40cc8c53aa6203d4943192c0fca8246d29aad9078a9d1a5bbb2b200,32992,match=1
+2026-03-09T11:33:14Z,sepolia,Donor,approveDonor,960f241ce46ba0528bb0c478502e836ff24fc819458970675b59b1f992918cce,35204,match=1
+2026-03-09T11:33:37Z,sepolia,Recipient1,approveRecipient,100d2ef061662e0b0790445d88bbd74972d2817e973f089045293e4702761cae,35174,"match=1,recipient=1"
+2026-03-09T11:33:49Z,sepolia,EthicsCommittee,approveFinalTransplant,ab1e5167bd1002d12100633f5cf8577510271ba57999f54f4f5e08229227abf3,33013,match=1
+2026-03-09T11:34:01Z,sepolia,Regulator,finalizeMatch,588425e76a56a997e847c3909ca9a1a80ab08c85269fe58458995a42a480938f,48954,"match=1,approved=True"
