@@ -24,6 +24,28 @@ CHAIN_PARAMS = {
     "zksync_era": {"token": "ETH", "token_usd": 1944.53, "base_fee_gwei": 0.05},
 }
 
+def sanitize_note(note: str) -> str:
+    """Shrink noisy revert payloads to readable messages."""
+    if not note:
+        return ""
+    # Common revert strings from web3 / solidity
+    prefixes = [
+        "('execution reverted: ",
+        "execution reverted: ",
+    ]
+    for p in prefixes:
+        if note.startswith(p):
+            note = note[len(p):]
+            break
+
+    # If it looks like "Message', '0x...."
+    # Keep only the first quoted part if present
+    if "', '0x" in note:
+        note = note.split("', '0x", 1)[0]
+
+    # Trim trailing quotes/parentheses/commas
+    return note.strip(" '),\"")
+
 def gas_to_usd(gas_used: int, base_fee_gwei: float, token_usd: float) -> float:
     return gas_used * base_fee_gwei * 1e-9 * token_usd
 
@@ -110,7 +132,7 @@ def main():
             "function": fn,
             "gas_used": "" if gas is None else gas,
             "source": source,
-            "note": note,
+            "note": sanitize_note(note),
         }
         for chain, p in CHAIN_PARAMS.items():
             row[f"{chain}_usd_at_basefee"] = "" if gas is None else round(gas_to_usd(gas, p["base_fee_gwei"], p["token_usd"]), 8)

@@ -1,0 +1,17 @@
+function,gas_used,source,note,ethereum_usd_at_basefee,polygon_usd_at_basefee,arbitrum_usd_at_basefee,optimism_usd_at_basefee,zksync_era_usd_at_basefee
+registerHospital,47515,estimate,,0.00369577,0.00122788,0.00184789,0.00092394,0.00461972
+registerEthicalCommittee,47524,estimate,,0.00369647,0.00122812,0.00184824,0.00092412,0.00462059
+registerMedicalTeam,47527,estimate,,0.00369671,0.00122819,0.00184835,0.00092418,0.00462088
+registerLLM,47460,estimate,,0.0036915,0.00122646,0.00184575,0.00092287,0.00461437
+registerDonorAddress,53602,estimate,,0.00416923,0.00138518,0.00208461,0.00104231,0.00521153
+registerRecipientAddress,53601,estimate,,0.00416915,0.00138516,0.00208458,0.00104229,0.00521144
+registerDonor,,n/a,Donor already registered,,,,,
+registerRecipient,,n/a,Recipient already registered,,,,,
+approveDonorEthicalCommittee,,n/a,Donor already approved,,,,,
+approveRecipientEthicalCommittee,,n/a,Recipient already approved,,,,,
+createMatch,244060,observed_receipt,tx=9352830f8447ee88b9c3b52f99b5aa312b00303ea1a98ecd112aee06180f8260,0.01898328,0.006307,0.00949164,0.00474582,0.0237291
+approveMedicalTeam,50525,estimate,,0.0039299,0.00130567,0.00196495,0.00098247,0.00491237
+approveHospital,50482,estimate,,0.00392655,0.00130456,0.00196328,0.00098164,0.00490819
+approveDonor,53094,estimate,,0.00412972,0.00137206,0.00206486,0.00103243,0.00516214
+approveRecipient,53064,estimate,,0.00412738,0.00137128,0.00206369,0.00103185,0.00515923
+approveFinalTransplant,50503,estimate,,0.00392818,0.0013051,0.00196409,0.00098205,0.00491023

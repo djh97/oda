@@ -1,6 +1,7 @@
 import os
 import json
 from pathlib import Path
+from datetime import datetime, timezone
 from dotenv import load_dotenv
 from web3 import Web3
 
@@ -10,13 +11,15 @@ from src.tx_logger import append_tx
 
 APP_DIR = Path(__file__).resolve().parents[1]
 SEED_DIR = APP_DIR / "seed-data"
+OUT_DIR = APP_DIR / "pipeline-output"
+SEED_RUNS_DIR = OUT_DIR / "seed_runs"
 
 
 def pk_to_addr(w3: Web3, pk: str) -> str:
     return w3.eth.account.from_key(pk).address
 
 
-def send_tx(w3: Web3, tx, private_key: str):
+def send_tx(w3: Web3, tx: dict, private_key: str):
     acct = w3.eth.account.from_key(private_key)
     tx["nonce"] = w3.eth.get_transaction_count(acct.address)
     tx.setdefault("maxFeePerGas", w3.to_wei(30, "gwei"))
@@ -26,14 +29,6 @@ def send_tx(w3: Web3, tx, private_key: str):
     tx_hash = w3.eth.send_raw_transaction(signed.raw_transaction)
     receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
     return tx_hash.hex(), receipt
-
-
-def log_tx(network: str, role: str, fn_name: str, tx_hash: str, receipt, notes: str = ""):
-    try:
-        gas_used = int(receipt.gasUsed) if receipt is not None else None
-    except Exception:
-        gas_used = None
-    append_tx(network=network, role=role, function=fn_name, tx_hash=tx_hash, gas_used=gas_used, notes=notes)
 
 
 def load_seed_json(path: Path) -> dict:
@@ -62,6 +57,10 @@ def norm_bt(bt: str) -> str:
     if bt.startswith("O"):
         return "O"
     return bt
+
+
+def run_ts() -> str:
+    return datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
 
 
 def main():
@@ -121,26 +120,24 @@ def main():
     donor_hla_str = hla_list_to_string(donor_seed.get("hla_typing", []))
     donor_organ = str(donor_seed.get("organ_type", "Kidney")).strip()
 
-    recipient_seed = {}
-    for i in range(1, 11):
-        recipient_seed[i] = load_seed_json(SEED_DIR / f"recipient_{i}.json")
+    recipient_seed = {i: load_seed_json(SEED_DIR / f"recipient_{i}.json") for i in range(1, 11)}
 
-    def reg_tx(fn, fn_name: str, gas=300000, notes="seed"):
-        tx = fn.build_transaction({"from": regulator_addr, "gas": gas})
-        txh, rcpt = send_tx(w3, tx, regulator_pk)
-        log_tx(settings.network, "Regulator", fn_name, txh, rcpt, notes=notes)
-        return txh, rcpt
+    # Run-specific log file for reproducibility
+    SEED_RUNS_DIR.mkdir(parents=True, exist_ok=True)
+    run_id = run_ts()
+    run_log_path = SEED_RUNS_DIR / f"seed_sepolia_{run_id}.csv"
 
-    def hosp_tx(fn, fn_name: str, gas=650000, notes="seed"):
-        tx = fn.build_transaction({"from": hospital_addr, "gas": gas})
-        txh, rcpt = send_tx(w3, tx, hospital_pk)
-        log_tx(settings.network, "Hospital", fn_name, txh, rcpt, notes=notes)
-        return txh, rcpt
+    def log(role: str, fn_name: str, txh: str, receipt, notes: str = ""):
+        gas_used = int(receipt.gasUsed) if receipt is not None else None
+        # append to global log
+        append_tx(network=settings.network, role=role, function=fn_name, tx_hash=txh, gas_used=gas_used, notes=notes)
+        # append to run-specific log
+        append_tx(network=settings.network, role=role, function=fn_name, tx_hash=txh, gas_used=gas_used, notes=notes, path=run_log_path)
 
-    def ethics_tx(fn, fn_name: str, gas=250000, notes="seed"):
-        tx = fn.build_transaction({"from": ethics_addr, "gas": gas})
-        txh, rcpt = send_tx(w3, tx, ethics_pk)
-        log_tx(settings.network, "EthicsCommittee", fn_name, txh, rcpt, notes=notes)
+    def do_tx(from_addr: str, pk: str, role: str, fn, fn_name: str, gas: int, notes: str):
+        tx = fn.build_transaction({"from": from_addr, "gas": gas})
+        txh, rcpt = send_tx(w3, tx, pk)
+        log(role, fn_name, txh, rcpt, notes=notes)
         return txh, rcpt
 
     print("Connected:", w3.is_connected())
@@ -154,44 +151,49 @@ def main():
     for i, a in enumerate(recipient_addrs, start=1):
         print(f"Recipient{i}:", a)
 
+    # 1) Register entities
     print("\n[1] Registering entities (regulator)...")
     if not contract.functions.registeredHospitals(hospital_addr).call():
-        txh, _ = reg_tx(contract.functions.registerHospital(hospital_addr), "registerHospital")
+        txh, _ = do_tx(regulator_addr, regulator_pk, "Regulator",
+                       contract.functions.registerHospital(hospital_addr), "registerHospital", 300000, "seed")
         print(" registerHospital tx:", txh)
     else:
         print(" registerHospital: already registered")
 
     if not contract.functions.registeredEthicalCommittee(ethics_addr).call():
-        txh, _ = reg_tx(contract.functions.registerEthicalCommittee(ethics_addr), "registerEthicalCommittee")
+        txh, _ = do_tx(regulator_addr, regulator_pk, "Regulator",
+                       contract.functions.registerEthicalCommittee(ethics_addr), "registerEthicalCommittee", 300000, "seed")
         print(" registerEthicalCommittee tx:", txh)
     else:
         print(" registerEthicalCommittee: already registered")
 
     if not contract.functions.registeredMedicalTeams(medical_addr).call():
-        txh, _ = reg_tx(contract.functions.registerMedicalTeam(medical_addr), "registerMedicalTeam")
+        txh, _ = do_tx(regulator_addr, regulator_pk, "Regulator",
+                       contract.functions.registerMedicalTeam(medical_addr), "registerMedicalTeam", 300000, "seed")
         print(" registerMedicalTeam tx:", txh)
     else:
         print(" registerMedicalTeam: already registered")
 
     if not contract.functions.authorizedLLMs(llm_addr).call():
-        txh, _ = reg_tx(contract.functions.registerLLM(llm_addr), "registerLLM")
+        txh, _ = do_tx(regulator_addr, regulator_pk, "Regulator",
+                       contract.functions.registerLLM(llm_addr), "registerLLM", 300000, "seed")
         print(" registerLLM tx:", txh)
     else:
         print(" registerLLM: already registered")
 
+    # 2) Pre-register addresses
     print("\n[2] Pre-registering donor/recipients addresses (regulator)...")
     if int(contract.functions.registeredDonorAddresses(donor_addr).call()) == 0:
-        txh, _ = reg_tx(contract.functions.registerDonorAddress(donor_addr), "registerDonorAddress")
+        txh, _ = do_tx(regulator_addr, regulator_pk, "Regulator",
+                       contract.functions.registerDonorAddress(donor_addr), "registerDonorAddress", 300000, "seed")
         print(" registerDonorAddress tx:", txh)
     else:
         print(" registerDonorAddress: already pre-registered")
 
     for i, raddr in enumerate(recipient_addrs, start=1):
         if int(contract.functions.registeredRecipientAddresses(raddr).call()) == 0:
-            txh, _ = reg_tx(
-                contract.functions.registerRecipientAddress(raddr),
-                f"registerRecipientAddress_r{i}"
-            )
+            txh, _ = do_tx(regulator_addr, regulator_pk, "Regulator",
+                           contract.functions.registerRecipientAddress(raddr), "registerRecipientAddress", 300000, f"seed r{i}")
             print(f" registerRecipientAddress r{i} tx:", txh)
         else:
             print(f" registerRecipientAddress r{i}: already pre-registered")
@@ -199,14 +201,14 @@ def main():
     donor_id = int(contract.functions.registeredDonorAddresses(donor_addr).call())
     recipient_ids = [int(contract.functions.registeredRecipientAddresses(a).call()) for a in recipient_addrs]
 
+    # 3) Register donor / recipients
     print("\n[3] Registering donor/recipients (hospital)...")
     donor_struct = contract.functions.donors(donor_id).call()
     donor_registered = bool(donor_struct[6])
     if not donor_registered:
-        txh, _ = hosp_tx(
-            contract.functions.registerDonor(donor_addr, donor_bt, donor_hla_str, donor_organ, donor_cid),
-            "registerDonor"
-        )
+        txh, _ = do_tx(hospital_addr, hospital_pk, "Hospital",
+                       contract.functions.registerDonor(donor_addr, donor_bt, donor_hla_str, donor_organ, donor_cid),
+                       "registerDonor", 650000, "seed donor_1")
         print(" registerDonor tx:", txh)
     else:
         print(" registerDonor: already registered")
@@ -214,25 +216,28 @@ def main():
     for i, (rid, raddr) in enumerate(zip(recipient_ids, recipient_addrs), start=1):
         seed = recipient_seed[i]
         r_bt = norm_bt(seed.get("blood_type", ""))
-        r_hla_str = hla_list_to_string(seed.get("hla_typing", []))
+        # enforce your convention (if you want it): "seed_recipient_i"
+        r_hla_str = f"seed_recipient_{i}"
         r_organ = str(seed.get("organ_type", "Kidney")).strip()
 
         r_struct = contract.functions.recipients(rid).call()
         r_registered = bool(r_struct[6])
         if not r_registered:
-            txh, _ = hosp_tx(
-                contract.functions.registerRecipient(raddr, r_bt, r_hla_str, r_organ, recipient_cids[i]),
-                f"registerRecipient_r{i}"
-            )
+            txh, _ = do_tx(hospital_addr, hospital_pk, "Hospital",
+                           contract.functions.registerRecipient(raddr, r_bt, r_hla_str, r_organ, recipient_cids[i]),
+                           "registerRecipient", 650000, f"seed recipient_{i}")
             print(f" registerRecipient r{i} tx:", txh)
         else:
             print(f" registerRecipient r{i}: already registered")
 
+    # 4) Ethical approvals
     print("\n[4] Ethical approvals (ethics committee)...")
     donor_struct = contract.functions.donors(donor_id).call()
     donor_eth_ok = bool(donor_struct[7])
     if not donor_eth_ok:
-        txh, _ = ethics_tx(contract.functions.approveDonorEthicalCommittee(donor_id), "approveDonorEthicalCommittee")
+        txh, _ = do_tx(ethics_addr, ethics_pk, "EthicsCommittee",
+                       contract.functions.approveDonorEthicalCommittee(donor_id),
+                       "approveDonorEthicalCommittee", 250000, "seed donor_1")
         print(" approveDonorEthicalCommittee tx:", txh)
     else:
         print(" approveDonorEthicalCommittee: already approved")
@@ -241,17 +246,16 @@ def main():
         r_struct = contract.functions.recipients(rid).call()
         r_eth_ok = bool(r_struct[8])
         if not r_eth_ok:
-            txh, _ = ethics_tx(
-                contract.functions.approveRecipientEthicalCommittee(rid),
-                f"approveRecipientEthicalCommittee_r{i}"
-            )
+            txh, _ = do_tx(ethics_addr, ethics_pk, "EthicsCommittee",
+                           contract.functions.approveRecipientEthicalCommittee(rid),
+                           "approveRecipientEthicalCommittee", 250000, f"seed recipient_{i}")
             print(f" approveRecipientEthicalCommittee r{i} tx:", txh)
         else:
             print(f" approveRecipientEthicalCommittee r{i}: already approved")
 
     print("\nDone.")
     print("Donor ID:", donor_id, "Recipient IDs:", recipient_ids)
-    print(f"Tx log written to: {APP_DIR / 'pipeline-output' / 'tx_log.csv'}")
+    print("Run log:", run_log_path)
 
 
 if __name__ == "__main__":

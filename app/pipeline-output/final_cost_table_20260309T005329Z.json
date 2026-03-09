@@ -1,0 +1,224 @@
+{
+  "assumptions_date": "09-Mar-2026",
+  "note": "USD estimates use base_fee_gwei * gas (execution gas only). L2 estimates exclude L1 data posting fees; treat as lower-bound.",
+  "inputs": {
+    "tx_log": "C:\\Users\\Ahmed\\ODA_Foundry_DJH\\app\\pipeline-output\\tx_log.csv",
+    "gas_estimates": "C:\\Users\\Ahmed\\ODA_Foundry_DJH\\app\\pipeline-output\\gas_estimates_20260308T232701Z.csv"
+  },
+  "createMatch": {
+    "gas_used": 244060,
+    "source": "observed_receipt",
+    "tx_hash": "9352830f8447ee88b9c3b52f99b5aa312b00303ea1a98ecd112aee06180f8260",
+    "observed_row": {
+      "tx_hash": "9352830f8447ee88b9c3b52f99b5aa312b00303ea1a98ecd112aee06180f8260",
+      "gas_used": 244060,
+      "notes": "donor=1,primary=1,backup=7,cid=bafkreigifrqfkzwil34epyn777dlpybjzmdup7ir5rfpkdzyabwysn56p4",
+      "timestamp_utc": "2026-03-09T00:12:00Z"
+    }
+  },
+  "rows": [
+    {
+      "function": "registerHospital",
+      "gas_used": 47515,
+      "source": "estimate",
+      "note": "",
+      "ethereum_usd_at_basefee": 0.00369577,
+      "polygon_usd_at_basefee": 0.00122788,
+      "arbitrum_usd_at_basefee": 0.00184789,
+      "optimism_usd_at_basefee": 0.00092394,
+      "zksync_era_usd_at_basefee": 0.00461972
+    },
+    {
+      "function": "registerEthicalCommittee",
+      "gas_used": 47524,
+      "source": "estimate",
+      "note": "",
+      "ethereum_usd_at_basefee": 0.00369647,
+      "polygon_usd_at_basefee": 0.00122812,
+      "arbitrum_usd_at_basefee": 0.00184824,
+      "optimism_usd_at_basefee": 0.00092412,
+      "zksync_era_usd_at_basefee": 0.00462059
+    },
+    {
+      "function": "registerMedicalTeam",
+      "gas_used": 47527,
+      "source": "estimate",
+      "note": "",
+      "ethereum_usd_at_basefee": 0.00369671,
+      "polygon_usd_at_basefee": 0.00122819,
+      "arbitrum_usd_at_basefee": 0.00184835,
+      "optimism_usd_at_basefee": 0.00092418,
+      "zksync_era_usd_at_basefee": 0.00462088
+    },
+    {
+      "function": "registerLLM",
+      "gas_used": 47460,
+      "source": "estimate",
+      "note": "",
+      "ethereum_usd_at_basefee": 0.0036915,
+      "polygon_usd_at_basefee": 0.00122646,
+      "arbitrum_usd_at_basefee": 0.00184575,
+      "optimism_usd_at_basefee": 0.00092287,
+      "zksync_era_usd_at_basefee": 0.00461437
+    },
+    {
+      "function": "registerDonorAddress",
+      "gas_used": 53602,
+      "source": "estimate",
+      "note": "",
+      "ethereum_usd_at_basefee": 0.00416923,
+      "polygon_usd_at_basefee": 0.00138518,
+      "arbitrum_usd_at_basefee": 0.00208461,
+      "optimism_usd_at_basefee": 0.00104231,
+      "zksync_era_usd_at_basefee": 0.00521153
+    },
+    {
+      "function": "registerRecipientAddress",
+      "gas_used": 53601,
+      "source": "estimate",
+      "note": "",
+      "ethereum_usd_at_basefee": 0.00416915,
+      "polygon_usd_at_basefee": 0.00138516,
+      "arbitrum_usd_at_basefee": 0.00208458,
+      "optimism_usd_at_basefee": 0.00104229,
+      "zksync_era_usd_at_basefee": 0.00521144
+    },
+    {
+      "function": "registerDonor",
+      "gas_used": "",
+      "source": "n/a",
+      "note": "Donor already registered",
+      "ethereum_usd_at_basefee": "",
+      "polygon_usd_at_basefee": "",
+      "arbitrum_usd_at_basefee": "",
+      "optimism_usd_at_basefee": "",
+      "zksync_era_usd_at_basefee": ""
+    },
+    {
+      "function": "registerRecipient",
+      "gas_used": "",
+      "source": "n/a",
+      "note": "Recipient already registered",
+      "ethereum_usd_at_basefee": "",
+      "polygon_usd_at_basefee": "",
+      "arbitrum_usd_at_basefee": "",
+      "optimism_usd_at_basefee": "",
+      "zksync_era_usd_at_basefee": ""
+    },
+    {
+      "function": "approveDonorEthicalCommittee",
+      "gas_used": "",
+      "source": "n/a",
+      "note": "Donor already approved",
+      "ethereum_usd_at_basefee": "",
+      "polygon_usd_at_basefee": "",
+      "arbitrum_usd_at_basefee": "",
+      "optimism_usd_at_basefee": "",
+      "zksync_era_usd_at_basefee": ""
+    },
+    {
+      "function": "approveRecipientEthicalCommittee",
+      "gas_used": "",
+      "source": "n/a",
+      "note": "Recipient already approved",
+      "ethereum_usd_at_basefee": "",
+      "polygon_usd_at_basefee": "",
+      "arbitrum_usd_at_basefee": "",
+      "optimism_usd_at_basefee": "",
+      "zksync_era_usd_at_basefee": ""
+    },
+    {
+      "function": "createMatch",
+      "gas_used": 244060,
+      "source": "observed_receipt",
+      "note": "tx=9352830f8447ee88b9c3b52f99b5aa312b00303ea1a98ecd112aee06180f8260",
+      "ethereum_usd_at_basefee": 0.01898328,
+      "polygon_usd_at_basefee": 0.006307,
+      "arbitrum_usd_at_basefee": 0.00949164,
+      "optimism_usd_at_basefee": 0.00474582,
+      "zksync_era_usd_at_basefee": 0.0237291
+    },
+    {
+      "function": "approveMedicalTeam",
+      "gas_used": 50525,
+      "source": "estimate",
+      "note": "",
+      "ethereum_usd_at_basefee": 0.0039299,
+      "polygon_usd_at_basefee": 0.00130567,
+      "arbitrum_usd_at_basefee": 0.00196495,
+      "optimism_usd_at_basefee": 0.00098247,
+      "zksync_era_usd_at_basefee": 0.00491237
+    },
+    {
+      "function": "approveHospital",
+      "gas_used": 50482,
+      "source": "estimate",
+      "note": "",
+      "ethereum_usd_at_basefee": 0.00392655,
+      "polygon_usd_at_basefee": 0.00130456,
+      "arbitrum_usd_at_basefee": 0.00196328,
+      "optimism_usd_at_basefee": 0.00098164,
+      "zksync_era_usd_at_basefee": 0.00490819
+    },
+    {
+      "function": "approveDonor",
+      "gas_used": 53094,
+      "source": "estimate",
+      "note": "",
+      "ethereum_usd_at_basefee": 0.00412972,
+      "polygon_usd_at_basefee": 0.00137206,
+      "arbitrum_usd_at_basefee": 0.00206486,
+      "optimism_usd_at_basefee": 0.00103243,
+      "zksync_era_usd_at_basefee": 0.00516214
+    },
+    {
+      "function": "approveRecipient",
+      "gas_used": 53064,
+      "source": "estimate",
+      "note": "",
+      "ethereum_usd_at_basefee": 0.00412738,
+      "polygon_usd_at_basefee": 0.00137128,
+      "arbitrum_usd_at_basefee": 0.00206369,
+      "optimism_usd_at_basefee": 0.00103185,
+      "zksync_era_usd_at_basefee": 0.00515923
+    },
+    {
+      "function": "approveFinalTransplant",
+      "gas_used": 50503,
+      "source": "estimate",
+      "note": "",
+      "ethereum_usd_at_basefee": 0.00392818,
+      "polygon_usd_at_basefee": 0.0013051,
+      "arbitrum_usd_at_basefee": 0.00196409,
+      "optimism_usd_at_basefee": 0.00098205,
+      "zksync_era_usd_at_basefee": 0.00491023
+    }
+  ],
+  "chain_params": {
+    "ethereum": {
+      "token": "ETH",
+      "token_usd": 1944.53,
+      "base_fee_gwei": 0.04
+    },
+    "polygon": {
+      "token": "MATIC",
+      "token_usd": 0.177,
+      "base_fee_gwei": 146.0
+    },
+    "arbitrum": {
+      "token": "ETH",
+      "token_usd": 1944.53,
+      "base_fee_gwei": 0.02
+    },
+    "optimism": {
+      "token": "ETH",
+      "token_usd": 1944.53,
+      "base_fee_gwei": 0.01
+    },
+    "zksync_era": {
+      "token": "ETH",
+      "token_usd": 1944.53,
+      "base_fee_gwei": 0.05
+    }
+  }
+}
