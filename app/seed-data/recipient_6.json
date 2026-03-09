@@ -1,0 +1,11 @@
+﻿{
+  "entity": "recipient",
+  "recipient_id": 6,
+  "organ_type": "Kidney",
+  "blood_type": "O",
+  "hla_typing": ["A1","B7","DR15","DR4"],
+  "urgency": "Moderate",
+  "waiting_time_days": 290,
+  "location": "Ras Al Khaimah",
+  "medical_notes": "Potential immunologic risk: highly sensitized (synthetic note: cPRA ~95%); prior transplant failure due to rejection; desensitization may be required. Not absolute contraindication but higher risk."
+}

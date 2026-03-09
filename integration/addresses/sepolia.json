@@ -1,0 +1,6 @@
+{
+  "network": "sepolia",
+  "chainId": 11155111,
+  "contractName": "TransplantManagement",
+  "address": "0x2770C0D945be49a13415d008063b6D47e1eC5e0F"
+}

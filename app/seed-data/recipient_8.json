@@ -1,0 +1,11 @@
+﻿{
+  "entity": "recipient",
+  "recipient_id": 8,
+  "organ_type": "Kidney",
+  "blood_type": "O",
+  "hla_typing": ["A2","B7","B8","DR15"],
+  "urgency": "Moderate",
+  "waiting_time_days": 410,
+  "location": "Ajman",
+  "medical_notes": "Moderate urgency; stable; synthetic profile."
+}

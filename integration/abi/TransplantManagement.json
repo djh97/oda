@@ -1,0 +1,993 @@
+[
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_regulator",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "matchId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "approvedBy",
+				"type": "string"
+			}
+		],
+		"name": "ApprovalGranted",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "matchId",
+				"type": "uint256"
+			}
+		],
+		"name": "approveDonor",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "donorId",
+				"type": "uint256"
+			}
+		],
+		"name": "approveDonorEthicalCommittee",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "matchId",
+				"type": "uint256"
+			}
+		],
+		"name": "approveFinalTransplant",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "matchId",
+				"type": "uint256"
+			}
+		],
+		"name": "approveHospital",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "matchId",
+				"type": "uint256"
+			}
+		],
+		"name": "approveMedicalTeam",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "matchId",
+				"type": "uint256"
+			}
+		],
+		"name": "approveRecipient",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "recipientId",
+				"type": "uint256"
+			}
+		],
+		"name": "approveRecipientEthicalCommittee",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "matchId",
+				"type": "uint256"
+			},
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "oldActiveRecipientId",
+				"type": "uint256"
+			},
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "newActiveRecipientId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "promotedBy",
+				"type": "address"
+			}
+		],
+		"name": "BackupRecipientPromoted",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "newRegulator",
+				"type": "address"
+			}
+		],
+		"name": "changeRegulator",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "donorId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "primaryRecipientId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "backupRecipientId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "matchCID",
+				"type": "string"
+			}
+		],
+		"name": "createMatch",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "donorAddress",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "donorId",
+				"type": "uint256"
+			}
+		],
+		"name": "DonorAddressRegistered",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "donorId",
+				"type": "uint256"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "donorAddress",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "organType",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "ipfsHash",
+				"type": "string"
+			}
+		],
+		"name": "DonorRegistered",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "entityType",
+				"type": "string"
+			}
+		],
+		"name": "EthicalApprovalGranted",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "committeeMember",
+				"type": "address"
+			}
+		],
+		"name": "EthicalCommitteeMemberRegistered",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "matchId",
+				"type": "uint256"
+			}
+		],
+		"name": "finalizeMatch",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "hospital",
+				"type": "address"
+			}
+		],
+		"name": "HospitalRegistered",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "llmAddress",
+				"type": "address"
+			}
+		],
+		"name": "LLMRegistered",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "matchId",
+				"type": "uint256"
+			},
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "donorId",
+				"type": "uint256"
+			},
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "primaryRecipientId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "backupRecipientId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "matchCID",
+				"type": "string"
+			}
+		],
+		"name": "MatchCreated",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "matchId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "bool",
+				"name": "approved",
+				"type": "bool"
+			}
+		],
+		"name": "MatchFinalized",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "medicalTeam",
+				"type": "address"
+			}
+		],
+		"name": "MedicalTeamRegistered",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "matchId",
+				"type": "uint256"
+			}
+		],
+		"name": "promoteBackupRecipient",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "recipientAddress",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "recipientId",
+				"type": "uint256"
+			}
+		],
+		"name": "RecipientAddressRegistered",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "recipientId",
+				"type": "uint256"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "recipientAddress",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "organType",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "ipfsHash",
+				"type": "string"
+			}
+		],
+		"name": "RecipientRegistered",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "donorAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "bloodType",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "hlaTyping",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "organType",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "ipfsHash",
+				"type": "string"
+			}
+		],
+		"name": "registerDonor",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "donorAddress",
+				"type": "address"
+			}
+		],
+		"name": "registerDonorAddress",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "committeeMember",
+				"type": "address"
+			}
+		],
+		"name": "registerEthicalCommittee",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "hospital",
+				"type": "address"
+			}
+		],
+		"name": "registerHospital",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "llm",
+				"type": "address"
+			}
+		],
+		"name": "registerLLM",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "medicalTeam",
+				"type": "address"
+			}
+		],
+		"name": "registerMedicalTeam",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "recipientAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "bloodType",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "hlaTyping",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "organType",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "ipfsHash",
+				"type": "string"
+			}
+		],
+		"name": "registerRecipient",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "recipientAddress",
+				"type": "address"
+			}
+		],
+		"name": "registerRecipientAddress",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "oldRegulator",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "newRegulator",
+				"type": "address"
+			}
+		],
+		"name": "RegulatorChanged",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "authorizedLLMs",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "donorCounter",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "donors",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "donorId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "donorAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "bloodType",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "hlaTyping",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "organType",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "ipfsHash",
+				"type": "string"
+			},
+			{
+				"internalType": "bool",
+				"name": "registered",
+				"type": "bool"
+			},
+			{
+				"internalType": "bool",
+				"name": "ethicalApproved",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "matchId",
+				"type": "uint256"
+			}
+		],
+		"name": "isTransplantApproved",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "matchCounter",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "matches",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "matchId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "donorId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "primaryRecipientId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "backupRecipientId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "activeRecipientId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "backupPromoted",
+				"type": "bool"
+			},
+			{
+				"internalType": "address",
+				"name": "matchedByLLM",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "matchCID",
+				"type": "string"
+			},
+			{
+				"internalType": "bool",
+				"name": "medicalApproved",
+				"type": "bool"
+			},
+			{
+				"internalType": "bool",
+				"name": "hospitalApproved",
+				"type": "bool"
+			},
+			{
+				"internalType": "bool",
+				"name": "donorApproved",
+				"type": "bool"
+			},
+			{
+				"internalType": "bool",
+				"name": "activeRecipientApproved",
+				"type": "bool"
+			},
+			{
+				"internalType": "bool",
+				"name": "ethicalCommitteeApproved",
+				"type": "bool"
+			},
+			{
+				"internalType": "bool",
+				"name": "finalized",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "recipientCounter",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "recipients",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "recipientId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "recipientAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "bloodType",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "hlaTyping",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "organType",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "ipfsHash",
+				"type": "string"
+			},
+			{
+				"internalType": "bool",
+				"name": "registered",
+				"type": "bool"
+			},
+			{
+				"internalType": "bool",
+				"name": "matched",
+				"type": "bool"
+			},
+			{
+				"internalType": "bool",
+				"name": "ethicalApproved",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "registeredDonorAddresses",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "registeredEthicalCommittee",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "registeredHospitals",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "registeredMedicalTeams",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "registeredRecipientAddresses",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "regulator",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]

@@ -1,0 +1,11 @@
+﻿{
+  "entity": "recipient",
+  "recipient_id": 7,
+  "organ_type": "Kidney",
+  "blood_type": "O",
+  "hla_typing": ["A1","A2","B7","DR11"],
+  "urgency": "High",
+  "waiting_time_days": 360,
+  "location": "Dubai",
+  "medical_notes": "Clinically stable high-urgency case; no active infection; acceptable cardiopulmonary status; synthetic profile. Suitable primary if higher-ranked candidates have contraindications."
+}

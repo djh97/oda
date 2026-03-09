@@ -1,0 +1,11 @@
+﻿{
+  "entity": "recipient",
+  "recipient_id": 4,
+  "organ_type": "Kidney",
+  "blood_type": "O",
+  "hla_typing": ["A1","A2","B7","DR15"],
+  "urgency": "High",
+  "waiting_time_days": 430,
+  "location": "Abu Dhabi",
+  "medical_notes": "High compatibility but RED FLAG: recent malignancy treatment—completed chemotherapy 3 months ago; recurrence risk unclear; requires tumor board clearance before transplant. Avoid as primary until cleared."
+}

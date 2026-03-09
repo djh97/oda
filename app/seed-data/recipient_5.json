@@ -1,0 +1,11 @@
+﻿{
+  "entity": "recipient",
+  "recipient_id": 5,
+  "organ_type": "Kidney",
+  "blood_type": "O",
+  "hla_typing": ["A2","A3","B7","DR15"],
+  "urgency": "Low",
+  "waiting_time_days": 340,
+  "location": "Fujairah",
+  "medical_notes": "Low urgency; stable; no active infection; synthetic profile."
+}

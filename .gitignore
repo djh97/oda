@@ -1,14 +1,25 @@
-# Compiler files
-cache/
-out/
-
-# Ignores development broadcast logs
-!/broadcast
-/broadcast/*/31337/
-/broadcast/**/dry-run/
-
-# Docs
-docs/
-
-# Dotenv file
+# Secrets
 .env
+**/.env
+.env.*
+!.env.example
+
+# Python venv / cache
+**/.venv/
+**/venv/
+**/__pycache__/
+**/*.pyc
+
+# Node / misc
+**/node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Foundry build output (keep source only)
+smart-contracts/out/
+smart-contracts/cache/
+
+# Optional: large screenshots (keep only if you want)
+# docs/pipeline-demo/screenshots/

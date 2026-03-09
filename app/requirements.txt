@@ -1,0 +1,7 @@
+fastapi
+uvicorn[standard]
+jinja2
+python-dotenv
+web3
+requests
+openai

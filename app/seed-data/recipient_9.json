@@ -1,0 +1,11 @@
+﻿{
+  "entity": "recipient",
+  "recipient_id": 9,
+  "organ_type": "Kidney",
+  "blood_type": "O",
+  "hla_typing": ["A1","A2","B27","DR15"],
+  "urgency": "Moderate",
+  "waiting_time_days": 250,
+  "location": "Dubai",
+  "medical_notes": "Social/adherence concern (synthetic): multiple missed dialysis sessions documented; needs social work clearance. Not absolute contraindication but increased risk."
+}

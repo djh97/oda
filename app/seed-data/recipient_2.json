@@ -1,0 +1,11 @@
+﻿{
+  "entity": "recipient",
+  "recipient_id": 2,
+  "organ_type": "Kidney",
+  "blood_type": "O",
+  "hla_typing": ["A1","A2","B8","DR4"],
+  "urgency": "Moderate",
+  "waiting_time_days": 210,
+  "location": "Al Ain",
+  "medical_notes": "Stable on dialysis, no active infection. Acceptable perioperative risk. Synthetic profile."
+}

@@ -1,0 +1,11 @@
+﻿{
+  "entity": "recipient",
+  "recipient_id": 3,
+  "organ_type": "Kidney",
+  "blood_type": "O",
+  "hla_typing": ["A1","A3","B7","DR11"],
+  "urgency": "Moderate",
+  "waiting_time_days": 610,
+  "location": "Sharjah",
+  "medical_notes": "Long waiting time; stable dialysis course. No contraindications documented. Synthetic profile."
+}

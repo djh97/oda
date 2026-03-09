@@ -1,0 +1,11 @@
+﻿{
+  "entity": "recipient",
+  "recipient_id": 1,
+  "organ_type": "Kidney",
+  "blood_type": "O",
+  "hla_typing": ["A1","A2","B7","DR15"],
+  "urgency": "High",
+  "waiting_time_days": 520,
+  "location": "Dubai",
+  "medical_notes": "High urgency but RED FLAG: suspected sepsis/bacteremia within last 48h; febrile overnight; blood cultures pending; on IV broad-spectrum antibiotics day 1/14. Clinically unstable—transplant should be deferred until infection controlled."
+}

@@ -1,0 +1,2 @@
+function,count,min_gas,avg_gas,max_gas,ethereum_usd_at_basefee,polygon_usd_at_basefee,arbitrum_usd_at_basefee,optimism_usd_at_basefee,zksync_era_usd_at_basefee
+createMatch,4,244060,244060,244060,0.01898328,0.006307,0.00949164,0.00474582,0.0237291

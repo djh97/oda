@@ -1,0 +1,11 @@
+﻿{
+  "entity": "recipient",
+  "recipient_id": 10,
+  "organ_type": "Kidney",
+  "blood_type": "O",
+  "hla_typing": ["A1","A3","B7","DR15"],
+  "urgency": "Moderate",
+  "waiting_time_days": 480,
+  "location": "Abu Dhabi",
+  "medical_notes": "Longer waiting time; stable; no major contraindications. Synthetic profile."
+}

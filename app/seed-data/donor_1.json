@@ -1,0 +1,10 @@
+﻿{
+  "entity": "donor",
+  "donor_id": 1,
+  "organ_type": "Kidney",
+  "blood_type": "O",
+  "hla_typing": ["A1","A2","B7","DR15"],
+  "age": 35,
+  "location": "Abu Dhabi",
+  "medical_notes": "Synthetic donor profile for testing only. No real patient data. Hemodynamically stable. No known transmissible infection."
+}
