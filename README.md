@@ -28,9 +28,9 @@ ODA/
 │  ├─ pipeline-output/            # generated CSV/JSON outputs (committed for reproducibility)
 │  └─ .env.example                # environment template (DO NOT commit .env)
 ├─ integration/
-│  ├─ abi/                        # exported ABI JSON used by app
-│  └─ addresses/                  # deployed contract addresses per network
-└─ docs/                          # (optional) paper artifacts / figures later
+   ├─ abi/                        # exported ABI JSON used by app
+   └─ addresses/                  # deployed contract addresses per network
+
 ```
 
 ---
@@ -148,3 +148,4 @@ Common artifacts:
 ## License
 
 MIT
+
