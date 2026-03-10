@@ -1,8 +1,26 @@
-function,gas_used,source,note,ethereum_usd_at_basefee,polygon_usd_at_basefee,arbitrum_usd_at_basefee,optimism_usd_at_basefee,zksync_era_usd_at_basefee
-approveDonor,35204,observed_receipt,tx=960f241ce46ba0528bb0c478502e836ff24fc819458970675b59b1f992918cce,0.00273821,0.00090974,0.0013691,0.00068455,0.00342276
-approveFinalTransplant,33013,observed_receipt,tx=ab1e5167bd1002d12100633f5cf8577510271ba57999f54f4f5e08229227abf3,0.00256779,0.00085312,0.0012839,0.00064195,0.00320974
-approveHospital,32992,observed_receipt,tx=45b4adb0f40cc8c53aa6203d4943192c0fca8246d29aad9078a9d1a5bbb2b200,0.00256616,0.00085258,0.00128308,0.00064154,0.0032077
-approveMedicalTeam,50135,observed_receipt,tx=3b804a4b134595800c779200b3356c73c40fb42c6d88a0a45c7c06832a828d1a,0.00389956,0.00129559,0.00194978,0.00097489,0.00487445
-approveRecipient,35174,observed_receipt,tx=100d2ef061662e0b0790445d88bbd74972d2817e973f089045293e4702761cae,0.00273588,0.00090897,0.00136794,0.00068397,0.00341984
-createMatch,244060,observed_receipt,tx=9352830f8447ee88b9c3b52f99b5aa312b00303ea1a98ecd112aee06180f8260,0.01898328,0.006307,0.00949164,0.00474582,0.0237291
-finalizeMatch,48954,observed_receipt,tx=588425e76a56a997e847c3909ca9a1a80ab08c85269fe58458995a42a480938f,0.0038077,0.00126507,0.00190385,0.00095193,0.00475963
+category,function,tx_count,gas_used,source,note,ethereum_usd_at_basefee,polygon_usd_at_basefee,arbitrum_usd_at_basefee,optimism_usd_at_basefee,zksync_era_usd_at_basefee
+Deployment,deployContract,1,2540102,observed_receipt,txs=0x4b876f900c...,0.19757218,0.06564132,0.09878609,0.04939305,0.24696523
+Deployment,SUBTOTAL,1,2540102,observed_receipt,,0.19757218,0.06564132,0.09878609,0.04939305,0.24696523
+Eligibility approvals,approveDonorEthicalCommittee,1,31218,observed_receipt,txs=0xda07fa2645...,0.00242817,0.00080674,0.00121409,0.00060704,0.00303522
+Eligibility approvals,approveRecipientEthicalCommittee,10,312100,observed_receipt,"txs=0x09b118f30a...,0x56a521df3e...,+8 more",0.0242755,0.0080653,0.0121378,0.0060689,0.0303444
+Eligibility approvals,SUBTOTAL,11,343318,observed_receipt,,0.02670369,0.00887202,0.01335184,0.00667592,0.03337961
+Governance setup,registerEthicalCommittee,1,47368,observed_receipt,txs=0x2a20062d79...,0.00368434,0.00122408,0.00184217,0.00092108,0.00460542
+Governance setup,registerHospital,1,47359,observed_receipt,txs=0x0148d6b3cc...,0.00368364,0.00122385,0.00184182,0.00092091,0.00460455
+Governance setup,registerLLM,1,47304,observed_receipt,txs=0xe38ca66e01...,0.00367936,0.00122243,0.00183968,0.00091984,0.0045992
+Governance setup,registerMedicalTeam,1,47371,observed_receipt,txs=0x37b71bfe5e...,0.00368457,0.00122416,0.00184229,0.00092114,0.00460572
+Governance setup,SUBTOTAL,4,189402,observed_receipt,,0.01473191,0.00489453,0.00736596,0.00368298,0.01841489
+Identity binding,registerDonorAddress,1,70138,observed_receipt,txs=0xa768228bea...,0.00545542,0.00181251,0.00272771,0.00136385,0.00681927
+Identity binding,registerRecipientAddress,10,547446,observed_receipt,"txs=0x0c462cf6e5...,0x1db484de9b...,+8 more",0.042581,0.01414708,0.02129049,0.01064526,0.05322626
+Identity binding,SUBTOTAL,11,617584,observed_receipt,,0.04803642,0.01595961,0.02401821,0.01200911,0.06004553
+Match workflow,approveDonor,1,35204,observed_receipt,txs=0x960f241ce4...,0.00273821,0.00090974,0.0013691,0.00068455,0.00342276
+Match workflow,approveFinalTransplant,1,33013,observed_receipt,txs=0xab1e5167bd...,0.00256779,0.00085312,0.0012839,0.00064195,0.00320974
+Match workflow,approveHospital,1,32992,observed_receipt,txs=0x45b4adb0f4...,0.00256616,0.00085258,0.00128308,0.00064154,0.0032077
+Match workflow,approveMedicalTeam,1,50135,observed_receipt,txs=0x3b804a4b13...,0.00389956,0.00129559,0.00194978,0.00097489,0.00487445
+Match workflow,approveRecipient,1,35174,observed_receipt,txs=0x100d2ef061...,0.00273588,0.00090897,0.00136794,0.00068397,0.00341984
+Match workflow,createMatch,1,266760,observed_receipt,txs=0x5de9034031...,0.02074891,0.00689361,0.01037446,0.00518723,0.02593614
+Match workflow,finalizeMatch,1,48954,observed_receipt,txs=0x588425e76a...,0.0038077,0.00126507,0.00190385,0.00095193,0.00475963
+Match workflow,SUBTOTAL,7,502232,observed_receipt,,0.03906421,0.01297868,0.0195321,0.00976605,0.04883026
+Profile registration,registerDonor,1,234701,observed_receipt,txs=0x431161bdb3...,0.01825533,0.00606514,0.00912766,0.00456383,0.02281916
+Profile registration,registerRecipient,10,2347268,observed_receipt,"txs=0x79a4a192fb...,0x357d8a97ae...,+8 more",0.18257335,0.06065809,0.09128665,0.04564335,0.22821665
+Profile registration,SUBTOTAL,11,2581969,observed_receipt,,0.20082865,0.06672324,0.10041432,0.05020716,0.25103581
+TOTAL,TOTAL,45,6774607,observed_receipt,,0.52693706,0.17506939,0.26346853,0.13173427,0.65867133
