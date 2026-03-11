@@ -1,0 +1,415 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+/**
+ * TransplantManagement (v2.1)
+ * - One Match per transplant case
+ * - Stores primary + backup recipients
+ * - Stores off-chain LLM explanation CID (matchCID)
+ * - Recipient approval is ACTIVE recipient only (starts as primary)
+ * - Optional backup promotion (hospital or medical team) switches active recipient
+ */
+contract TransplantManagement {
+    // ─────────────────────────────────────────────────────────────────────────────
+    // Roles / Governance
+    // ─────────────────────────────────────────────────────────────────────────────
+    address public regulator;
+
+    mapping(address => bool) public registeredHospitals;
+    mapping(address => bool) public registeredMedicalTeams;
+    mapping(address => bool) public authorizedLLMs;
+    mapping(address => bool) public registeredEthicalCommittee;
+
+    modifier onlyRegulator() {
+        require(msg.sender == regulator, "Only regulator");
+        _;
+    }
+
+    modifier onlyHospital() {
+        require(registeredHospitals[msg.sender], "Only hospital");
+        _;
+    }
+
+    modifier onlyMedicalTeam() {
+        require(registeredMedicalTeams[msg.sender], "Only medical team");
+        _;
+    }
+
+    modifier onlyLLM() {
+        require(authorizedLLMs[msg.sender], "Only authorized LLM");
+        _;
+    }
+
+    modifier onlyEthicalCommittee() {
+        require(registeredEthicalCommittee[msg.sender], "Only ethical committee");
+        _;
+    }
+
+    modifier onlyHospitalOrMedicalTeam() {
+        require(
+            registeredHospitals[msg.sender] || registeredMedicalTeams[msg.sender],
+            "Only hospital or medical team"
+        );
+        _;
+    }
+
+    // ─────────────────────────────────────────────────────────────────────────────
+    // Core Data
+    // ─────────────────────────────────────────────────────────────────────────────
+    struct Donor {
+        uint256 donorId;
+        address donorAddress;
+        string bloodType;
+        string hlaTyping;
+        string organType;
+        string ipfsHash; // CID for donor medical record
+        bool registered;
+        bool ethicalApproved;
+    }
+
+    struct Recipient {
+        uint256 recipientId;
+        address recipientAddress;
+        string bloodType;
+        string hlaTyping;
+        string organType;
+        string ipfsHash; // CID for recipient medical record
+        bool registered;
+        bool matched; // optional marker
+        bool ethicalApproved;
+    }
+
+    struct Match {
+        uint256 matchId;
+        uint256 donorId;
+
+        uint256 primaryRecipientId;
+        uint256 backupRecipientId;
+
+        uint256 activeRecipientId;
+        bool backupPromoted;
+
+        address matchedByLLM;
+        string matchCID; // CID for LLM output (rationale + metadata)
+
+        bool medicalApproved;
+        bool hospitalApproved;
+        bool donorApproved;
+        bool activeRecipientApproved;
+        bool ethicalCommitteeApproved;
+
+        bool finalized;
+    }
+
+    mapping(uint256 => Donor) public donors;
+    mapping(uint256 => Recipient) public recipients;
+    mapping(uint256 => Match) public matches;
+
+    mapping(address => uint256) public registeredDonorAddresses;     // donorAddress -> donorId
+    mapping(address => uint256) public registeredRecipientAddresses; // recipientAddress -> recipientId
+
+    uint256 public donorCounter;
+    uint256 public recipientCounter;
+    uint256 public matchCounter;
+
+    // ─────────────────────────────────────────────────────────────────────────────
+    // Events
+    // ─────────────────────────────────────────────────────────────────────────────
+    event RegulatorChanged(address indexed oldRegulator, address indexed newRegulator);
+
+    event HospitalRegistered(address indexed hospital);
+    event MedicalTeamRegistered(address indexed medicalTeam);
+    event EthicalCommitteeMemberRegistered(address indexed committeeMember);
+    event LLMRegistered(address indexed llmAddress);
+
+    event DonorAddressRegistered(address indexed donorAddress, uint256 indexed donorId);
+    event RecipientAddressRegistered(address indexed recipientAddress, uint256 indexed recipientId);
+
+    event DonorRegistered(uint256 indexed donorId, address indexed donorAddress, string organType, string ipfsHash);
+    event RecipientRegistered(uint256 indexed recipientId, address indexed recipientAddress, string organType, string ipfsHash);
+
+    event EthicalApprovalGranted(uint256 indexed id, string entityType);
+
+    event MatchCreated(
+        uint256 indexed matchId,
+        uint256 indexed donorId,
+        uint256 indexed primaryRecipientId,
+        uint256 backupRecipientId,
+        string matchCID
+    );
+
+    event BackupRecipientPromoted(
+        uint256 indexed matchId,
+        uint256 indexed oldActiveRecipientId,
+        uint256 indexed newActiveRecipientId,
+        address promotedBy
+    );
+
+    event ApprovalGranted(uint256 indexed matchId, string approvedBy);
+    event MatchFinalized(uint256 indexed matchId, bool approved);
+
+    // ─────────────────────────────────────────────────────────────────────────────
+    // Constructor
+    // ─────────────────────────────────────────────────────────────────────────────
+    constructor(address _regulator) {
+        require(_regulator != address(0), "Invalid regulator");
+        regulator = _regulator;
+    }
+
+    // ─────────────────────────────────────────────────────────────────────────────
+    // Admin / Registration (Regulator)
+    // ─────────────────────────────────────────────────────────────────────────────
+    function changeRegulator(address newRegulator) external onlyRegulator {
+        require(newRegulator != address(0), "Invalid regulator");
+        address old = regulator;
+        regulator = newRegulator;
+        emit RegulatorChanged(old, newRegulator);
+    }
+
+    function registerHospital(address hospital) external onlyRegulator {
+        require(hospital != address(0), "Invalid hospital");
+        registeredHospitals[hospital] = true;
+        emit HospitalRegistered(hospital);
+    }
+
+    function registerMedicalTeam(address medicalTeam) external onlyRegulator {
+        require(medicalTeam != address(0), "Invalid medical team");
+        registeredMedicalTeams[medicalTeam] = true;
+        emit MedicalTeamRegistered(medicalTeam);
+    }
+
+    function registerLLM(address llm) external onlyRegulator {
+        require(llm != address(0), "Invalid LLM");
+        authorizedLLMs[llm] = true;
+        emit LLMRegistered(llm);
+    }
+
+    function registerEthicalCommittee(address committeeMember) external onlyRegulator {
+        require(committeeMember != address(0), "Invalid committee member");
+        registeredEthicalCommittee[committeeMember] = true;
+        emit EthicalCommitteeMemberRegistered(committeeMember);
+    }
+
+    function registerDonorAddress(address donorAddress) external onlyRegulator {
+        require(donorAddress != address(0), "Invalid donor address");
+        require(registeredDonorAddresses[donorAddress] == 0, "Donor already pre-registered");
+        donorCounter += 1;
+        registeredDonorAddresses[donorAddress] = donorCounter;
+        emit DonorAddressRegistered(donorAddress, donorCounter);
+    }
+
+    function registerRecipientAddress(address recipientAddress) external onlyRegulator {
+        require(recipientAddress != address(0), "Invalid recipient address");
+        require(registeredRecipientAddresses[recipientAddress] == 0, "Recipient already pre-registered");
+        recipientCounter += 1;
+        registeredRecipientAddresses[recipientAddress] = recipientCounter;
+        emit RecipientAddressRegistered(recipientAddress, recipientCounter);
+    }
+
+    // ─────────────────────────────────────────────────────────────────────────────
+    // Hospital: register donor/recipient medical summary + CID
+    // ─────────────────────────────────────────────────────────────────────────────
+    function registerDonor(
+        address donorAddress,
+        string calldata bloodType,
+        string calldata hlaTyping,
+        string calldata organType,
+        string calldata ipfsHash
+    ) external onlyHospital {
+        uint256 donorId = registeredDonorAddresses[donorAddress];
+        require(donorId != 0, "Donor not pre-registered");
+        require(!donors[donorId].registered, "Donor already registered");
+        require(bytes(ipfsHash).length > 0, "Empty donor CID");
+
+        Donor storage d = donors[donorId];
+        d.donorId = donorId;
+        d.donorAddress = donorAddress;
+        d.bloodType = bloodType;
+        d.hlaTyping = hlaTyping;
+        d.organType = organType;
+        d.ipfsHash = ipfsHash;
+        d.registered = true;
+        d.ethicalApproved = false;
+
+        emit DonorRegistered(donorId, donorAddress, organType, ipfsHash);
+    }
+
+    function registerRecipient(
+        address recipientAddress,
+        string calldata bloodType,
+        string calldata hlaTyping,
+        string calldata organType,
+        string calldata ipfsHash
+    ) external onlyHospital {
+        uint256 recipientId = registeredRecipientAddresses[recipientAddress];
+        require(recipientId != 0, "Recipient not pre-registered");
+        require(!recipients[recipientId].registered, "Recipient already registered");
+        require(bytes(ipfsHash).length > 0, "Empty recipient CID");
+
+        Recipient storage r = recipients[recipientId];
+        r.recipientId = recipientId;
+        r.recipientAddress = recipientAddress;
+        r.bloodType = bloodType;
+        r.hlaTyping = hlaTyping;
+        r.organType = organType;
+        r.ipfsHash = ipfsHash;
+        r.registered = true;
+        r.matched = false;
+        r.ethicalApproved = false;
+
+        emit RecipientRegistered(recipientId, recipientAddress, organType, ipfsHash);
+    }
+
+    // ─────────────────────────────────────────────────────────────────────────────
+    // Ethical Committee: approvals
+    // ─────────────────────────────────────────────────────────────────────────────
+    function approveDonorEthicalCommittee(uint256 donorId) external onlyEthicalCommittee {
+        require(donors[donorId].registered, "Donor not registered");
+        require(!donors[donorId].ethicalApproved, "Donor already approved");
+        donors[donorId].ethicalApproved = true;
+        emit EthicalApprovalGranted(donorId, "Donor");
+    }
+
+    function approveRecipientEthicalCommittee(uint256 recipientId) external onlyEthicalCommittee {
+        require(recipients[recipientId].registered, "Recipient not registered");
+        require(!recipients[recipientId].ethicalApproved, "Recipient already approved");
+        recipients[recipientId].ethicalApproved = true;
+        emit EthicalApprovalGranted(recipientId, "Recipient");
+    }
+
+    // ─────────────────────────────────────────────────────────────────────────────
+    // LLM: create match (primary + backup + matchCID)
+    // ─────────────────────────────────────────────────────────────────────────────
+    function createMatch(
+        uint256 donorId,
+        uint256 primaryRecipientId,
+        uint256 backupRecipientId,
+        string calldata matchCID
+    ) external onlyLLM {
+        require(donors[donorId].registered, "Donor not registered");
+        require(donors[donorId].ethicalApproved, "Donor must be ethically approved");
+
+        require(recipients[primaryRecipientId].registered, "Primary not registered");
+        require(recipients[primaryRecipientId].ethicalApproved, "Primary must be ethically approved");
+
+        require(recipients[backupRecipientId].registered, "Backup not registered");
+        require(recipients[backupRecipientId].ethicalApproved, "Backup must be ethically approved");
+
+        require(primaryRecipientId != 0 && backupRecipientId != 0, "Invalid recipient ids");
+        require(primaryRecipientId != backupRecipientId, "Primary and backup must differ");
+        require(bytes(matchCID).length > 0, "Empty matchCID");
+
+        matchCounter += 1;
+
+        Match storage m = matches[matchCounter];
+        m.matchId = matchCounter;
+        m.donorId = donorId;
+
+        m.primaryRecipientId = primaryRecipientId;
+        m.backupRecipientId = backupRecipientId;
+
+        m.activeRecipientId = primaryRecipientId;
+        m.backupPromoted = false;
+
+        m.matchedByLLM = msg.sender;
+        m.matchCID = matchCID;
+
+        m.medicalApproved = false;
+        m.hospitalApproved = false;
+        m.donorApproved = false;
+        m.activeRecipientApproved = false;
+        m.ethicalCommitteeApproved = false;
+        m.finalized = false;
+
+        recipients[primaryRecipientId].matched = true;
+        recipients[backupRecipientId].matched = true;
+
+        emit MatchCreated(matchCounter, donorId, primaryRecipientId, backupRecipientId, matchCID);
+    }
+
+    // ─────────────────────────────────────────────────────────────────────────────
+    // Backup promotion: switch active recipient to backup
+    // ─────────────────────────────────────────────────────────────────────────────
+    function promoteBackupRecipient(uint256 matchId) external onlyHospitalOrMedicalTeam {
+        require(matches[matchId].matchId != 0, "Match does not exist");
+        Match storage m = matches[matchId];
+
+        require(!m.finalized, "Match finalized");
+        require(!m.backupPromoted, "Backup already promoted");
+        require(m.activeRecipientId == m.primaryRecipientId, "Active is not primary");
+
+        uint256 oldActive = m.activeRecipientId;
+        m.activeRecipientId = m.backupRecipientId;
+        m.backupPromoted = true;
+
+        // reset recipient approval since active recipient changed
+        m.activeRecipientApproved = false;
+
+        emit BackupRecipientPromoted(matchId, oldActive, m.activeRecipientId, msg.sender);
+    }
+
+    // ─────────────────────────────────────────────────────────────────────────────
+    // Approvals
+    // ─────────────────────────────────────────────────────────────────────────────
+    function approveMedicalTeam(uint256 matchId) external onlyMedicalTeam {
+        require(matches[matchId].matchId != 0, "Match does not exist");
+        matches[matchId].medicalApproved = true;
+        emit ApprovalGranted(matchId, "Medical Team");
+    }
+
+    function approveHospital(uint256 matchId) external onlyHospital {
+        require(matches[matchId].matchId != 0, "Match does not exist");
+        matches[matchId].hospitalApproved = true;
+        emit ApprovalGranted(matchId, "Hospital");
+    }
+
+    function approveDonor(uint256 matchId) external {
+        require(matches[matchId].matchId != 0, "Match does not exist");
+        uint256 donorId = matches[matchId].donorId;
+        require(msg.sender == donors[donorId].donorAddress, "Only donor can approve");
+        matches[matchId].donorApproved = true;
+        emit ApprovalGranted(matchId, "Donor");
+    }
+
+    function approveRecipient(uint256 matchId) external {
+        require(matches[matchId].matchId != 0, "Match does not exist");
+        Match storage m = matches[matchId];
+
+        uint256 activeRid = m.activeRecipientId;
+        require(activeRid != 0, "No active recipient");
+        require(msg.sender == recipients[activeRid].recipientAddress, "Only active recipient can approve");
+
+        m.activeRecipientApproved = true;
+        emit ApprovalGranted(matchId, "Recipient");
+    }
+
+    function approveFinalTransplant(uint256 matchId) external onlyEthicalCommittee {
+        require(matches[matchId].matchId != 0, "Match does not exist");
+        matches[matchId].ethicalCommitteeApproved = true;
+        emit ApprovalGranted(matchId, "Ethical Committee");
+    }
+
+    // ─────────────────────────────────────────────────────────────────────────────
+    // Final decision & finalize helper
+    // ─────────────────────────────────────────────────────────────────────────────
+    function isTransplantApproved(uint256 matchId) public view returns (bool) {
+        Match memory m = matches[matchId];
+        return (
+            m.medicalApproved &&
+            m.hospitalApproved &&
+            m.donorApproved &&
+            m.activeRecipientApproved &&
+            m.ethicalCommitteeApproved
+        );
+    }
+
+    function finalizeMatch(uint256 matchId) external {
+        require(matches[matchId].matchId != 0, "Match does not exist");
+        require(!matches[matchId].finalized, "Already finalized");
+
+        bool approved = isTransplantApproved(matchId);
+        matches[matchId].finalized = true;
+
+        emit MatchFinalized(matchId, approved);
+    }
+}
