@@ -1,0 +1,1351 @@
+No files changed, compilation skipped
+
+Ran 29 tests for test/TransplantManagementV22.t.sol:TransplantManagementV22Test
+[PASS] testApprovalsFailAfterFinalization() (gas: 794647)
+Traces:
+  [814547] TransplantManagementV22Test::testApprovalsFailAfterFinalization()
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [165528] TransplantManagement::registerDonor(ECAdd: [0x0000000000000000000000000000000000000006], "O", "A1,A2,B7,DR15", "Kidney", "bafyDonorCID")
+    │   ├─ emit DonorRegistered(donorId: 1, donorAddress: ECAdd: [0x0000000000000000000000000000000000000006], organType: "Kidney", ipfsHash: "bafyDonorCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECMul: [0x0000000000000000000000000000000000000007], "O", "A1,A3,B7,DR15", "Kidney", "bafyRecipient1CID")
+    │   ├─ emit RecipientRegistered(recipientId: 1, recipientAddress: ECMul: [0x0000000000000000000000000000000000000007], organType: "Kidney", ipfsHash: "bafyRecipient1CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECPairing: [0x0000000000000000000000000000000000000008], "O", "A1,A2,B8,DR4", "Kidney", "bafyRecipient2CID")
+    │   ├─ emit RecipientRegistered(recipientId: 2, recipientAddress: ECPairing: [0x0000000000000000000000000000000000000008], organType: "Kidney", ipfsHash: "bafyRecipient2CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [5468] TransplantManagement::approveDonorEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Donor")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(2)
+    │   ├─ emit EthicalApprovalGranted(id: 2, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(Identity: [0x0000000000000000000000000000000000000004])
+    │   └─ ← [Return]
+    ├─ [210499] TransplantManagement::createMatch(1, 1, 2, "bafyMatchRationaleCID")
+    │   ├─ emit MatchCreated(matchId: 1, donorId: 1, primaryRecipientId: 1, backupRecipientId: 2, matchCID: "bafyMatchRationaleCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(RIPEMD-160: [0x0000000000000000000000000000000000000003])
+    │   └─ ← [Return]
+    ├─ [25262] TransplantManagement::approveMedicalTeam(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Medical Team")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [3285] TransplantManagement::approveHospital(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Hospital")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ECAdd: [0x0000000000000000000000000000000000000006])
+    │   └─ ← [Return]
+    ├─ [3825] TransplantManagement::approveDonor(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Donor")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ECMul: [0x0000000000000000000000000000000000000007])
+    │   └─ ← [Return]
+    ├─ [3690] TransplantManagement::approveRecipient(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3577] TransplantManagement::approveFinalTransplant(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Ethical Committee")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(Blake2F: [0x0000000000000000000000000000000000000009])
+    │   └─ ← [Return]
+    ├─ [5254] TransplantManagement::finalizeMatch(1)
+    │   ├─ emit MatchFinalized(matchId: 1, approved: true)
+    │   └─ ← [Stop]
+    ├─ [0] VM::expectRevert(custom error 0xf28dceb3:  Match finalized)
+    │   └─ ← [Return]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [1029] TransplantManagement::approveHospital(1)
+    │   └─ ← [Revert] Match finalized
+    └─ ← [Return]
+
+[PASS] testBackupPromotion_FailsAfterFinalEthicsApproval() (gas: 808722)
+Traces:
+  [808722] TransplantManagementV22Test::testBackupPromotion_FailsAfterFinalEthicsApproval()
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [165528] TransplantManagement::registerDonor(ECAdd: [0x0000000000000000000000000000000000000006], "O", "A1,A2,B7,DR15", "Kidney", "bafyDonorCID")
+    │   ├─ emit DonorRegistered(donorId: 1, donorAddress: ECAdd: [0x0000000000000000000000000000000000000006], organType: "Kidney", ipfsHash: "bafyDonorCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECMul: [0x0000000000000000000000000000000000000007], "O", "A1,A3,B7,DR15", "Kidney", "bafyRecipient1CID")
+    │   ├─ emit RecipientRegistered(recipientId: 1, recipientAddress: ECMul: [0x0000000000000000000000000000000000000007], organType: "Kidney", ipfsHash: "bafyRecipient1CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECPairing: [0x0000000000000000000000000000000000000008], "O", "A1,A2,B8,DR4", "Kidney", "bafyRecipient2CID")
+    │   ├─ emit RecipientRegistered(recipientId: 2, recipientAddress: ECPairing: [0x0000000000000000000000000000000000000008], organType: "Kidney", ipfsHash: "bafyRecipient2CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [5468] TransplantManagement::approveDonorEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Donor")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(2)
+    │   ├─ emit EthicalApprovalGranted(id: 2, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(Identity: [0x0000000000000000000000000000000000000004])
+    │   └─ ← [Return]
+    ├─ [210499] TransplantManagement::createMatch(1, 1, 2, "bafyMatchRationaleCID")
+    │   ├─ emit MatchCreated(matchId: 1, donorId: 1, primaryRecipientId: 1, backupRecipientId: 2, matchCID: "bafyMatchRationaleCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(RIPEMD-160: [0x0000000000000000000000000000000000000003])
+    │   └─ ← [Return]
+    ├─ [25262] TransplantManagement::approveMedicalTeam(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Medical Team")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [3285] TransplantManagement::approveHospital(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Hospital")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ECAdd: [0x0000000000000000000000000000000000000006])
+    │   └─ ← [Return]
+    ├─ [3825] TransplantManagement::approveDonor(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Donor")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ECMul: [0x0000000000000000000000000000000000000007])
+    │   └─ ← [Return]
+    ├─ [3690] TransplantManagement::approveRecipient(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3577] TransplantManagement::approveFinalTransplant(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Ethical Committee")
+    │   └─ ← [Stop]
+    ├─ [0] VM::expectRevert(custom error 0xf28dceb3:  Recipient already approved)
+    │   └─ ← [Return]
+    ├─ [0] VM::prank(RIPEMD-160: [0x0000000000000000000000000000000000000003])
+    │   └─ ← [Return]
+    ├─ [3875] TransplantManagement::promoteBackupRecipient(1)
+    │   └─ ← [Revert] Recipient already approved
+    └─ ← [Return]
+
+[PASS] testBackupPromotion_FailsAfterRecipientApproval() (gas: 801284)
+Traces:
+  [801284] TransplantManagementV22Test::testBackupPromotion_FailsAfterRecipientApproval()
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [165528] TransplantManagement::registerDonor(ECAdd: [0x0000000000000000000000000000000000000006], "O", "A1,A2,B7,DR15", "Kidney", "bafyDonorCID")
+    │   ├─ emit DonorRegistered(donorId: 1, donorAddress: ECAdd: [0x0000000000000000000000000000000000000006], organType: "Kidney", ipfsHash: "bafyDonorCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECMul: [0x0000000000000000000000000000000000000007], "O", "A1,A3,B7,DR15", "Kidney", "bafyRecipient1CID")
+    │   ├─ emit RecipientRegistered(recipientId: 1, recipientAddress: ECMul: [0x0000000000000000000000000000000000000007], organType: "Kidney", ipfsHash: "bafyRecipient1CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECPairing: [0x0000000000000000000000000000000000000008], "O", "A1,A2,B8,DR4", "Kidney", "bafyRecipient2CID")
+    │   ├─ emit RecipientRegistered(recipientId: 2, recipientAddress: ECPairing: [0x0000000000000000000000000000000000000008], organType: "Kidney", ipfsHash: "bafyRecipient2CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [5468] TransplantManagement::approveDonorEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Donor")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(2)
+    │   ├─ emit EthicalApprovalGranted(id: 2, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(Identity: [0x0000000000000000000000000000000000000004])
+    │   └─ ← [Return]
+    ├─ [210499] TransplantManagement::createMatch(1, 1, 2, "bafyMatchRationaleCID")
+    │   ├─ emit MatchCreated(matchId: 1, donorId: 1, primaryRecipientId: 1, backupRecipientId: 2, matchCID: "bafyMatchRationaleCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(RIPEMD-160: [0x0000000000000000000000000000000000000003])
+    │   └─ ← [Return]
+    ├─ [25262] TransplantManagement::approveMedicalTeam(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Medical Team")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [3285] TransplantManagement::approveHospital(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Hospital")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ECAdd: [0x0000000000000000000000000000000000000006])
+    │   └─ ← [Return]
+    ├─ [3825] TransplantManagement::approveDonor(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Donor")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ECMul: [0x0000000000000000000000000000000000000007])
+    │   └─ ← [Return]
+    ├─ [3690] TransplantManagement::approveRecipient(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::expectRevert(custom error 0xf28dceb3:  Recipient already approved)
+    │   └─ ← [Return]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [1692] TransplantManagement::promoteBackupRecipient(1)
+    │   └─ ← [Revert] Recipient already approved
+    └─ ← [Return]
+
+[PASS] testBackupPromotion_FailsIfCalledTwice() (gas: 769686)
+Traces:
+  [769686] TransplantManagementV22Test::testBackupPromotion_FailsIfCalledTwice()
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [165528] TransplantManagement::registerDonor(ECAdd: [0x0000000000000000000000000000000000000006], "O", "A1,A2,B7,DR15", "Kidney", "bafyDonorCID")
+    │   ├─ emit DonorRegistered(donorId: 1, donorAddress: ECAdd: [0x0000000000000000000000000000000000000006], organType: "Kidney", ipfsHash: "bafyDonorCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECMul: [0x0000000000000000000000000000000000000007], "O", "A1,A3,B7,DR15", "Kidney", "bafyRecipient1CID")
+    │   ├─ emit RecipientRegistered(recipientId: 1, recipientAddress: ECMul: [0x0000000000000000000000000000000000000007], organType: "Kidney", ipfsHash: "bafyRecipient1CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECPairing: [0x0000000000000000000000000000000000000008], "O", "A1,A2,B8,DR4", "Kidney", "bafyRecipient2CID")
+    │   ├─ emit RecipientRegistered(recipientId: 2, recipientAddress: ECPairing: [0x0000000000000000000000000000000000000008], organType: "Kidney", ipfsHash: "bafyRecipient2CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [5468] TransplantManagement::approveDonorEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Donor")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(2)
+    │   ├─ emit EthicalApprovalGranted(id: 2, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(Identity: [0x0000000000000000000000000000000000000004])
+    │   └─ ← [Return]
+    ├─ [210499] TransplantManagement::createMatch(1, 1, 2, "bafyMatchRationaleCID")
+    │   ├─ emit MatchCreated(matchId: 1, donorId: 1, primaryRecipientId: 1, backupRecipientId: 2, matchCID: "bafyMatchRationaleCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(RIPEMD-160: [0x0000000000000000000000000000000000000003])
+    │   └─ ← [Return]
+    ├─ [8426] TransplantManagement::promoteBackupRecipient(1)
+    │   ├─ emit BackupRecipientPromoted(matchId: 1, oldActiveRecipientId: 1, newActiveRecipientId: 2, promotedBy: RIPEMD-160: [0x0000000000000000000000000000000000000003])
+    │   └─ ← [Stop]
+    ├─ [0] VM::expectRevert(custom error 0xf28dceb3:  Backup already promoted)
+    │   └─ ← [Return]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [1279] TransplantManagement::promoteBackupRecipient(1)
+    │   └─ ← [Revert] Backup already promoted
+    └─ ← [Return]
+
+[PASS] testBackupPromotion_Success_AndRecipientApprovalSwitches() (gas: 819251)
+Traces:
+  [819251] TransplantManagementV22Test::testBackupPromotion_Success_AndRecipientApprovalSwitches()
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [165528] TransplantManagement::registerDonor(ECAdd: [0x0000000000000000000000000000000000000006], "O", "A1,A2,B7,DR15", "Kidney", "bafyDonorCID")
+    │   ├─ emit DonorRegistered(donorId: 1, donorAddress: ECAdd: [0x0000000000000000000000000000000000000006], organType: "Kidney", ipfsHash: "bafyDonorCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECMul: [0x0000000000000000000000000000000000000007], "O", "A1,A3,B7,DR15", "Kidney", "bafyRecipient1CID")
+    │   ├─ emit RecipientRegistered(recipientId: 1, recipientAddress: ECMul: [0x0000000000000000000000000000000000000007], organType: "Kidney", ipfsHash: "bafyRecipient1CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECPairing: [0x0000000000000000000000000000000000000008], "O", "A1,A2,B8,DR4", "Kidney", "bafyRecipient2CID")
+    │   ├─ emit RecipientRegistered(recipientId: 2, recipientAddress: ECPairing: [0x0000000000000000000000000000000000000008], organType: "Kidney", ipfsHash: "bafyRecipient2CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [5468] TransplantManagement::approveDonorEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Donor")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(2)
+    │   ├─ emit EthicalApprovalGranted(id: 2, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(Identity: [0x0000000000000000000000000000000000000004])
+    │   └─ ← [Return]
+    ├─ [210499] TransplantManagement::createMatch(1, 1, 2, "bafyMatchRationaleCID")
+    │   ├─ emit MatchCreated(matchId: 1, donorId: 1, primaryRecipientId: 1, backupRecipientId: 2, matchCID: "bafyMatchRationaleCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(RIPEMD-160: [0x0000000000000000000000000000000000000003])
+    │   └─ ← [Return]
+    ├─ [25262] TransplantManagement::approveMedicalTeam(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Medical Team")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [3285] TransplantManagement::approveHospital(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Hospital")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ECAdd: [0x0000000000000000000000000000000000000006])
+    │   └─ ← [Return]
+    ├─ [3825] TransplantManagement::approveDonor(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Donor")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [4243] TransplantManagement::promoteBackupRecipient(1)
+    │   ├─ emit BackupRecipientPromoted(matchId: 1, oldActiveRecipientId: 1, newActiveRecipientId: 2, promotedBy: SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Stop]
+    ├─ [2181] TransplantManagement::matches(1) [staticcall]
+    │   └─ ← [Return] 1, 1, 1, 2, 2, true, Identity: [0x0000000000000000000000000000000000000004], "bafyMatchRationaleCID", true, true, true, false, false, false
+    ├─ [0] VM::expectRevert(custom error 0xf28dceb3:  !Only active recipient can approve)
+    │   └─ ← [Return]
+    ├─ [0] VM::prank(ECMul: [0x0000000000000000000000000000000000000007])
+    │   └─ ← [Return]
+    ├─ [1654] TransplantManagement::approveRecipient(1)
+    │   └─ ← [Revert] Only active recipient can approve
+    ├─ [0] VM::prank(ECPairing: [0x0000000000000000000000000000000000000008])
+    │   └─ ← [Return]
+    ├─ [3690] TransplantManagement::approveRecipient(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3577] TransplantManagement::approveFinalTransplant(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Ethical Committee")
+    │   └─ ← [Stop]
+    ├─ [2357] TransplantManagement::isTransplantApproved(1) [staticcall]
+    │   └─ ← [Return] true
+    └─ ← [Return]
+
+[PASS] testChangeRegulator_FailsForUnauthorizedCaller() (gas: 14244)
+Traces:
+  [14244] TransplantManagementV22Test::testChangeRegulator_FailsForUnauthorizedCaller()
+    ├─ [0] VM::expectRevert(custom error 0xf28dceb3:  Only regulator)
+    │   └─ ← [Return]
+    ├─ [0] VM::prank(Blake2F: [0x0000000000000000000000000000000000000009])
+    │   └─ ← [Return]
+    ├─ [2487] TransplantManagement::changeRegulator(0x0000000000000000000000000000000000000020)
+    │   └─ ← [Revert] Only regulator
+    └─ ← [Return]
+
+[PASS] testChangeRegulator_Success() (gas: 19293)
+Traces:
+  [19293] TransplantManagementV22Test::testChangeRegulator_Success()
+    ├─ [0] VM::prank(ECRecover: [0x0000000000000000000000000000000000000001])
+    │   └─ ← [Return]
+    ├─ [6886] TransplantManagement::changeRegulator(0x0000000000000000000000000000000000000020)
+    │   ├─ emit RegulatorChanged(oldRegulator: ECRecover: [0x0000000000000000000000000000000000000001], newRegulator: 0x0000000000000000000000000000000000000020)
+    │   └─ ← [Stop]
+    ├─ [917] TransplantManagement::regulator() [staticcall]
+    │   └─ ← [Return] 0x0000000000000000000000000000000000000020
+    └─ ← [Return]
+
+[PASS] testDonorAndRecipientRegistration_Success() (gas: 371182)
+Traces:
+  [371182] TransplantManagementV22Test::testDonorAndRecipientRegistration_Success()
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [165528] TransplantManagement::registerDonor(ECAdd: [0x0000000000000000000000000000000000000006], "A+", "HLA-A2", "Kidney", "bafyDonorCID")
+    │   ├─ emit DonorRegistered(donorId: 1, donorAddress: ECAdd: [0x0000000000000000000000000000000000000006], organType: "Kidney", ipfsHash: "bafyDonorCID")
+    │   └─ ← [Stop]
+    ├─ [3458] TransplantManagement::donors(1) [staticcall]
+    │   └─ ← [Return] 1, ECAdd: [0x0000000000000000000000000000000000000006], "A+", "HLA-A2", "Kidney", "bafyDonorCID", true, false
+    ├─ [0] VM::assertEq("A+", "A+") [staticcall]
+    │   └─ ← [Return]
+    ├─ [0] VM::assertEq("Kidney", "Kidney") [staticcall]
+    │   └─ ← [Return]
+    ├─ [0] VM::assertEq("bafyDonorCID", "bafyDonorCID") [staticcall]
+    │   └─ ← [Return]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECMul: [0x0000000000000000000000000000000000000007], "A+", "HLA-A2", "Kidney", "bafyRecipient1CID")
+    │   ├─ emit RecipientRegistered(recipientId: 1, recipientAddress: ECMul: [0x0000000000000000000000000000000000000007], organType: "Kidney", ipfsHash: "bafyRecipient1CID")
+    │   └─ ← [Stop]
+    ├─ [3846] TransplantManagement::recipients(1) [staticcall]
+    │   └─ ← [Return] 1, ECMul: [0x0000000000000000000000000000000000000007], "A+", "HLA-A2", "Kidney", "bafyRecipient1CID", true, false, false
+    ├─ [0] VM::assertEq("A+", "A+") [staticcall]
+    │   └─ ← [Return]
+    ├─ [0] VM::assertEq("Kidney", "Kidney") [staticcall]
+    │   └─ ← [Return]
+    ├─ [0] VM::assertEq("bafyRecipient1CID", "bafyRecipient1CID") [staticcall]
+    │   └─ ← [Return]
+    └─ ← [Return]
+
+[PASS] testDonorApproval_FailsIfHospitalNotFirst() (gas: 786375)
+Traces:
+  [786375] TransplantManagementV22Test::testDonorApproval_FailsIfHospitalNotFirst()
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [165528] TransplantManagement::registerDonor(ECAdd: [0x0000000000000000000000000000000000000006], "O", "A1,A2,B7,DR15", "Kidney", "bafyDonorCID")
+    │   ├─ emit DonorRegistered(donorId: 1, donorAddress: ECAdd: [0x0000000000000000000000000000000000000006], organType: "Kidney", ipfsHash: "bafyDonorCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECMul: [0x0000000000000000000000000000000000000007], "O", "A1,A3,B7,DR15", "Kidney", "bafyRecipient1CID")
+    │   ├─ emit RecipientRegistered(recipientId: 1, recipientAddress: ECMul: [0x0000000000000000000000000000000000000007], organType: "Kidney", ipfsHash: "bafyRecipient1CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECPairing: [0x0000000000000000000000000000000000000008], "O", "A1,A2,B8,DR4", "Kidney", "bafyRecipient2CID")
+    │   ├─ emit RecipientRegistered(recipientId: 2, recipientAddress: ECPairing: [0x0000000000000000000000000000000000000008], organType: "Kidney", ipfsHash: "bafyRecipient2CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [5468] TransplantManagement::approveDonorEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Donor")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(2)
+    │   ├─ emit EthicalApprovalGranted(id: 2, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(Identity: [0x0000000000000000000000000000000000000004])
+    │   └─ ← [Return]
+    ├─ [210499] TransplantManagement::createMatch(1, 1, 2, "bafyMatchRationaleCID")
+    │   ├─ emit MatchCreated(matchId: 1, donorId: 1, primaryRecipientId: 1, backupRecipientId: 2, matchCID: "bafyMatchRationaleCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(RIPEMD-160: [0x0000000000000000000000000000000000000003])
+    │   └─ ← [Return]
+    ├─ [25262] TransplantManagement::approveMedicalTeam(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Medical Team")
+    │   └─ ← [Stop]
+    ├─ [0] VM::expectRevert(custom error 0xf28dceb3:   Hospital approval required first)
+    │   └─ ← [Return]
+    ├─ [0] VM::prank(ECAdd: [0x0000000000000000000000000000000000000006])
+    │   └─ ← [Return]
+    ├─ [1385] TransplantManagement::approveDonor(1)
+    │   └─ ← [Revert] Hospital approval required first
+    └─ ← [Return]
+
+[PASS] testDonorRegistration_FailsForUnauthorizedCaller() (gas: 20426)
+Traces:
+  [20426] TransplantManagementV22Test::testDonorRegistration_FailsForUnauthorizedCaller()
+    ├─ [0] VM::expectRevert(custom error 0xf28dceb3:  Only hospital)
+    │   └─ ← [Return]
+    ├─ [0] VM::prank(Blake2F: [0x0000000000000000000000000000000000000009])
+    │   └─ ← [Return]
+    ├─ [3671] TransplantManagement::registerDonor(ECAdd: [0x0000000000000000000000000000000000000006], "A+", "HLA-A2", "Kidney", "bafyDonorCID")
+    │   └─ ← [Revert] Only hospital
+    └─ ← [Return]
+
+[PASS] testDuplicateApprovals_Fail() (gas: 786688)
+Traces:
+  [786688] TransplantManagementV22Test::testDuplicateApprovals_Fail()
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [165528] TransplantManagement::registerDonor(ECAdd: [0x0000000000000000000000000000000000000006], "O", "A1,A2,B7,DR15", "Kidney", "bafyDonorCID")
+    │   ├─ emit DonorRegistered(donorId: 1, donorAddress: ECAdd: [0x0000000000000000000000000000000000000006], organType: "Kidney", ipfsHash: "bafyDonorCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECMul: [0x0000000000000000000000000000000000000007], "O", "A1,A3,B7,DR15", "Kidney", "bafyRecipient1CID")
+    │   ├─ emit RecipientRegistered(recipientId: 1, recipientAddress: ECMul: [0x0000000000000000000000000000000000000007], organType: "Kidney", ipfsHash: "bafyRecipient1CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECPairing: [0x0000000000000000000000000000000000000008], "O", "A1,A2,B8,DR4", "Kidney", "bafyRecipient2CID")
+    │   ├─ emit RecipientRegistered(recipientId: 2, recipientAddress: ECPairing: [0x0000000000000000000000000000000000000008], organType: "Kidney", ipfsHash: "bafyRecipient2CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [5468] TransplantManagement::approveDonorEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Donor")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(2)
+    │   ├─ emit EthicalApprovalGranted(id: 2, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(Identity: [0x0000000000000000000000000000000000000004])
+    │   └─ ← [Return]
+    ├─ [210499] TransplantManagement::createMatch(1, 1, 2, "bafyMatchRationaleCID")
+    │   ├─ emit MatchCreated(matchId: 1, donorId: 1, primaryRecipientId: 1, backupRecipientId: 2, matchCID: "bafyMatchRationaleCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(RIPEMD-160: [0x0000000000000000000000000000000000000003])
+    │   └─ ← [Return]
+    ├─ [25262] TransplantManagement::approveMedicalTeam(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Medical Team")
+    │   └─ ← [Stop]
+    ├─ [0] VM::expectRevert(custom error 0xf28dceb3:  Medical already approved)
+    │   └─ ← [Return]
+    ├─ [0] VM::prank(RIPEMD-160: [0x0000000000000000000000000000000000000003])
+    │   └─ ← [Return]
+    ├─ [1335] TransplantManagement::approveMedicalTeam(1)
+    │   └─ ← [Revert] Medical already approved
+    └─ ← [Return]
+
+[PASS] testEthicalApproval_FailsForUnauthorizedCaller() (gas: 14407)
+Traces:
+  [14407] TransplantManagementV22Test::testEthicalApproval_FailsForUnauthorizedCaller()
+    ├─ [0] VM::expectRevert(custom error 0xf28dceb3:  Only ethical committee)
+    │   └─ ← [Return]
+    ├─ [0] VM::prank(Blake2F: [0x0000000000000000000000000000000000000009])
+    │   └─ ← [Return]
+    ├─ [2826] TransplantManagement::approveDonorEthicalCommittee(1)
+    │   └─ ← [Revert] Only ethical committee
+    └─ ← [Return]
+
+[PASS] testEthicalApproval_Success() (gas: 546786)
+Traces:
+  [546786] TransplantManagementV22Test::testEthicalApproval_Success()
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [165528] TransplantManagement::registerDonor(ECAdd: [0x0000000000000000000000000000000000000006], "O", "A1,A2,B7,DR15", "Kidney", "bafyDonorCID")
+    │   ├─ emit DonorRegistered(donorId: 1, donorAddress: ECAdd: [0x0000000000000000000000000000000000000006], organType: "Kidney", ipfsHash: "bafyDonorCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECMul: [0x0000000000000000000000000000000000000007], "O", "A1,A3,B7,DR15", "Kidney", "bafyRecipient1CID")
+    │   ├─ emit RecipientRegistered(recipientId: 1, recipientAddress: ECMul: [0x0000000000000000000000000000000000000007], organType: "Kidney", ipfsHash: "bafyRecipient1CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECPairing: [0x0000000000000000000000000000000000000008], "O", "A1,A2,B8,DR4", "Kidney", "bafyRecipient2CID")
+    │   ├─ emit RecipientRegistered(recipientId: 2, recipientAddress: ECPairing: [0x0000000000000000000000000000000000000008], organType: "Kidney", ipfsHash: "bafyRecipient2CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [5468] TransplantManagement::approveDonorEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Donor")
+    │   └─ ← [Stop]
+    ├─ [3458] TransplantManagement::donors(1) [staticcall]
+    │   └─ ← [Return] 1, ECAdd: [0x0000000000000000000000000000000000000006], "O", "A1,A2,B7,DR15", "Kidney", "bafyDonorCID", true, true
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [3846] TransplantManagement::recipients(1) [staticcall]
+    │   └─ ← [Return] 1, ECMul: [0x0000000000000000000000000000000000000007], "O", "A1,A3,B7,DR15", "Kidney", "bafyRecipient1CID", true, false, true
+    └─ ← [Return]
+
+[PASS] testEthicsFinalApproval_FailsIfRecipientNotFirst() (gas: 796630)
+Traces:
+  [796630] TransplantManagementV22Test::testEthicsFinalApproval_FailsIfRecipientNotFirst()
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [165528] TransplantManagement::registerDonor(ECAdd: [0x0000000000000000000000000000000000000006], "O", "A1,A2,B7,DR15", "Kidney", "bafyDonorCID")
+    │   ├─ emit DonorRegistered(donorId: 1, donorAddress: ECAdd: [0x0000000000000000000000000000000000000006], organType: "Kidney", ipfsHash: "bafyDonorCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECMul: [0x0000000000000000000000000000000000000007], "O", "A1,A3,B7,DR15", "Kidney", "bafyRecipient1CID")
+    │   ├─ emit RecipientRegistered(recipientId: 1, recipientAddress: ECMul: [0x0000000000000000000000000000000000000007], organType: "Kidney", ipfsHash: "bafyRecipient1CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECPairing: [0x0000000000000000000000000000000000000008], "O", "A1,A2,B8,DR4", "Kidney", "bafyRecipient2CID")
+    │   ├─ emit RecipientRegistered(recipientId: 2, recipientAddress: ECPairing: [0x0000000000000000000000000000000000000008], organType: "Kidney", ipfsHash: "bafyRecipient2CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [5468] TransplantManagement::approveDonorEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Donor")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(2)
+    │   ├─ emit EthicalApprovalGranted(id: 2, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(Identity: [0x0000000000000000000000000000000000000004])
+    │   └─ ← [Return]
+    ├─ [210499] TransplantManagement::createMatch(1, 1, 2, "bafyMatchRationaleCID")
+    │   ├─ emit MatchCreated(matchId: 1, donorId: 1, primaryRecipientId: 1, backupRecipientId: 2, matchCID: "bafyMatchRationaleCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(RIPEMD-160: [0x0000000000000000000000000000000000000003])
+    │   └─ ← [Return]
+    ├─ [25262] TransplantManagement::approveMedicalTeam(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Medical Team")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [3285] TransplantManagement::approveHospital(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Hospital")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ECAdd: [0x0000000000000000000000000000000000000006])
+    │   └─ ← [Return]
+    ├─ [3825] TransplantManagement::approveDonor(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Donor")
+    │   └─ ← [Stop]
+    ├─ [0] VM::expectRevert(custom error 0xf28dceb3:  !Recipient approval required first)
+    │   └─ ← [Return]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [1546] TransplantManagement::approveFinalTransplant(1)
+    │   └─ ← [Revert] Recipient approval required first
+    └─ ← [Return]
+
+[PASS] testFinalizeMatch_FailsIfNotFullyApproved() (gas: 789749)
+Traces:
+  [789749] TransplantManagementV22Test::testFinalizeMatch_FailsIfNotFullyApproved()
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [165528] TransplantManagement::registerDonor(ECAdd: [0x0000000000000000000000000000000000000006], "O", "A1,A2,B7,DR15", "Kidney", "bafyDonorCID")
+    │   ├─ emit DonorRegistered(donorId: 1, donorAddress: ECAdd: [0x0000000000000000000000000000000000000006], organType: "Kidney", ipfsHash: "bafyDonorCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECMul: [0x0000000000000000000000000000000000000007], "O", "A1,A3,B7,DR15", "Kidney", "bafyRecipient1CID")
+    │   ├─ emit RecipientRegistered(recipientId: 1, recipientAddress: ECMul: [0x0000000000000000000000000000000000000007], organType: "Kidney", ipfsHash: "bafyRecipient1CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECPairing: [0x0000000000000000000000000000000000000008], "O", "A1,A2,B8,DR4", "Kidney", "bafyRecipient2CID")
+    │   ├─ emit RecipientRegistered(recipientId: 2, recipientAddress: ECPairing: [0x0000000000000000000000000000000000000008], organType: "Kidney", ipfsHash: "bafyRecipient2CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [5468] TransplantManagement::approveDonorEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Donor")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(2)
+    │   ├─ emit EthicalApprovalGranted(id: 2, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(Identity: [0x0000000000000000000000000000000000000004])
+    │   └─ ← [Return]
+    ├─ [210499] TransplantManagement::createMatch(1, 1, 2, "bafyMatchRationaleCID")
+    │   ├─ emit MatchCreated(matchId: 1, donorId: 1, primaryRecipientId: 1, backupRecipientId: 2, matchCID: "bafyMatchRationaleCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(RIPEMD-160: [0x0000000000000000000000000000000000000003])
+    │   └─ ← [Return]
+    ├─ [25262] TransplantManagement::approveMedicalTeam(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Medical Team")
+    │   └─ ← [Stop]
+    ├─ [0] VM::expectRevert(custom error 0xf28dceb3:  Transplant not fully approved)
+    │   └─ ← [Return]
+    ├─ [0] VM::prank(Blake2F: [0x0000000000000000000000000000000000000009])
+    │   └─ ← [Return]
+    ├─ [2572] TransplantManagement::finalizeMatch(1)
+    │   └─ ← [Revert] Transplant not fully approved
+    └─ ← [Return]
+
+[PASS] testFinalizeMatch_ReleasesOriginalPrimaryAfterBackupPromotion() (gas: 806255)
+Traces:
+  [826155] TransplantManagementV22Test::testFinalizeMatch_ReleasesOriginalPrimaryAfterBackupPromotion()
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [165528] TransplantManagement::registerDonor(ECAdd: [0x0000000000000000000000000000000000000006], "O", "A1,A2,B7,DR15", "Kidney", "bafyDonorCID")
+    │   ├─ emit DonorRegistered(donorId: 1, donorAddress: ECAdd: [0x0000000000000000000000000000000000000006], organType: "Kidney", ipfsHash: "bafyDonorCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECMul: [0x0000000000000000000000000000000000000007], "O", "A1,A3,B7,DR15", "Kidney", "bafyRecipient1CID")
+    │   ├─ emit RecipientRegistered(recipientId: 1, recipientAddress: ECMul: [0x0000000000000000000000000000000000000007], organType: "Kidney", ipfsHash: "bafyRecipient1CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECPairing: [0x0000000000000000000000000000000000000008], "O", "A1,A2,B8,DR4", "Kidney", "bafyRecipient2CID")
+    │   ├─ emit RecipientRegistered(recipientId: 2, recipientAddress: ECPairing: [0x0000000000000000000000000000000000000008], organType: "Kidney", ipfsHash: "bafyRecipient2CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [5468] TransplantManagement::approveDonorEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Donor")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(2)
+    │   ├─ emit EthicalApprovalGranted(id: 2, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(Identity: [0x0000000000000000000000000000000000000004])
+    │   └─ ← [Return]
+    ├─ [210499] TransplantManagement::createMatch(1, 1, 2, "bafyMatchRationaleCID")
+    │   ├─ emit MatchCreated(matchId: 1, donorId: 1, primaryRecipientId: 1, backupRecipientId: 2, matchCID: "bafyMatchRationaleCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(RIPEMD-160: [0x0000000000000000000000000000000000000003])
+    │   └─ ← [Return]
+    ├─ [25262] TransplantManagement::approveMedicalTeam(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Medical Team")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [3285] TransplantManagement::approveHospital(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Hospital")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ECAdd: [0x0000000000000000000000000000000000000006])
+    │   └─ ← [Return]
+    ├─ [3825] TransplantManagement::approveDonor(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Donor")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [4243] TransplantManagement::promoteBackupRecipient(1)
+    │   ├─ emit BackupRecipientPromoted(matchId: 1, oldActiveRecipientId: 1, newActiveRecipientId: 2, promotedBy: SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ECPairing: [0x0000000000000000000000000000000000000008])
+    │   └─ ← [Return]
+    ├─ [3690] TransplantManagement::approveRecipient(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3577] TransplantManagement::approveFinalTransplant(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Ethical Committee")
+    │   └─ ← [Stop]
+    ├─ [5157] TransplantManagement::finalizeMatch(1)
+    │   ├─ emit MatchFinalized(matchId: 1, approved: true)
+    │   └─ ← [Stop]
+    ├─ [3846] TransplantManagement::recipients(1) [staticcall]
+    │   └─ ← [Return] 1, ECMul: [0x0000000000000000000000000000000000000007], "O", "A1,A3,B7,DR15", "Kidney", "bafyRecipient1CID", true, false, true
+    ├─ [3846] TransplantManagement::recipients(2) [staticcall]
+    │   └─ ← [Return] 2, ECPairing: [0x0000000000000000000000000000000000000008], "O", "A1,A2,B8,DR4", "Kidney", "bafyRecipient2CID", true, true, true
+    └─ ← [Return]
+
+[PASS] testFinalizeMatch_SucceedsOnlyWhenFullyApproved() (gas: 809199)
+Traces:
+  [829099] TransplantManagementV22Test::testFinalizeMatch_SucceedsOnlyWhenFullyApproved()
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [165528] TransplantManagement::registerDonor(ECAdd: [0x0000000000000000000000000000000000000006], "O", "A1,A2,B7,DR15", "Kidney", "bafyDonorCID")
+    │   ├─ emit DonorRegistered(donorId: 1, donorAddress: ECAdd: [0x0000000000000000000000000000000000000006], organType: "Kidney", ipfsHash: "bafyDonorCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECMul: [0x0000000000000000000000000000000000000007], "O", "A1,A3,B7,DR15", "Kidney", "bafyRecipient1CID")
+    │   ├─ emit RecipientRegistered(recipientId: 1, recipientAddress: ECMul: [0x0000000000000000000000000000000000000007], organType: "Kidney", ipfsHash: "bafyRecipient1CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECPairing: [0x0000000000000000000000000000000000000008], "O", "A1,A2,B8,DR4", "Kidney", "bafyRecipient2CID")
+    │   ├─ emit RecipientRegistered(recipientId: 2, recipientAddress: ECPairing: [0x0000000000000000000000000000000000000008], organType: "Kidney", ipfsHash: "bafyRecipient2CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [5468] TransplantManagement::approveDonorEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Donor")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(2)
+    │   ├─ emit EthicalApprovalGranted(id: 2, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(Identity: [0x0000000000000000000000000000000000000004])
+    │   └─ ← [Return]
+    ├─ [210499] TransplantManagement::createMatch(1, 1, 2, "bafyMatchRationaleCID")
+    │   ├─ emit MatchCreated(matchId: 1, donorId: 1, primaryRecipientId: 1, backupRecipientId: 2, matchCID: "bafyMatchRationaleCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(RIPEMD-160: [0x0000000000000000000000000000000000000003])
+    │   └─ ← [Return]
+    ├─ [25262] TransplantManagement::approveMedicalTeam(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Medical Team")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [3285] TransplantManagement::approveHospital(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Hospital")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ECAdd: [0x0000000000000000000000000000000000000006])
+    │   └─ ← [Return]
+    ├─ [3825] TransplantManagement::approveDonor(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Donor")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ECMul: [0x0000000000000000000000000000000000000007])
+    │   └─ ← [Return]
+    ├─ [3690] TransplantManagement::approveRecipient(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3577] TransplantManagement::approveFinalTransplant(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Ethical Committee")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(Blake2F: [0x0000000000000000000000000000000000000009])
+    │   └─ ← [Return]
+    ├─ [5254] TransplantManagement::finalizeMatch(1)
+    │   ├─ emit MatchFinalized(matchId: 1, approved: true)
+    │   └─ ← [Stop]
+    ├─ [2181] TransplantManagement::matches(1) [staticcall]
+    │   └─ ← [Return] 1, 1, 1, 2, 1, false, Identity: [0x0000000000000000000000000000000000000004], "bafyMatchRationaleCID", true, true, true, true, true, true
+    ├─ [1037] TransplantManagement::donorHasOpenMatch(1) [staticcall]
+    │   └─ ← [Return] false
+    ├─ [3846] TransplantManagement::recipients(1) [staticcall]
+    │   └─ ← [Return] 1, ECMul: [0x0000000000000000000000000000000000000007], "O", "A1,A3,B7,DR15", "Kidney", "bafyRecipient1CID", true, true, true
+    ├─ [3846] TransplantManagement::recipients(2) [staticcall]
+    │   └─ ← [Return] 2, ECPairing: [0x0000000000000000000000000000000000000008], "O", "A1,A2,B8,DR4", "Kidney", "bafyRecipient2CID", true, false, true
+    └─ ← [Return]
+
+[PASS] testHospitalApproval_FailsIfMedicalNotFirst() (gas: 758163)
+Traces:
+  [758163] TransplantManagementV22Test::testHospitalApproval_FailsIfMedicalNotFirst()
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [165528] TransplantManagement::registerDonor(ECAdd: [0x0000000000000000000000000000000000000006], "O", "A1,A2,B7,DR15", "Kidney", "bafyDonorCID")
+    │   ├─ emit DonorRegistered(donorId: 1, donorAddress: ECAdd: [0x0000000000000000000000000000000000000006], organType: "Kidney", ipfsHash: "bafyDonorCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECMul: [0x0000000000000000000000000000000000000007], "O", "A1,A3,B7,DR15", "Kidney", "bafyRecipient1CID")
+    │   ├─ emit RecipientRegistered(recipientId: 1, recipientAddress: ECMul: [0x0000000000000000000000000000000000000007], organType: "Kidney", ipfsHash: "bafyRecipient1CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECPairing: [0x0000000000000000000000000000000000000008], "O", "A1,A2,B8,DR4", "Kidney", "bafyRecipient2CID")
+    │   ├─ emit RecipientRegistered(recipientId: 2, recipientAddress: ECPairing: [0x0000000000000000000000000000000000000008], organType: "Kidney", ipfsHash: "bafyRecipient2CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [5468] TransplantManagement::approveDonorEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Donor")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(2)
+    │   ├─ emit EthicalApprovalGranted(id: 2, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(Identity: [0x0000000000000000000000000000000000000004])
+    │   └─ ← [Return]
+    ├─ [210499] TransplantManagement::createMatch(1, 1, 2, "bafyMatchRationaleCID")
+    │   ├─ emit MatchCreated(matchId: 1, donorId: 1, primaryRecipientId: 1, backupRecipientId: 2, matchCID: "bafyMatchRationaleCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::expectRevert(custom error 0xf28dceb3:  Medical approval required first)
+    │   └─ ← [Return]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [1230] TransplantManagement::approveHospital(1)
+    │   └─ ← [Revert] Medical approval required first
+    └─ ← [Return]
+
+[PASS] testMatchCreation_FailsForUnauthorizedCaller() (gas: 17581)
+Traces:
+  [17581] TransplantManagementV22Test::testMatchCreation_FailsForUnauthorizedCaller()
+    ├─ [0] VM::expectRevert(custom error 0xf28dceb3:  Only authorized LLM)
+    │   └─ ← [Return]
+    ├─ [0] VM::prank(Blake2F: [0x0000000000000000000000000000000000000009])
+    │   └─ ← [Return]
+    ├─ [3178] TransplantManagement::createMatch(1, 1, 2, "bafyMatchRationaleCID")
+    │   └─ ← [Revert] Only authorized LLM
+    └─ ← [Return]
+
+[PASS] testMatchCreation_FailsIfDonorAlreadyHasOpenMatch() (gas: 933358)
+Traces:
+  [933358] TransplantManagementV22Test::testMatchCreation_FailsIfDonorAlreadyHasOpenMatch()
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [165528] TransplantManagement::registerDonor(ECAdd: [0x0000000000000000000000000000000000000006], "O", "A1,A2,B7,DR15", "Kidney", "bafyDonorCID")
+    │   ├─ emit DonorRegistered(donorId: 1, donorAddress: ECAdd: [0x0000000000000000000000000000000000000006], organType: "Kidney", ipfsHash: "bafyDonorCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECMul: [0x0000000000000000000000000000000000000007], "O", "A1,A3,B7,DR15", "Kidney", "bafyRecipient1CID")
+    │   ├─ emit RecipientRegistered(recipientId: 1, recipientAddress: ECMul: [0x0000000000000000000000000000000000000007], organType: "Kidney", ipfsHash: "bafyRecipient1CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECPairing: [0x0000000000000000000000000000000000000008], "O", "A1,A2,B8,DR4", "Kidney", "bafyRecipient2CID")
+    │   ├─ emit RecipientRegistered(recipientId: 2, recipientAddress: ECPairing: [0x0000000000000000000000000000000000000008], organType: "Kidney", ipfsHash: "bafyRecipient2CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(BLS12_MAP_FP_TO_G1: [0x0000000000000000000000000000000000000010], "O", "A2,A24,B44,DR4", "Kidney", "bafyRecipient3CID")
+    │   ├─ emit RecipientRegistered(recipientId: 3, recipientAddress: BLS12_MAP_FP_TO_G1: [0x0000000000000000000000000000000000000010], organType: "Kidney", ipfsHash: "bafyRecipient3CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [5468] TransplantManagement::approveDonorEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Donor")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(2)
+    │   ├─ emit EthicalApprovalGranted(id: 2, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(3)
+    │   ├─ emit EthicalApprovalGranted(id: 3, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(Identity: [0x0000000000000000000000000000000000000004])
+    │   └─ ← [Return]
+    ├─ [210499] TransplantManagement::createMatch(1, 1, 2, "bafyMatchRationaleCID")
+    │   ├─ emit MatchCreated(matchId: 1, donorId: 1, primaryRecipientId: 1, backupRecipientId: 2, matchCID: "bafyMatchRationaleCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::expectRevert(custom error 0xf28dceb3:  Donor already has open match)
+    │   └─ ← [Return]
+    ├─ [0] VM::prank(Identity: [0x0000000000000000000000000000000000000004])
+    │   └─ ← [Return]
+    ├─ [1769] TransplantManagement::createMatch(1, 3, 2, "bafyAnotherMatchCID")
+    │   └─ ← [Revert] Donor already has open match
+    └─ ← [Return]
+
+[PASS] testMatchCreation_FailsIfMatchCIDEmpty() (gas: 549756)
+Traces:
+  [549756] TransplantManagementV22Test::testMatchCreation_FailsIfMatchCIDEmpty()
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [165528] TransplantManagement::registerDonor(ECAdd: [0x0000000000000000000000000000000000000006], "O", "A1,A2,B7,DR15", "Kidney", "bafyDonorCID")
+    │   ├─ emit DonorRegistered(donorId: 1, donorAddress: ECAdd: [0x0000000000000000000000000000000000000006], organType: "Kidney", ipfsHash: "bafyDonorCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECMul: [0x0000000000000000000000000000000000000007], "O", "A1,A3,B7,DR15", "Kidney", "bafyRecipient1CID")
+    │   ├─ emit RecipientRegistered(recipientId: 1, recipientAddress: ECMul: [0x0000000000000000000000000000000000000007], organType: "Kidney", ipfsHash: "bafyRecipient1CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECPairing: [0x0000000000000000000000000000000000000008], "O", "A1,A2,B8,DR4", "Kidney", "bafyRecipient2CID")
+    │   ├─ emit RecipientRegistered(recipientId: 2, recipientAddress: ECPairing: [0x0000000000000000000000000000000000000008], organType: "Kidney", ipfsHash: "bafyRecipient2CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [5468] TransplantManagement::approveDonorEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Donor")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(2)
+    │   ├─ emit EthicalApprovalGranted(id: 2, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::expectRevert(custom error 0xf28dceb3:  Empty matchCID)
+    │   └─ ← [Return]
+    ├─ [0] VM::prank(Identity: [0x0000000000000000000000000000000000000004])
+    │   └─ ← [Return]
+    ├─ [7051] TransplantManagement::createMatch(1, 1, 2, "")
+    │   └─ ← [Revert] Empty matchCID
+    └─ ← [Return]
+
+[PASS] testMatchCreation_FailsIfNotEthicallyApproved() (gas: 531375)
+Traces:
+  [531375] TransplantManagementV22Test::testMatchCreation_FailsIfNotEthicallyApproved()
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [165528] TransplantManagement::registerDonor(ECAdd: [0x0000000000000000000000000000000000000006], "O", "A1,A2,B7,DR15", "Kidney", "bafyDonorCID")
+    │   ├─ emit DonorRegistered(donorId: 1, donorAddress: ECAdd: [0x0000000000000000000000000000000000000006], organType: "Kidney", ipfsHash: "bafyDonorCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECMul: [0x0000000000000000000000000000000000000007], "O", "A1,A3,B7,DR15", "Kidney", "bafyRecipient1CID")
+    │   ├─ emit RecipientRegistered(recipientId: 1, recipientAddress: ECMul: [0x0000000000000000000000000000000000000007], organType: "Kidney", ipfsHash: "bafyRecipient1CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECPairing: [0x0000000000000000000000000000000000000008], "O", "A1,A2,B8,DR4", "Kidney", "bafyRecipient2CID")
+    │   ├─ emit RecipientRegistered(recipientId: 2, recipientAddress: ECPairing: [0x0000000000000000000000000000000000000008], organType: "Kidney", ipfsHash: "bafyRecipient2CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::expectRevert(custom error 0xf28dceb3:   Donor must be ethically approved)
+    │   └─ ← [Return]
+    ├─ [0] VM::prank(Identity: [0x0000000000000000000000000000000000000004])
+    │   └─ ← [Return]
+    ├─ [3583] TransplantManagement::createMatch(1, 1, 2, "bafyMatchRationaleCID")
+    │   └─ ← [Revert] Donor must be ethically approved
+    └─ ← [Return]
+
+[PASS] testMatchCreation_FailsIfPrimaryAndBackupAreSame() (gas: 551950)
+Traces:
+  [551950] TransplantManagementV22Test::testMatchCreation_FailsIfPrimaryAndBackupAreSame()
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [165528] TransplantManagement::registerDonor(ECAdd: [0x0000000000000000000000000000000000000006], "O", "A1,A2,B7,DR15", "Kidney", "bafyDonorCID")
+    │   ├─ emit DonorRegistered(donorId: 1, donorAddress: ECAdd: [0x0000000000000000000000000000000000000006], organType: "Kidney", ipfsHash: "bafyDonorCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECMul: [0x0000000000000000000000000000000000000007], "O", "A1,A3,B7,DR15", "Kidney", "bafyRecipient1CID")
+    │   ├─ emit RecipientRegistered(recipientId: 1, recipientAddress: ECMul: [0x0000000000000000000000000000000000000007], organType: "Kidney", ipfsHash: "bafyRecipient1CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECPairing: [0x0000000000000000000000000000000000000008], "O", "A1,A2,B8,DR4", "Kidney", "bafyRecipient2CID")
+    │   ├─ emit RecipientRegistered(recipientId: 2, recipientAddress: ECPairing: [0x0000000000000000000000000000000000000008], organType: "Kidney", ipfsHash: "bafyRecipient2CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [5468] TransplantManagement::approveDonorEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Donor")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(2)
+    │   ├─ emit EthicalApprovalGranted(id: 2, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::expectRevert(custom error 0xf28dceb3:  Primary and backup must differ)
+    │   └─ ← [Return]
+    ├─ [0] VM::prank(Identity: [0x0000000000000000000000000000000000000004])
+    │   └─ ← [Return]
+    ├─ [7026] TransplantManagement::createMatch(1, 1, 1, "bafyMatchRationaleCID")
+    │   └─ ← [Revert] Primary and backup must differ
+    └─ ← [Return]
+
+[PASS] testMatchCreation_FailsIfRecipientAlreadyMatched() (gas: 1138974)
+Traces:
+  [1138974] TransplantManagementV22Test::testMatchCreation_FailsIfRecipientAlreadyMatched()
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [165528] TransplantManagement::registerDonor(ECAdd: [0x0000000000000000000000000000000000000006], "O", "A1,A2,B7,DR15", "Kidney", "bafyDonorCID")
+    │   ├─ emit DonorRegistered(donorId: 1, donorAddress: ECAdd: [0x0000000000000000000000000000000000000006], organType: "Kidney", ipfsHash: "bafyDonorCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECMul: [0x0000000000000000000000000000000000000007], "O", "A1,A3,B7,DR15", "Kidney", "bafyRecipient1CID")
+    │   ├─ emit RecipientRegistered(recipientId: 1, recipientAddress: ECMul: [0x0000000000000000000000000000000000000007], organType: "Kidney", ipfsHash: "bafyRecipient1CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECPairing: [0x0000000000000000000000000000000000000008], "O", "A1,A2,B8,DR4", "Kidney", "bafyRecipient2CID")
+    │   ├─ emit RecipientRegistered(recipientId: 2, recipientAddress: ECPairing: [0x0000000000000000000000000000000000000008], organType: "Kidney", ipfsHash: "bafyRecipient2CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(BLS12_MAP_FP_TO_G1: [0x0000000000000000000000000000000000000010], "O", "A2,A24,B44,DR4", "Kidney", "bafyRecipient3CID")
+    │   ├─ emit RecipientRegistered(recipientId: 3, recipientAddress: BLS12_MAP_FP_TO_G1: [0x0000000000000000000000000000000000000010], organType: "Kidney", ipfsHash: "bafyRecipient3CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [5468] TransplantManagement::approveDonorEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Donor")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(2)
+    │   ├─ emit EthicalApprovalGranted(id: 2, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(3)
+    │   ├─ emit EthicalApprovalGranted(id: 3, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(Identity: [0x0000000000000000000000000000000000000004])
+    │   └─ ← [Return]
+    ├─ [210499] TransplantManagement::createMatch(1, 1, 2, "bafyMatchRationaleCID")
+    │   ├─ emit MatchCreated(matchId: 1, donorId: 1, primaryRecipientId: 1, backupRecipientId: 2, matchCID: "bafyMatchRationaleCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ECRecover: [0x0000000000000000000000000000000000000001])
+    │   └─ ← [Return]
+    ├─ [31718] TransplantManagement::registerDonorAddress(BLS12_MAP_FP2_TO_G2: [0x0000000000000000000000000000000000000011])
+    │   ├─ emit DonorAddressRegistered(donorAddress: BLS12_MAP_FP2_TO_G2: [0x0000000000000000000000000000000000000011], donorId: 2)
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [161528] TransplantManagement::registerDonor(BLS12_MAP_FP2_TO_G2: [0x0000000000000000000000000000000000000011], "O", "A3,A11,B7,DR4", "Kidney", "bafyDonor2CID")
+    │   ├─ emit DonorRegistered(donorId: 2, donorAddress: BLS12_MAP_FP2_TO_G2: [0x0000000000000000000000000000000000000011], organType: "Kidney", ipfsHash: "bafyDonor2CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3468] TransplantManagement::approveDonorEthicalCommittee(2)
+    │   ├─ emit EthicalApprovalGranted(id: 2, entityType: "Donor")
+    │   └─ ← [Stop]
+    ├─ [0] VM::expectRevert(custom error 0xf28dceb3:  Primary already matched)
+    │   └─ ← [Return]
+    ├─ [0] VM::prank(Identity: [0x0000000000000000000000000000000000000004])
+    │   └─ ← [Return]
+    ├─ [4354] TransplantManagement::createMatch(2, 1, 3, "bafySecondMatchCID")
+    │   └─ ← [Revert] Primary already matched
+    └─ ← [Return]
+
+[PASS] testMatchCreation_Success() (gas: 775391)
+Traces:
+  [775391] TransplantManagementV22Test::testMatchCreation_Success()
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [165528] TransplantManagement::registerDonor(ECAdd: [0x0000000000000000000000000000000000000006], "O", "A1,A2,B7,DR15", "Kidney", "bafyDonorCID")
+    │   ├─ emit DonorRegistered(donorId: 1, donorAddress: ECAdd: [0x0000000000000000000000000000000000000006], organType: "Kidney", ipfsHash: "bafyDonorCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECMul: [0x0000000000000000000000000000000000000007], "O", "A1,A3,B7,DR15", "Kidney", "bafyRecipient1CID")
+    │   ├─ emit RecipientRegistered(recipientId: 1, recipientAddress: ECMul: [0x0000000000000000000000000000000000000007], organType: "Kidney", ipfsHash: "bafyRecipient1CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECPairing: [0x0000000000000000000000000000000000000008], "O", "A1,A2,B8,DR4", "Kidney", "bafyRecipient2CID")
+    │   ├─ emit RecipientRegistered(recipientId: 2, recipientAddress: ECPairing: [0x0000000000000000000000000000000000000008], organType: "Kidney", ipfsHash: "bafyRecipient2CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [5468] TransplantManagement::approveDonorEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Donor")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(2)
+    │   ├─ emit EthicalApprovalGranted(id: 2, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(Identity: [0x0000000000000000000000000000000000000004])
+    │   └─ ← [Return]
+    ├─ [210499] TransplantManagement::createMatch(1, 1, 2, "bafyMatchRationaleCID")
+    │   ├─ emit MatchCreated(matchId: 1, donorId: 1, primaryRecipientId: 1, backupRecipientId: 2, matchCID: "bafyMatchRationaleCID")
+    │   └─ ← [Stop]
+    ├─ [2181] TransplantManagement::matches(1) [staticcall]
+    │   └─ ← [Return] 1, 1, 1, 2, 1, false, Identity: [0x0000000000000000000000000000000000000004], "bafyMatchRationaleCID", false, false, false, false, false, false
+    ├─ [0] VM::assertEq("bafyMatchRationaleCID", "bafyMatchRationaleCID") [staticcall]
+    │   └─ ← [Return]
+    ├─ [1037] TransplantManagement::donorHasOpenMatch(1) [staticcall]
+    │   └─ ← [Return] true
+    ├─ [3846] TransplantManagement::recipients(1) [staticcall]
+    │   └─ ← [Return] 1, ECMul: [0x0000000000000000000000000000000000000007], "O", "A1,A3,B7,DR15", "Kidney", "bafyRecipient1CID", true, true, true
+    ├─ [3846] TransplantManagement::recipients(2) [staticcall]
+    │   └─ ← [Return] 2, ECPairing: [0x0000000000000000000000000000000000000008], "O", "A1,A2,B8,DR4", "Kidney", "bafyRecipient2CID", true, true, true
+    └─ ← [Return]
+
+[PASS] testPromoteBackupRecipient_FailsForUnauthorizedCaller() (gas: 763655)
+Traces:
+  [763655] TransplantManagementV22Test::testPromoteBackupRecipient_FailsForUnauthorizedCaller()
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [165528] TransplantManagement::registerDonor(ECAdd: [0x0000000000000000000000000000000000000006], "O", "A1,A2,B7,DR15", "Kidney", "bafyDonorCID")
+    │   ├─ emit DonorRegistered(donorId: 1, donorAddress: ECAdd: [0x0000000000000000000000000000000000000006], organType: "Kidney", ipfsHash: "bafyDonorCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECMul: [0x0000000000000000000000000000000000000007], "O", "A1,A3,B7,DR15", "Kidney", "bafyRecipient1CID")
+    │   ├─ emit RecipientRegistered(recipientId: 1, recipientAddress: ECMul: [0x0000000000000000000000000000000000000007], organType: "Kidney", ipfsHash: "bafyRecipient1CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECPairing: [0x0000000000000000000000000000000000000008], "O", "A1,A2,B8,DR4", "Kidney", "bafyRecipient2CID")
+    │   ├─ emit RecipientRegistered(recipientId: 2, recipientAddress: ECPairing: [0x0000000000000000000000000000000000000008], organType: "Kidney", ipfsHash: "bafyRecipient2CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [5468] TransplantManagement::approveDonorEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Donor")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(2)
+    │   ├─ emit EthicalApprovalGranted(id: 2, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(Identity: [0x0000000000000000000000000000000000000004])
+    │   └─ ← [Return]
+    ├─ [210499] TransplantManagement::createMatch(1, 1, 2, "bafyMatchRationaleCID")
+    │   ├─ emit MatchCreated(matchId: 1, donorId: 1, primaryRecipientId: 1, backupRecipientId: 2, matchCID: "bafyMatchRationaleCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::expectRevert(custom error 0xf28dceb3:  Only hospital or medical team)
+    │   └─ ← [Return]
+    ├─ [0] VM::prank(Blake2F: [0x0000000000000000000000000000000000000009])
+    │   └─ ← [Return]
+    ├─ [4832] TransplantManagement::promoteBackupRecipient(1)
+    │   └─ ← [Revert] Only hospital or medical team
+    └─ ← [Return]
+
+[PASS] testRecipientApproval_FailsIfDonorNotFirst() (gas: 790824)
+Traces:
+  [790824] TransplantManagementV22Test::testRecipientApproval_FailsIfDonorNotFirst()
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [165528] TransplantManagement::registerDonor(ECAdd: [0x0000000000000000000000000000000000000006], "O", "A1,A2,B7,DR15", "Kidney", "bafyDonorCID")
+    │   ├─ emit DonorRegistered(donorId: 1, donorAddress: ECAdd: [0x0000000000000000000000000000000000000006], organType: "Kidney", ipfsHash: "bafyDonorCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECMul: [0x0000000000000000000000000000000000000007], "O", "A1,A3,B7,DR15", "Kidney", "bafyRecipient1CID")
+    │   ├─ emit RecipientRegistered(recipientId: 1, recipientAddress: ECMul: [0x0000000000000000000000000000000000000007], organType: "Kidney", ipfsHash: "bafyRecipient1CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECPairing: [0x0000000000000000000000000000000000000008], "O", "A1,A2,B8,DR4", "Kidney", "bafyRecipient2CID")
+    │   ├─ emit RecipientRegistered(recipientId: 2, recipientAddress: ECPairing: [0x0000000000000000000000000000000000000008], organType: "Kidney", ipfsHash: "bafyRecipient2CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [5468] TransplantManagement::approveDonorEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Donor")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(2)
+    │   ├─ emit EthicalApprovalGranted(id: 2, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(Identity: [0x0000000000000000000000000000000000000004])
+    │   └─ ← [Return]
+    ├─ [210499] TransplantManagement::createMatch(1, 1, 2, "bafyMatchRationaleCID")
+    │   ├─ emit MatchCreated(matchId: 1, donorId: 1, primaryRecipientId: 1, backupRecipientId: 2, matchCID: "bafyMatchRationaleCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(RIPEMD-160: [0x0000000000000000000000000000000000000003])
+    │   └─ ← [Return]
+    ├─ [25262] TransplantManagement::approveMedicalTeam(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Medical Team")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [3285] TransplantManagement::approveHospital(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Hospital")
+    │   └─ ← [Stop]
+    ├─ [0] VM::expectRevert(custom error 0xf28dceb3:  Donor approval required first)
+    │   └─ ← [Return]
+    ├─ [0] VM::prank(ECMul: [0x0000000000000000000000000000000000000007])
+    │   └─ ← [Return]
+    ├─ [1234] TransplantManagement::approveRecipient(1)
+    │   └─ ← [Revert] Donor approval required first
+    └─ ← [Return]
+
+[PASS] testRecipientRegistration_FailsIfEmptyCID() (gas: 22844)
+Traces:
+  [22844] TransplantManagementV22Test::testRecipientRegistration_FailsIfEmptyCID()
+    ├─ [0] VM::expectRevert(custom error 0xf28dceb3:  Empty recipient CID)
+    │   └─ ← [Return]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [8498] TransplantManagement::registerRecipient(ECMul: [0x0000000000000000000000000000000000000007], "A+", "HLA-A2", "Kidney", "")
+    │   └─ ← [Revert] Empty recipient CID
+    └─ ← [Return]
+
+[PASS] testSequentialApprovalFlow_Success_Primary() (gas: 805528)
+Traces:
+  [805528] TransplantManagementV22Test::testSequentialApprovalFlow_Success_Primary()
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [165528] TransplantManagement::registerDonor(ECAdd: [0x0000000000000000000000000000000000000006], "O", "A1,A2,B7,DR15", "Kidney", "bafyDonorCID")
+    │   ├─ emit DonorRegistered(donorId: 1, donorAddress: ECAdd: [0x0000000000000000000000000000000000000006], organType: "Kidney", ipfsHash: "bafyDonorCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECMul: [0x0000000000000000000000000000000000000007], "O", "A1,A3,B7,DR15", "Kidney", "bafyRecipient1CID")
+    │   ├─ emit RecipientRegistered(recipientId: 1, recipientAddress: ECMul: [0x0000000000000000000000000000000000000007], organType: "Kidney", ipfsHash: "bafyRecipient1CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [163917] TransplantManagement::registerRecipient(ECPairing: [0x0000000000000000000000000000000000000008], "O", "A1,A2,B8,DR4", "Kidney", "bafyRecipient2CID")
+    │   ├─ emit RecipientRegistered(recipientId: 2, recipientAddress: ECPairing: [0x0000000000000000000000000000000000000008], organType: "Kidney", ipfsHash: "bafyRecipient2CID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [5468] TransplantManagement::approveDonorEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Donor")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(1)
+    │   ├─ emit EthicalApprovalGranted(id: 1, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3334] TransplantManagement::approveRecipientEthicalCommittee(2)
+    │   ├─ emit EthicalApprovalGranted(id: 2, entityType: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(Identity: [0x0000000000000000000000000000000000000004])
+    │   └─ ← [Return]
+    ├─ [210499] TransplantManagement::createMatch(1, 1, 2, "bafyMatchRationaleCID")
+    │   ├─ emit MatchCreated(matchId: 1, donorId: 1, primaryRecipientId: 1, backupRecipientId: 2, matchCID: "bafyMatchRationaleCID")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(RIPEMD-160: [0x0000000000000000000000000000000000000003])
+    │   └─ ← [Return]
+    ├─ [25262] TransplantManagement::approveMedicalTeam(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Medical Team")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(SHA-256: [0x0000000000000000000000000000000000000002])
+    │   └─ ← [Return]
+    ├─ [3285] TransplantManagement::approveHospital(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Hospital")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ECAdd: [0x0000000000000000000000000000000000000006])
+    │   └─ ← [Return]
+    ├─ [3825] TransplantManagement::approveDonor(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Donor")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ECMul: [0x0000000000000000000000000000000000000007])
+    │   └─ ← [Return]
+    ├─ [3690] TransplantManagement::approveRecipient(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Recipient")
+    │   └─ ← [Stop]
+    ├─ [0] VM::prank(ModExp: [0x0000000000000000000000000000000000000005])
+    │   └─ ← [Return]
+    ├─ [3577] TransplantManagement::approveFinalTransplant(1)
+    │   ├─ emit ApprovalGranted(matchId: 1, approvedBy: "Ethical Committee")
+    │   └─ ← [Stop]
+    ├─ [2357] TransplantManagement::isTransplantApproved(1) [staticcall]
+    │   └─ ← [Return] true
+    └─ ← [Return]
+
+Suite result: ok. 29 passed; 0 failed; 0 skipped; finished in 14.94ms (57.08ms CPU time)
+
+Ran 1 test suite in 42.23ms (14.94ms CPU time): 29 tests passed, 0 failed, 0 skipped (29 total tests)

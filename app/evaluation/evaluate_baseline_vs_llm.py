@@ -60,7 +60,7 @@ def main():
         raise RuntimeError("Missing OPENAI_API_KEY or OPENAI_MODEL_ID in .env")
 
     if not IN_JSONL.exists():
-        raise RuntimeError(f"Missing {IN_JSONL}. Run: python -m src.make_eval_set")
+        raise RuntimeError(f"Missing {IN_JSONL}. Run: python -m evaluation.make_eval_set")
 
     rows: List[Dict[str, Any]] = []
     total = 0

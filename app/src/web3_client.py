@@ -16,7 +16,7 @@ class ConfigError(RuntimeError):
 def _load_json(path: Path) -> Any:
     if not path.exists():
         raise ConfigError(f"Missing file: {path}")
-    with path.open("r", encoding="utf-8") as f:
+    with path.open("r", encoding="utf-8-sig") as f:
         return json.load(f)
 
 

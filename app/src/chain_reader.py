@@ -55,6 +55,6 @@ def require_eligible_donor(d: Dict[str, Any]) -> None:
 def filter_eligible_recipients(recs: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     eligible = []
     for r in recs:
-        if r["registered"] and r["ethicalApproved"] and r["ipfsHash"]:
+        if r["registered"] and r["ethicalApproved"] and r["ipfsHash"] and not r["matched"]:
             eligible.append(r)
     return eligible

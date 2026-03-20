@@ -1,14 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-/**
- * TransplantManagement (v2.1)
- * - One Match per transplant case
- * - Stores primary + backup recipients
- * - Stores off-chain LLM explanation CID (matchCID)
- * - Recipient approval is ACTIVE recipient only (starts as primary)
- * - Optional backup promotion (hospital or medical team) switches active recipient
- */
+/* TransplantManagement (v2.2) */
 contract TransplantManagement {
     // ─────────────────────────────────────────────────────────────────────────────
     // Roles / Governance
@@ -75,7 +68,7 @@ contract TransplantManagement {
         string organType;
         string ipfsHash; // CID for recipient medical record
         bool registered;
-        bool matched; // optional marker
+        bool matched; // used as a real guard in v2.2
         bool ethicalApproved;
     }
 
@@ -107,6 +100,9 @@ contract TransplantManagement {
 
     mapping(address => uint256) public registeredDonorAddresses;     // donorAddress -> donorId
     mapping(address => uint256) public registeredRecipientAddresses; // recipientAddress -> recipientId
+
+    // One open match per donor
+    mapping(uint256 => bool) public donorHasOpenMatch;
 
     uint256 public donorCounter;
     uint256 public recipientCounter;
@@ -154,6 +150,17 @@ contract TransplantManagement {
     constructor(address _regulator) {
         require(_regulator != address(0), "Invalid regulator");
         regulator = _regulator;
+    }
+
+    // ─────────────────────────────────────────────────────────────────────────────
+    // Internal helpers
+    // ─────────────────────────────────────────────────────────────────────────────
+    function _requireMatchExists(uint256 matchId) internal view {
+        require(matches[matchId].matchId != 0, "Match does not exist");
+    }
+
+    function _requireNotFinalized(uint256 matchId) internal view {
+        require(!matches[matchId].finalized, "Match finalized");
     }
 
     // ─────────────────────────────────────────────────────────────────────────────
@@ -261,7 +268,7 @@ contract TransplantManagement {
     }
 
     // ─────────────────────────────────────────────────────────────────────────────
-    // Ethical Committee: approvals
+    // Ethical Committee: pre-match eligibility approvals
     // ─────────────────────────────────────────────────────────────────────────────
     function approveDonorEthicalCommittee(uint256 donorId) external onlyEthicalCommittee {
         require(donors[donorId].registered, "Donor not registered");
@@ -288,12 +295,15 @@ contract TransplantManagement {
     ) external onlyLLM {
         require(donors[donorId].registered, "Donor not registered");
         require(donors[donorId].ethicalApproved, "Donor must be ethically approved");
+        require(!donorHasOpenMatch[donorId], "Donor already has open match");
 
         require(recipients[primaryRecipientId].registered, "Primary not registered");
         require(recipients[primaryRecipientId].ethicalApproved, "Primary must be ethically approved");
+        require(!recipients[primaryRecipientId].matched, "Primary already matched");
 
         require(recipients[backupRecipientId].registered, "Backup not registered");
         require(recipients[backupRecipientId].ethicalApproved, "Backup must be ethically approved");
+        require(!recipients[backupRecipientId].matched, "Backup already matched");
 
         require(primaryRecipientId != 0 && backupRecipientId != 0, "Invalid recipient ids");
         require(primaryRecipientId != backupRecipientId, "Primary and backup must differ");
@@ -321,6 +331,7 @@ contract TransplantManagement {
         m.ethicalCommitteeApproved = false;
         m.finalized = false;
 
+        donorHasOpenMatch[donorId] = true;
         recipients[primaryRecipientId].matched = true;
         recipients[backupRecipientId].matched = true;
 
@@ -331,49 +342,76 @@ contract TransplantManagement {
     // Backup promotion: switch active recipient to backup
     // ─────────────────────────────────────────────────────────────────────────────
     function promoteBackupRecipient(uint256 matchId) external onlyHospitalOrMedicalTeam {
-        require(matches[matchId].matchId != 0, "Match does not exist");
+        _requireMatchExists(matchId);
+        _requireNotFinalized(matchId);
+
         Match storage m = matches[matchId];
 
-        require(!m.finalized, "Match finalized");
         require(!m.backupPromoted, "Backup already promoted");
         require(m.activeRecipientId == m.primaryRecipientId, "Active is not primary");
+
+        // Promotion must happen before recipient approval and before final ethical approval
+        require(!m.activeRecipientApproved, "Recipient already approved");
+        require(!m.ethicalCommitteeApproved, "Final ethics already approved");
 
         uint256 oldActive = m.activeRecipientId;
         m.activeRecipientId = m.backupRecipientId;
         m.backupPromoted = true;
 
-        // reset recipient approval since active recipient changed
+        // Explicitly keep recipient approval false because active recipient changed
         m.activeRecipientApproved = false;
 
         emit BackupRecipientPromoted(matchId, oldActive, m.activeRecipientId, msg.sender);
     }
 
     // ─────────────────────────────────────────────────────────────────────────────
-    // Approvals
+    // Approvals (strict sequential order, no duplicates, no post-finalization)
     // ─────────────────────────────────────────────────────────────────────────────
     function approveMedicalTeam(uint256 matchId) external onlyMedicalTeam {
-        require(matches[matchId].matchId != 0, "Match does not exist");
-        matches[matchId].medicalApproved = true;
+        _requireMatchExists(matchId);
+        _requireNotFinalized(matchId);
+
+        Match storage m = matches[matchId];
+        require(!m.medicalApproved, "Medical already approved");
+
+        m.medicalApproved = true;
         emit ApprovalGranted(matchId, "Medical Team");
     }
 
     function approveHospital(uint256 matchId) external onlyHospital {
-        require(matches[matchId].matchId != 0, "Match does not exist");
-        matches[matchId].hospitalApproved = true;
+        _requireMatchExists(matchId);
+        _requireNotFinalized(matchId);
+
+        Match storage m = matches[matchId];
+        require(m.medicalApproved, "Medical approval required first");
+        require(!m.hospitalApproved, "Hospital already approved");
+
+        m.hospitalApproved = true;
         emit ApprovalGranted(matchId, "Hospital");
     }
 
     function approveDonor(uint256 matchId) external {
-        require(matches[matchId].matchId != 0, "Match does not exist");
-        uint256 donorId = matches[matchId].donorId;
+        _requireMatchExists(matchId);
+        _requireNotFinalized(matchId);
+
+        Match storage m = matches[matchId];
+        require(m.hospitalApproved, "Hospital approval required first");
+        require(!m.donorApproved, "Donor already approved");
+
+        uint256 donorId = m.donorId;
         require(msg.sender == donors[donorId].donorAddress, "Only donor can approve");
-        matches[matchId].donorApproved = true;
+
+        m.donorApproved = true;
         emit ApprovalGranted(matchId, "Donor");
     }
 
     function approveRecipient(uint256 matchId) external {
-        require(matches[matchId].matchId != 0, "Match does not exist");
+        _requireMatchExists(matchId);
+        _requireNotFinalized(matchId);
+
         Match storage m = matches[matchId];
+        require(m.donorApproved, "Donor approval required first");
+        require(!m.activeRecipientApproved, "Recipient already approved");
 
         uint256 activeRid = m.activeRecipientId;
         require(activeRid != 0, "No active recipient");
@@ -384,8 +422,14 @@ contract TransplantManagement {
     }
 
     function approveFinalTransplant(uint256 matchId) external onlyEthicalCommittee {
-        require(matches[matchId].matchId != 0, "Match does not exist");
-        matches[matchId].ethicalCommitteeApproved = true;
+        _requireMatchExists(matchId);
+        _requireNotFinalized(matchId);
+
+        Match storage m = matches[matchId];
+        require(m.activeRecipientApproved, "Recipient approval required first");
+        require(!m.ethicalCommitteeApproved, "Ethics already approved");
+
+        m.ethicalCommitteeApproved = true;
         emit ApprovalGranted(matchId, "Ethical Committee");
     }
 
@@ -404,12 +448,21 @@ contract TransplantManagement {
     }
 
     function finalizeMatch(uint256 matchId) external {
-        require(matches[matchId].matchId != 0, "Match does not exist");
+        _requireMatchExists(matchId);
         require(!matches[matchId].finalized, "Already finalized");
+        require(isTransplantApproved(matchId), "Transplant not fully approved");
 
-        bool approved = isTransplantApproved(matchId);
-        matches[matchId].finalized = true;
+        Match storage m = matches[matchId];
+        m.finalized = true;
+        donorHasOpenMatch[m.donorId] = false;
 
-        emit MatchFinalized(matchId, approved);
+        // Release the reserved, non-active recipient after the match is finalized.
+        if (m.activeRecipientId == m.primaryRecipientId) {
+            recipients[m.backupRecipientId].matched = false;
+        } else {
+            recipients[m.primaryRecipientId].matched = false;
+        }
+
+        emit MatchFinalized(matchId, true);
     }
 }

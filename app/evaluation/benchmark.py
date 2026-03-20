@@ -11,7 +11,7 @@ from src.chain_reader import get_donor, get_all_recipients, require_eligible_don
 from src.ipfs_client import fetch_json_from_ipfs
 from src.baseline import rank_recipients_baseline
 from src.llm_client import call_llm_decision_support
-from src.benchmark_utils import ts_utc, write_csv, write_json
+from evaluation.benchmark_utils import ts_utc, write_csv, write_json
 
 def _ms(x: float) -> float:
     return round(x * 1000.0, 2)

@@ -1,73 +1,68 @@
-# ODA — Organ Donation Allocation (Blockchain + LLM Decision Support)
+# ODA - Organ Donation Allocation
 
-This repository contains a reproducible prototype for organ donor–recipient matching using:
-- **Ethereum smart contracts** (Foundry) for auditable registration, approvals, and match recording
-- **IPFS/Pinata** for off-chain storage of donor/recipient records and match rationale (`matchCID`)
-- **Baseline scoring + LLM decision support** to incorporate structured clinical factors **and** unstructured clinical notes
-- A **local web UI** (FastAPI + Bootstrap) to run an end-to-end pipeline and capture outputs for reporting
+This repository contains a reproducible prototype for organ donor-recipient matching using:
 
-> **Important:** This project uses **synthetic data only** (no real patient data).
+- Ethereum smart contracts (Foundry) for auditable registration, approvals, and match recording
+- IPFS/Pinata for off-chain storage of donor/recipient records and match rationale
+- A deterministic baseline ranker plus LLM decision support
+- A local FastAPI web UI for running the matching flow and inspecting outputs
 
----
+Important: this project uses synthetic data only. No real patient data are included.
 
 ## Repository layout
 
-```
+```text
 ODA/
-├─ smart-contracts/               # Foundry project (authoritative smart contract source)
-│  ├─ src/                        # Solidity contracts
-│  ├─ test/                       # Foundry unit tests + outputs
-│  ├─ security/                   # Slither (and later Mythril) reports
-│  ├─ foundry.toml
-│  └─ out/, cache/                # build artifacts (usually gitignored)
-├─ app/                           # Python app (local UI + pipeline)
-│  ├─ src/                        # pipeline modules + scripts
-│  ├─ templates/                  # HTML templates (light theme)
-│  ├─ static/                     # CSS/JS assets
-│  ├─ seed-data/                  # synthetic donor/recipient JSON (committed)
-│  ├─ pipeline-output/            # generated CSV/JSON outputs (committed for reproducibility)
-│  └─ .env.example                # environment template (DO NOT commit .env)
-├─ integration/
-   ├─ abi/                        # exported ABI JSON used by app
-   └─ addresses/                  # deployed contract addresses per network
-
+|-- smart-contracts/              # Foundry project
+|   |-- src/                      # Solidity contracts
+|   |-- test/                     # Foundry tests
+|   |-- script/                   # Deployment scripts
+|   |-- security/                 # Slither reports
+|   |-- test-output/              # Saved Foundry traces / output
+|   `-- standard-input.json       # Verification-oriented standard JSON input
+|-- app/
+|   |-- src/                      # FastAPI app and runtime modules
+|   |-- evaluation/               # Reproducibility / benchmarking scripts
+|   |-- templates/                # HTML templates
+|   |-- static/                   # Static assets
+|   |-- seed-data/                # Synthetic donor / recipient JSON
+|   |-- pipeline-output/          # Generated CSV / JSON artifacts
+|   |-- requirements.txt          # Python dependencies
+|   `-- .env.example              # Environment template
+|-- integration/
+|   |-- abi/                      # ABI exported for the app
+|   `-- addresses/                # Deployed contract addresses per network
+`-- datasets/
+    `-- llm-finetuning/           # Fine-tuning and held-out evaluation datasets
 ```
-
----
 
 ## Prerequisites
 
-- **Foundry** (for smart contracts + tests): https://book.getfoundry.sh/
-- **Python 3.11+**
-- A Sepolia RPC provider (Infura/Alchemy)
-- Sepolia test ETH for required EOAs
-- Pinata JWT (optional, for uploading match rationale to IPFS)
-- OpenAI API key (optional, for calling the fine-tuned model)
+- Foundry
+- Python 3.11+
+- A Sepolia RPC provider
+- Sepolia ETH for the required EOAs
+- A Pinata JWT
+- An OpenAI API key and model ID for decision support
 
----
+## Smart contracts
 
-## Smart contracts (Foundry)
+From the repository root:
 
-From repo root:
-
-```bash
+```powershell
 cd smart-contracts
 forge test -vvv
 ```
 
-Security (Slither) output is stored under:
+Security outputs are stored under:
 
-```
+```text
 smart-contracts/security/slither/
 ```
 
----
+## App setup
 
-## App (Local UI + Pipeline)
-
-### 1) Create & activate venv
-
-From repo root:
+### 1) Create and activate a virtual environment
 
 ```powershell
 cd app
@@ -76,76 +71,111 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-### 2) Configure environment
-
-Copy and edit:
+### 2) Configure environment variables
 
 ```powershell
 Copy-Item .env.example .env
 ```
 
-Fill in:
+Fill in at least:
+
+- `NETWORK`
 - `SEPOLIA_RPC_URL`
-- private keys for seeding + LLM tx signing (Sepolia)
-- `PINATA_JWT` (optional)
-- `OPENAI_API_KEY` and `OPENAI_MODEL_ID` (optional)
+- `OPENAI_API_KEY`
+- `OPENAI_MODEL_ID`
+- `PINATA_JWT`
+- `PINATA_GATEWAY`
+- all required private keys for regulator, hospital, ethics committee, medical team, donor, recipients, and the authorized LLM signer
+- seed CIDs for the donor and recipient records
 
-> **Never commit `.env`.** It contains secrets.
+Never commit `.env`.
 
-### 3) Seed Sepolia (entities + donor/recipients + ethics approvals)
+## Main workflows
+
+### Canonical full Sepolia workflow
+
+This is the main end-to-end workflow used for the tracked on-chain artifacts.
 
 ```powershell
-python -m src.seed_sepolia
+cd app
+python -m evaluation.paper_full_workflow
 ```
 
-This will:
-- register entities (regulator)
-- pre-register donor/recipient addresses (regulator)
-- register donor/recipients with IPFS CIDs (hospital)
-- apply ethical approvals (ethics committee)
-- log transaction receipts (observed gas)
+This script:
 
-### 4) Run the UI locally
+- deploys a fresh contract
+- executes governance setup, identity binding, profile registration, ethical approvals, match creation, approvals, and finalization
+- writes the transaction manifest and cost tables
+- syncs `integration/abi/TransplantManagement.json`
+- syncs `integration/addresses/sepolia.json`
+- regenerates `smart-contracts/standard-input.json`
+
+### Seed-only workflow
+
+Use this when you want a clean contract state for UI screenshots or manual matching without running the full approval chain.
 
 ```powershell
-uvicorn src.main:app --reload
+cd app
+python -m evaluation.seed_only
+```
+
+This seeds:
+
+- trusted roles
+- donor / recipient address binding
+- donor / recipient profile registration
+- donor / recipient ethical approvals
+
+It does not create a match or finalize anything.
+
+### Run the local UI
+
+```powershell
+cd app
+python -m uvicorn src.main:app --reload
 ```
 
 Open:
 
-- UI: http://127.0.0.1:8000/
-- API docs: http://127.0.0.1:8000/docs
-- Health: http://127.0.0.1:8000/health
+- UI: `http://127.0.0.1:8000/`
+- Health: `http://127.0.0.1:8000/health`
 
----
+### Optional evaluation scripts
 
-## Outputs produced (for reporting)
+These live under `app/evaluation/`:
 
-Generated files are saved under:
-
+```powershell
+python -m evaluation.benchmark
+python -m evaluation.benchmark_chain
+python -m evaluation.make_eval_set
+python -m evaluation.evaluate_baseline_vs_llm
 ```
+
+## Generated outputs
+
+Generated artifacts are saved under:
+
+```text
 app/pipeline-output/
 ```
 
-Common artifacts:
-- `match_runs.csv` — end-to-end pipeline runs (baseline + LLM + on-chain match)
-- `tx_log.csv` — observed on-chain receipts (tx hash + gas used)
-- `benchmarks/` — latency benchmarks (off-chain and chain)
-- `final_cost_table.csv/json` — observed-receipt cost table (multi-chain USD based on provided base fees)
+Common files include:
 
----
+- `tx_manifest.csv` - workflow transaction manifest
+- `tx_log.csv` - observed on-chain transaction receipts
+- `match_runs.csv` - UI-driven matching runs
+- `final_cost_table.csv`
+- `final_cost_table.json`
+- `final_cost_table_detailed.csv`
+- `seed_runs/` - seed-only run logs
+- `timing_runs/` - workflow timing runs
 
 ## Reproducibility notes
 
-- Seed patient JSON is committed under `app/seed-data/`.
-- CIDs in `.env` may be stub or real IPFS objects depending on your run; the system is designed to work with either.
-- For publication screenshots, the recommended minimal set is:
-  1) **Dashboard end-to-end result** (baseline table + LLM decision + on-chain record)
-  2) **Etherscan event log** showing `MatchCreated(matchId, donorId, primaryRecipientId, backupRecipientId, matchCID)`
-
----
+- Synthetic seed records are committed under `app/seed-data/`.
+- Selected generated artifacts are intentionally tracked under `app/pipeline-output/` and `smart-contracts/test-output/`.
+- The tracked `integration/abi/` and `integration/addresses/` files reflect the latest synchronized deployment state produced by the workflow scripts.
 
 ## License
 
 MIT
-

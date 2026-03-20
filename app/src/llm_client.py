@@ -104,15 +104,19 @@ def _post_process_llm(
     rm = _risk_map(llm_out.get("risk_flags", []))
     primary_contra = _is_contraindicated(rm.get(primary))
 
-    if primary_contra:
-        # choose first non-contra from baseline order
-        new_primary = None
+    def first_safe(exclude: List[int] | None = None) -> int | None:
+        excluded = set(exclude or [])
         for rid in baseline_order:
-            if rid == primary:
+            rid = int(rid)
+            if rid in excluded:
                 continue
             if not _is_contraindicated(rm.get(rid)):
-                new_primary = rid
-                break
+                return rid
+        return None
+
+    if primary_contra:
+        # choose first non-contra from baseline order
+        new_primary = first_safe(exclude=[primary])
         if new_primary is None:
             # fallback: baseline_top2 if exists
             new_primary = baseline_top2 if baseline_top2 != primary else baseline_top1
@@ -182,6 +186,44 @@ def _post_process_llm(
 
         if not llm_out.get("explanation"):
             llm_out["explanation"] = "Baseline top-1 is not contraindicated; following baseline ranking."
+    else:
+        # Baseline top-1 is contraindicated, so force the highest-ranked safe fallback.
+        safe_primary = first_safe(exclude=[int(baseline_top1)])
+        if safe_primary is None:
+            safe_primary = int(baseline_top2) if int(baseline_top2) != int(baseline_top1) else int(baseline_top1)
+
+        safe_backup = first_safe(exclude=[int(baseline_top1), int(safe_primary)])
+        if safe_backup is None:
+            safe_backup = int(baseline_top1) if int(baseline_top1) != int(safe_primary) else int(baseline_top2)
+            if safe_backup == int(safe_primary):
+                for rid in baseline_order:
+                    rid = int(rid)
+                    if rid != int(safe_primary):
+                        safe_backup = rid
+                        break
+
+        llm_out["primary_recipient_id"] = int(safe_primary)
+        llm_out["backup_recipient_id"] = int(safe_backup)
+        llm_out["overrode_baseline"] = True
+
+        reason = llm_out.get("override_reason") or ""
+        prefix = f"baseline top-1 candidate (recipient {baseline_top1}) contraindicated"
+        if prefix not in reason.lower():
+            llm_out["override_reason"] = (
+                (reason + " ").strip() + f"Selected next highest-ranked suitable candidate (recipient {safe_primary})."
+            ).strip()
+        if not llm_out.get("explanation") or "clinically unstable" in str(llm_out.get("explanation", "")).lower():
+            llm_out["explanation"] = (
+                f"Baseline top-1 candidate (recipient {baseline_top1}) was flagged as contraindicated; "
+                f"promoted the highest-ranked suitable fallback (recipient {safe_primary})."
+            )
+
+        rm2 = _risk_map(llm_out.get("risk_flags", []))
+        for rid in [int(safe_primary), int(safe_backup)]:
+            if rid not in rm2:
+                llm_out.setdefault("risk_flags", []).append(
+                    {"recipient_id": rid, "risk_level": "low", "flags": []}
+                )
 
     # Recompute overrode_baseline consistency (final)
     llm_out["overrode_baseline"] = (int(llm_out["primary_recipient_id"]) != int(baseline_top1))
