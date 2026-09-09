@@ -1,0 +1,11 @@
+{
+  "address": "0x9B227a44A52F9685B724d6a9Fb5C0DAfacb85Db0",
+  "artifact_sha256": "e57dcee8f975294942349db209d5996eb93f4a5e37a83302a5e4954837ee510d",
+  "chain_id": 11155111,
+  "deployed_at_utc": "2026-09-08T16:00:39Z",
+  "deployed_runtime_sha256": "e0a926a9b69653321dc5b1b897aa44e7e4a6919af110a5e7059bd501c21cece0",
+  "deployment_tx_hash": "0xb020b2640cf17cded9889e1e27871c72e13766f32a174d8d988ffb1ca1b24f0b",
+  "network": "sepolia",
+  "protocol_id": "ODA-SYNTH-MULTIORGAN-1.0",
+  "source_sha256": "178c9323754634a8c5c18c4c482cbbcddd9e0278dfa0e47c8c468b47f7af510a"
+}

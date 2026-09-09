@@ -1,0 +1,417 @@
+{
+  "protocol_id": "ODA-SYNTH-MULTIORGAN-1.0",
+  "version": "1.2.0",
+  "description": "Policy-informed synthetic reference protocol for technical validation. It is not an operational allocation policy or clinical calculator.",
+  "blood_compatibility": {
+    "O": [
+      "O",
+      "A",
+      "B",
+      "AB"
+    ],
+    "A": [
+      "A",
+      "AB"
+    ],
+    "B": [
+      "B",
+      "AB"
+    ],
+    "AB": [
+      "AB"
+    ]
+  },
+  "common_hard_gates": [
+    "organ_type_match",
+    "abo_compatibility",
+    "negative_crossmatch"
+  ],
+  "organ_adapters": {
+    "kidney": {
+      "weights": {
+        "hla_overlap": 0.3,
+        "waiting_time": 0.25,
+        "sensitization_priority": 0.2,
+        "longevity_priority": 0.1,
+        "pediatric_priority": 0.1,
+        "distance": 0.05
+      },
+      "normalization": {
+        "max_waiting_days": 3650,
+        "max_distance_km": 5000,
+        "hla_antigen_count": 6,
+        "adult_age_min": 18,
+        "top_kdpi_percent": 20,
+        "top_epts_percent": 20,
+        "pediatric_kdpi_max": 35,
+        "cpra_priority_threshold": 80,
+        "cpra_national_priority_threshold": 98,
+        "cpra_priority_value": 0.5
+      }
+    },
+    "liver": {
+      "priority_tiers": [
+        "synthetic_status_one",
+        "weighted_score"
+      ],
+      "weights": {
+        "medical_urgency": 0.7,
+        "abo_identity": 0.1,
+        "distance": 0.15,
+        "size_compatibility": 0.05
+      },
+      "normalization": {
+        "max_distance_km": 5000,
+        "synthetic_urgency_min": 6,
+        "synthetic_urgency_max": 40,
+        "adult_age_min": 18,
+        "weight_ratio_min": 0.55,
+        "weight_ratio_max": 1.8
+      }
+    },
+    "heart": {
+      "priority_tiers": [
+        "synthetic_adult_status_1",
+        "synthetic_adult_status_2",
+        "synthetic_adult_status_3",
+        "synthetic_adult_status_4",
+        "synthetic_adult_status_5",
+        "synthetic_adult_status_6"
+      ],
+      "weights": {
+        "size_compatibility": 0.35,
+        "distance": 0.45,
+        "waiting_time": 0.2
+      },
+      "normalization": {
+        "max_waiting_days": 1095,
+        "max_distance_km": 5000,
+        "adult_age_min": 18,
+        "weight_ratio_min": 0.7,
+        "weight_ratio_max": 1.3
+      }
+    },
+    "lung": {
+      "weights": {
+        "synthetic_priority_index": 1.0
+      },
+      "normalization": {
+        "adult_age_min": 18,
+        "height_ratio_min": 0.8,
+        "height_ratio_max": 1.2,
+        "synthetic_priority_max": 100
+      }
+    }
+  },
+  "note_taxonomy": {
+    "states": [
+      "eligible",
+      "review_required",
+      "temporary_hold"
+    ],
+    "state_precedence": [
+      "temporary_hold",
+      "review_required",
+      "eligible"
+    ],
+    "temporary_hold_codes": [
+      "active_infection",
+      "sepsis_or_instability",
+      "active_malignancy_treatment",
+      "explicit_temporary_deferral"
+    ],
+    "review_required_codes": [
+      "infection_workup_pending",
+      "indeterminate_lesion",
+      "specialist_clearance_pending",
+      "missing_or_conflicting_information"
+    ],
+    "eligible_codes": [
+      "no_current_concern",
+      "negated_condition",
+      "resolved_condition",
+      "historical_condition_cleared"
+    ]
+  },
+  "dataset": {
+    "recipients_per_case": 10,
+    "minimum_structurally_compatible": 4,
+    "minimum_not_on_hold": 3,
+    "id_offsets": {
+      "training": 0,
+      "validation": 2000,
+      "test": 3000,
+      "demo": 4000
+    },
+    "scenario_weights_percent": {
+      "top1_temporary_hold": 20,
+      "top2_temporary_hold": 10,
+      "top1_review_required": 20,
+      "top1_eligible": 20,
+      "top1_negated_or_resolved": 20,
+      "non_top1_temporary_hold": 10
+    },
+    "note_generation": {
+      "latent_labels_assigned_before_rendering": true,
+      "split_specific_core_sentence_families": true,
+      "styles": [
+        "context_first",
+        "finding_first",
+        "interleaved",
+        "delayed_finding"
+      ],
+      "complexity_weights_percent": {
+        "direct": 25,
+        "multi_evidence": 25,
+        "contrast": 25,
+        "multi_evidence_contrast": 25
+      },
+      "minimum_unique_note_proportion": {
+        "training": 0.7,
+        "validation": 0.9,
+        "test": 0.9
+      }
+    },
+    "candidate_identity_and_order": {
+      "recipient_ids_randomized_against_construction_position": true,
+      "payload_order_randomized": true,
+      "purpose": "Prevent recipient identifiers or list position from revealing structural compatibility or generator position."
+    },
+    "splits": {
+      "training": {
+        "cases": 1600,
+        "seed": 2026090701
+      },
+      "validation": {
+        "cases": 320,
+        "seed": 2026090702
+      },
+      "test": {
+        "cases": 400,
+        "seed": 1156932056
+      }
+    }
+  },
+  "model_evaluation": {
+    "provider": "local_hugging_face_transformers",
+    "base_model_repository": "Qwen/Qwen2.5-1.5B-Instruct",
+    "base_model_revision": "5fee7c4ed634dc66c6e318c8ac2897b8b9154536",
+    "base_model_snapshot": "Qwen/Qwen2.5-1.5B-Instruct@5fee7c4ed634dc66c6e318c8ac2897b8b9154536",
+    "base_model_license": "Apache-2.0",
+    "precision": "float16",
+    "attention_implementation": "sdpa",
+    "temperature": 0,
+    "do_sample": false,
+    "seed": 20260907,
+    "maximum_sequence_tokens": 2048,
+    "maximum_new_tokens": 512,
+    "attempts_per_case_per_condition": 1,
+    "append_only_attempt_ledger": true,
+    "interrupted_attempts_are_failures": true,
+    "hosted_comparator": {
+      "provider": "OpenAI",
+      "model_id": "gpt-4o-mini-2024-07-18",
+      "endpoint": "chat_completions_structured_outputs",
+      "response_format": "strict_pydantic_schema",
+      "temperature": 0,
+      "seed": 20260907,
+      "maximum_completion_tokens": 512,
+      "timeout_seconds": 120,
+      "sdk_max_retries": 0,
+      "store": false,
+      "attempts_per_case": 1,
+      "pricing": {
+        "currency": "USD",
+        "input_per_million_tokens": 0.15,
+        "output_per_million_tokens": 0.6,
+        "pricing_basis": "standard synchronous text-token rates; cached-input and Batch API discounts are not assumed",
+        "source_url": "https://developers.openai.com/api/docs/models/gpt-4o-mini",
+        "accessed_on": "2026-09-08"
+      }
+    },
+    "fine_tuning": {
+      "method": "LoRA",
+      "epochs": 3,
+      "per_device_train_batch_size": 1,
+      "gradient_accumulation_steps": 8,
+      "effective_train_batch_size": 8,
+      "per_device_validation_batch_size": 1,
+      "learning_rate": 0.0002,
+      "learning_rate_scheduler": "linear",
+      "warmup_ratio": 0.03,
+      "weight_decay": 0.0,
+      "maximum_gradient_norm": 1.0,
+      "optimizer": "adamw_torch",
+      "gradient_checkpointing": true,
+      "assistant_only_loss": true,
+      "load_best_model_at_end": true,
+      "selection_metric": "validation_loss",
+      "save_and_evaluate_each_epoch": true,
+      "lora_rank": 16,
+      "lora_alpha": 32,
+      "lora_dropout": 0.05,
+      "lora_bias": "none",
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ]
+    },
+    "determinism": {
+      "torch_deterministic_algorithms": true,
+      "cudnn_benchmark": false,
+      "tf32": false,
+      "single_gpu": true
+    },
+    "bootstrap": {
+      "resamples": 10000,
+      "seed": 2026090799
+    },
+    "classical_text_baseline": {
+      "model_id": "tfidf-logistic-v1",
+      "random_seed": 2026090788,
+      "word_ngram_range": [
+        1,
+        2
+      ],
+      "character_ngram_range": [
+        3,
+        5
+      ],
+      "word_max_features": 40000,
+      "character_max_features": 30000,
+      "min_document_frequency": 2,
+      "regularization_c": 1.0,
+      "class_weight": "balanced",
+      "evidence_probability_threshold": 0.5,
+      "maximum_iterations": 2000
+    }
+  },
+  "analysis": {
+    "primary_outcomes": [
+      "candidate_macro_f1",
+      "candidate_temporary_hold_recall",
+      "case_guarded_top1_conformance",
+      "case_unsafe_or_missing_primary_rate"
+    ],
+    "unsafe_or_missing_primary_definition": "A locked case is positive when no complete guarded primary-backup pair is produced or the selected primary has the latent temporary_hold state.",
+    "secondary_outcomes": [
+      "per_class_precision_recall_f1",
+      "selectable_candidate_classification",
+      "evidence_code_exact_match",
+      "all_ten_states_exact",
+      "all_ten_evidence_sets_exact",
+      "guarded_top2_set_conformance",
+      "conditional_unsafe_primary_among_completed_selections",
+      "conditional_unsafe_backup_among_completed_selections",
+      "appropriate_override",
+      "missed_hold",
+      "false_override",
+      "unsafe_introduction",
+      "model_completion",
+      "latency",
+      "prespecified_stratified_results"
+    ],
+    "failure_handling": {
+      "classification": "A failed case contributes ten incorrect candidate predictions.",
+      "case_exact_match": "A failed case is not an exact match.",
+      "selection": "A failed or abstained case has no complete guarded pair and is positive for unsafe_or_missing_primary.",
+      "retry": "A recorded failed test case is not retried or replaced."
+    },
+    "paired_comparisons": [
+      "tfidf_logistic_vs_untuned",
+      "tfidf_logistic_vs_fine_tuned",
+      "tfidf_logistic_vs_openai",
+      "untuned_vs_fine_tuned",
+      "untuned_vs_openai",
+      "fine_tuned_vs_openai"
+    ],
+    "interval_method": "Percentile bootstrap with case-level resampling",
+    "paired_binary_test": "Two-sided exact McNemar test",
+    "interpretation": "Descriptive technical-validation analysis; no clinical-effectiveness, non-inferiority, equivalence, superiority, or multiplicity-adjusted confirmatory claim.",
+    "non_inferiority_margin": null
+  },
+  "performance_evaluation": {
+    "offchain_benchmark": {
+      "warmup_runs": 3,
+      "measured_runs": 30,
+      "ipfs_fetch_retries_per_measurement": 0,
+      "rerun_failed_measured_attempts": false
+    },
+    "cost_evaluation": {
+      "gas_price_scenarios_gwei": [
+        5,
+        15,
+        30
+      ],
+      "interpretation": "Illustrative mainnet-style scenarios applied to measured EVM gas units; not costs paid on Sepolia"
+    }
+  },
+  "tie_breakers": [
+    "priority_tier_desc",
+    "score_desc",
+    "waiting_time_desc",
+    "recipient_id_asc"
+  ],
+  "source_urls_accessed_on": "2026-09-07",
+  "pre_freeze_history": [
+    {
+      "date": "2026-09-07",
+      "retired_test_seed": 2026090703,
+      "reason": "The development split was inspected while note composition and validators were being designed. It was replaced before any locked model or classical-baseline evaluation."
+    },
+    {
+      "date": "2026-09-07",
+      "retired_test_seed": 2026090717,
+      "reason": "The candidate split was exposed during source inspection. It was replaced before provider upload, fine-tuning, or any locked model evaluation."
+    }
+  ],
+  "source_urls": [
+    "https://www.hrsa.gov/optn/patients/resources/kidney/kidney-allocation-faqs",
+    "https://www.hrsa.gov/optn/patients/resources/liver/liver-allocation-faqs",
+    "https://www.hrsa.gov/optn/patients/resources/heart/heart-allocation-faqs",
+    "https://www.hrsa.gov/optn/patients/resources/lung/lung-allocation-faqs",
+    "https://kdigo.org/guidelines/transplant-candidate/",
+    "https://www.ishlt.org/education-and-publications/standards-guidelines-detail/consensus-document-for-the-selection-of-lung-transplant-candidates-an-update-from-ishlt",
+    "https://www.ishlt.org/education-and-publications/standards-guidelines-detail/ishlt-guidelines-for-the-evaluation-and-care-of-cardiac-transplant-candidates",
+    "https://www.aasld.org/aasld-and-ast-announce-two-new-practice-guidelines",
+    "https://developers.openai.com/api/docs/models/gpt-4o-mini"
+  ],
+  "amendment_history": [
+    {
+      "version": "1.1.0",
+      "date": "2026-09-07",
+      "timing": "before any held-out test lock or held-out model execution",
+      "reason": "The prespecified OpenAI fine-tuning request was definitively rejected with HTTP 403 because self-serve training was unavailable to the study account. A provider reconciliation found no created job.",
+      "change": "Replace the unavailable hosted model pair with the immutable Apache-2.0 Qwen2.5-1.5B-Instruct checkpoint and a locally trained LoRA adapter.",
+      "unchanged": [
+        "synthetic case-generation design and frozen test seed",
+        "training, validation, and test case counts",
+        "task definition and note-readiness taxonomy",
+        "deterministic rankers and guard",
+        "outcomes and statistical analysis",
+        "one-attempt held-out evaluation rule"
+      ]
+    },
+    {
+      "version": "1.2.0",
+      "date": "2026-09-08",
+      "timing": "after local model development but before any held-out test lock or held-out model execution",
+      "reason": "Add the prospectively documented non-fine-tuned hosted comparator needed to distinguish the effect of local task adaptation from the performance and API cost of a general hosted model.",
+      "change": "Add the pinned gpt-4o-mini-2024-07-18 condition and its prespecified paired descriptive comparisons while preserving the completed local LoRA model through an explicit version-lineage record.",
+      "unchanged": [
+        "synthetic case-generation design and frozen test seed",
+        "training, validation, and test case counts",
+        "task definition, prompt, and note-readiness taxonomy",
+        "completed local LoRA adapter and training evidence",
+        "deterministic rankers and guard",
+        "primary and secondary outcome definitions",
+        "failure handling and one-attempt held-out evaluation rule"
+      ]
+    }
+  ]
+}

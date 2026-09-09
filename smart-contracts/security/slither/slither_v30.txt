@@ -1,0 +1,18 @@
+0.11.6
+Version: 0.8.26+commit.8a97fa7a.Windows.msvc
+Analyzed contract: src/TransplantManagement.sol
+Analyzed at UTC: 2026-09-09T15:50:14Z
+Contract SHA-256: 178c9323754634a8c5c18c4c482cbbcddd9e0278dfa0e47c8c468b47f7af510a
+Detectors executed: 102
+Results: 0
+
+Command
+-------
+.\.venv\Scripts\slither.exe . --json security\slither\slither_v30.json --exclude-dependencies
+
+Console result
+--------------
+'forge clean' running (wd: C:\Users\Ahmed\Downloads\DianaODA_BonView\Implementation\smart-contracts)
+'forge config --json' running
+'forge build --build-info --deny never --skip ./test/** ./script/** --force' running (wd: C:\Users\Ahmed\Downloads\DianaODA_BonView\Implementation\smart-contracts)
+. analyzed (1 contracts with 102 detectors), 0 result(s) found

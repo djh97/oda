@@ -1,0 +1,49 @@
+{
+  "artifacts": {
+    "fine_tuning_training.jsonl": {
+      "bytes": 11969118,
+      "sha256": "9a5ca6ce87cdd5e2f7887a505bd4735808a38aa9babc0d3335f60f402227a826"
+    },
+    "fine_tuning_validation.jsonl": {
+      "bytes": 2339433,
+      "sha256": "eb9eafc09aa71995f41b51bd8abd568d028377ced0ec1936dd28de6cf7d4953e"
+    },
+    "test_cases.jsonl": {
+      "bytes": 3756845,
+      "sha256": "1f4a41be76cdb922fe6f6de33b006899e5c34eea52eb50dc518d57572e24f11b"
+    },
+    "training_cases.jsonl": {
+      "bytes": 15095611,
+      "sha256": "4cac638b09a2ae941c0aefb868b3b364f2fde85df98d2e730d87f457cb6a31b0"
+    },
+    "validation_cases.jsonl": {
+      "bytes": 2966342,
+      "sha256": "7c0b1c35d81a30088ceefa246804652d5de3b3d485d0cb448dd17eda4d9cfdbb"
+    },
+    "validation_report.json": {
+      "bytes": 26991,
+      "sha256": "9da851b1a96acab0de5087f09dd96307213a9eaa6c4b140b79d52c6820e05210"
+    }
+  },
+  "demonstration_case": {
+    "bytes": 12389,
+    "excluded_from_model_evaluation": true,
+    "path": "app/seed-data/demo_case.json",
+    "sha256": "d6021c1c7a7e313ee85bfafd910b5caaec00807e168450e68b37dcc5d7917b44"
+  },
+  "generated_at_utc": "2026-09-07T16:26:19Z",
+  "protocol_id": "ODA-SYNTH-MULTIORGAN-1.0",
+  "protocol_version": "1.1.0",
+  "python_version": "3.12.10",
+  "source_inputs": {
+    "generator": {
+      "path": "app/evaluation/synthetic_dataset.py",
+      "sha256": "d9ef1a3c64768e0dc6557dd883780ecf191b9cf06184d0f76978029dffec9529"
+    },
+    "protocol_json": {
+      "path": "app/protocols/oda_synth_multiorgan_v1.json",
+      "sha256": "0dd6914084de9d57c4ebfeb34b6cf574c00d9e19d1e511eecee872d13f338341"
+    },
+    "system_prompt_sha256": "fa65bccba2059b3abf7938a883ed6fa18d38ccedf57ff8ee9e6234886fd058db"
+  }
+}

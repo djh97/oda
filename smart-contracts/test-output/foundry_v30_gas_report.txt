@@ -1,0 +1,128 @@
+No files changed, compilation skipped
+
+Ran 41 tests for test/TransplantManagementV30.t.sol:TransplantManagementV30Test
+[PASS] testCancellationReleasesReservationsAndAllowsNewMatch() (gas: 1597859)
+[PASS] testCancellationRequiresNonemptyCIDAndAuthorizedRole() (gas: 1269814)
+[PASS] testCancellingPromotedMatchDoesNotReleaseReservationOwnedByAnotherMatch() (gas: 1873788)
+[PASS] testConstructorRejectsZeroRegulator() (gas: 315451)
+[PASS] testCreateMatchRejectsSameRecipientAndEmptyCID() (gas: 1010348)
+[PASS] testCreateMatchRequiresDecisionService() (gas: 968694)
+[PASS] testCreateMatchRequiresEligibility() (gas: 912383)
+[PASS] testCreateMatchReservesPrimaryAndBackup() (gas: 1248832)
+[PASS] testDonorAuthorityApprovalRequiresHospitalFirst() (gas: 1235041)
+[PASS] testDonorCannotHaveTwoOpenMatches() (gas: 1238840)
+[PASS] testDuplicateApprovalFails() (gas: 1315914)
+[PASS] testDuplicateIdentityRegistrationFails() (gas: 202946)
+[PASS] testEligibilityCanBeGrantedAndRevoked() (gas: 889824)
+[PASS] testEligibilityRequiresEthicsRole() (gas: 835043)
+[PASS] testFinalEthicsApprovalRequiresRecipientFirst() (gas: 1238233)
+[PASS] testFinalizeRequiresFullApprovalAndAuthorizedRole() (gas: 1587971)
+[PASS] testFinalizingPromotedMatchDoesNotReleaseReservationOwnedByAnotherMatch() (gas: 2158846)
+[PASS] testHospitalApprovalRequiresMedicalFirst() (gas: 1458133)
+[PASS] testIdentityAndProfileRegistrationStoresOnlyCIDAndActor() (gas: 843851)
+[PASS] testNoActionAfterCancellation() (gas: 1328900)
+[PASS] testNoActionAfterFinalization() (gas: 1643224)
+[PASS] testOnlyActiveRecipientCanApprove() (gas: 1438519)
+[PASS] testOnlyBoundDonorAuthorityCanApprove() (gas: 1379890)
+[PASS] testOnlyPendingRegulatorCanAccept() (gas: 97725)
+[PASS] testProfileRegistrationRejectsEmptyCID() (gas: 126769)
+[PASS] testProfileRegistrationRequiresHospital() (gas: 123617)
+[PASS] testProfileUpdateFailsDuringOpenMatch() (gas: 1268620)
+[PASS] testProfileUpdateResetsEligibility() (gas: 996233)
+[PASS] testPromotedBackupMustCompleteFreshApprovalSequence() (gas: 1687093)
+[PASS] testPromotionCanOnlyHappenOnce() (gas: 1325047)
+[PASS] testPromotionReleasesPrimaryAndResetsAllApprovals() (gas: 1550232)
+[PASS] testPromotionRequiresEncryptedReasonCID() (gas: 1238895)
+[PASS] testRecipientApprovalRequiresDonorAuthorityFirst() (gas: 1235810)
+[PASS] testRegulatorCanGrantRevokeAndRestoreRole() (gas: 325555)
+[PASS] testReservedRecipientCannotEnterAnotherMatch() (gas: 1467617)
+[PASS] testRevokedRoleLosesAccessImmediately() (gas: 60618)
+[PASS] testRoleChangeRejectsUnauthorizedCaller() (gas: 35982)
+[PASS] testRoleChangeRejectsUnchangedStatus() (gas: 37171)
+[PASS] testSequentialApprovalAndFinalization() (gas: 1651119)
+[PASS] testTwoStepRegulatorTransfer() (gas: 145973)
+[PASS] testUnauthorizedPromotionFails() (gas: 1239360)
+Suite result: ok. 41 passed; 0 failed; 0 skipped; finished in 9.41ms (114.71ms CPU time)
+
+â•­------------------------------------------------------------+-----------------+--------+--------+--------+---------â•®
+| src/TransplantManagement.sol:TransplantManagement Contract |                 |        |        |        |         |
++===================================================================================================================+
+| Deployment Cost                                            | Deployment Size |        |        |        |         |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| 3058108                                                    | 14014           |        |        |        |         |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+|                                                            |                 |        |        |        |         |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| Function Name                                              | Min             | Avg    | Median | Max    | # Calls |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| acceptRegulator                                            | 23944           | 26241  | 26241  | 28539  | 2       |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| approvalRounds                                             | 2541            | 2541   | 2541   | 2541   | 1       |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| approveDonorAuthority                                      | 26375           | 53157  | 60188  | 60188  | 9       |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| approveFinalTransplant                                     | 28803           | 53358  | 58270  | 58270  | 6       |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| approveHospital                                            | 28465           | 52507  | 57956  | 57956  | 10      |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| approveMedicalTeam                                         | 28369           | 64378  | 75155  | 75155  | 13      |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| approveRecipient                                           | 26556           | 51304  | 60339  | 60339  | 7       |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| cancelMatch                                                | 27235           | 66852  | 88592  | 95819  | 5       |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| createMatch                                                | 25424           | 214851 | 264394 | 264394 | 34      |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| donorHasOpenMatch                                          | 3213            | 3213   | 3213   | 3213   | 3       |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| donors                                                     | 9684            | 9684   | 9684   | 9684   | 3       |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| finalizeMatch                                              | 25929           | 48083  | 55919  | 60932  | 6       |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| isTransplantApproved                                       | 5791            | 5791   | 5791   | 5791   | 1       |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| matchCounter                                               | 2248            | 2248   | 2248   | 2248   | 2       |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| matches                                                    | 21006           | 21006  | 21006  | 21006  | 1       |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| pendingRegulator                                           | 2742            | 2742   | 2742   | 2742   | 2       |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| promoteBackupRecipient                                     | 27686           | 60194  | 77426  | 78426  | 8       |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| promotionCIDs                                              | 3697            | 3697   | 3697   | 3697   | 1       |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| proposeRegulator                                           | 28445           | 50121  | 60959  | 60959  | 3       |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| recipients                                                 | 10204           | 10204  | 10204  | 10204  | 16      |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| registerDonor                                              | 24839           | 112155 | 119740 | 119764 | 37      |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| registerDonorAuthority                                     | 26551           | 80947  | 83804  | 83804  | 38      |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| registerRecipient                                          | 120448          | 120448 | 120448 | 120448 | 93      |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| registerRecipientAddress                                   | 39979           | 72102  | 66748  | 83848  | 94      |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| registeredHospitals                                        | 2572            | 2572   | 2572   | 2572   | 3       |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| regulator                                                  | 3115            | 3115   | 3115   | 3115   | 1       |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| setDecisionService                                         | 24266           | 61203  | 62104  | 62104  | 42      |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| setDonorEligibility                                        | 26923           | 33762  | 33970  | 33970  | 34      |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| setEthicsCommittee                                         | 62672           | 62672  | 62672  | 62672  | 41      |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| setHospital                                                | 26154           | 57791  | 61730  | 61730  | 50      |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| setMedicalTeam                                             | 26778           | 60037  | 62302  | 62302  | 45      |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| setRecipientEligibility                                    | 23993           | 31070  | 31158  | 31158  | 82      |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| updateDonorProfile                                         | 29824           | 29824  | 29824  | 29824  | 1       |
+|------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| updateRecipientProfile                                     | 27532           | 33970  | 33970  | 40409  | 2       |
+â•°------------------------------------------------------------+-----------------+--------+--------+--------+---------â•¯
+
+
+Ran 1 test suite in 19.66ms (9.41ms CPU time): 41 tests passed, 0 failed, 0 skipped (41 total tests)

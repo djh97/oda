@@ -1,0 +1,1017 @@
+{
+  "errors": [],
+  "kidney_hla_overlap_counts": {
+    "nonzero": 4640,
+    "zero": 1160
+  },
+  "protocol_id": "ODA-SYNTH-MULTIORGAN-1.0",
+  "split_summaries": {
+    "test": {
+      "case_count": 400,
+      "context_evidence_code_counts": {
+        "historical_condition_cleared": 174,
+        "indeterminate_lesion": 54,
+        "infection_workup_pending": 59,
+        "missing_or_conflicting_information": 48,
+        "negated_condition": 193,
+        "no_current_concern": 174,
+        "resolved_condition": 186,
+        "specialist_clearance_pending": 55
+      },
+      "evidence_code_counts": {
+        "active_infection": 322,
+        "active_malignancy_treatment": 299,
+        "explicit_temporary_deferral": 312,
+        "historical_condition_cleared": 1004,
+        "indeterminate_lesion": 380,
+        "infection_workup_pending": 382,
+        "missing_or_conflicting_information": 371,
+        "negated_condition": 1073,
+        "no_current_concern": 1152,
+        "resolved_condition": 1040,
+        "sepsis_or_instability": 307,
+        "specialist_clearance_pending": 398
+      },
+      "exclusion_reason_counts": {
+        "abo_incompatible": 302,
+        "crossmatch_not_negative": 598,
+        "organ_type_mismatch": 400,
+        "size_incompatible": 300
+      },
+      "kidney_hla_overlap_counts": {
+        "nonzero": 800,
+        "zero": 200
+      },
+      "maximum_structurally_compatible": 6,
+      "minimum_structurally_compatible": 6,
+      "note_complexity_counts": {
+        "contrast": 1029,
+        "direct": 1003,
+        "multi_evidence": 982,
+        "multi_evidence_contrast": 986
+      },
+      "note_style_counts": {
+        "context_first": 1021,
+        "delayed_finding": 990,
+        "finding_first": 1023,
+        "interleaved": 966
+      },
+      "organ_counts": {
+        "heart": 100,
+        "kidney": 100,
+        "liver": 100,
+        "lung": 100
+      },
+      "organ_factor_coverage": {
+        "heart_status_1": 155,
+        "heart_status_2": 166,
+        "heart_status_3": 152,
+        "heart_status_4": 164,
+        "heart_status_5": 200,
+        "heart_status_6": 163,
+        "kidney_adult_candidate": 881,
+        "kidney_cpra_80_to_97_9": 195,
+        "kidney_cpra_98_or_higher": 23,
+        "kidney_cpra_below_80": 782,
+        "kidney_epts_omitted_for_pediatric": 119,
+        "kidney_epts_present_for_adult": 881,
+        "kidney_longevity_priority_false": 971,
+        "kidney_longevity_priority_true": 29,
+        "kidney_pediatric_candidate": 119,
+        "kidney_pediatric_priority_false": 958,
+        "kidney_pediatric_priority_true": 42,
+        "liver_status_one_false": 965,
+        "liver_status_one_true": 35,
+        "lung_priority_50_or_higher": 472,
+        "lung_priority_below_50": 528
+      },
+      "readiness_by_payload_position": {
+        "1": {
+          "eligible": 214,
+          "review_required": 103,
+          "temporary_hold": 83
+        },
+        "10": {
+          "eligible": 216,
+          "review_required": 98,
+          "temporary_hold": 86
+        },
+        "2": {
+          "eligible": 228,
+          "review_required": 89,
+          "temporary_hold": 83
+        },
+        "3": {
+          "eligible": 224,
+          "review_required": 96,
+          "temporary_hold": 80
+        },
+        "4": {
+          "eligible": 209,
+          "review_required": 100,
+          "temporary_hold": 91
+        },
+        "5": {
+          "eligible": 220,
+          "review_required": 103,
+          "temporary_hold": 77
+        },
+        "6": {
+          "eligible": 214,
+          "review_required": 113,
+          "temporary_hold": 73
+        },
+        "7": {
+          "eligible": 204,
+          "review_required": 104,
+          "temporary_hold": 92
+        },
+        "8": {
+          "eligible": 217,
+          "review_required": 94,
+          "temporary_hold": 89
+        },
+        "9": {
+          "eligible": 203,
+          "review_required": 114,
+          "temporary_hold": 83
+        }
+      },
+      "readiness_by_recipient_id_suffix": {
+        "1": {
+          "eligible": 202,
+          "review_required": 107,
+          "temporary_hold": 91
+        },
+        "10": {
+          "eligible": 228,
+          "review_required": 104,
+          "temporary_hold": 68
+        },
+        "2": {
+          "eligible": 210,
+          "review_required": 101,
+          "temporary_hold": 89
+        },
+        "3": {
+          "eligible": 231,
+          "review_required": 93,
+          "temporary_hold": 76
+        },
+        "4": {
+          "eligible": 210,
+          "review_required": 103,
+          "temporary_hold": 87
+        },
+        "5": {
+          "eligible": 216,
+          "review_required": 104,
+          "temporary_hold": 80
+        },
+        "6": {
+          "eligible": 220,
+          "review_required": 102,
+          "temporary_hold": 78
+        },
+        "7": {
+          "eligible": 195,
+          "review_required": 108,
+          "temporary_hold": 97
+        },
+        "8": {
+          "eligible": 231,
+          "review_required": 90,
+          "temporary_hold": 79
+        },
+        "9": {
+          "eligible": 206,
+          "review_required": 102,
+          "temporary_hold": 92
+        }
+      },
+      "reference_evidence_cardinality_counts": {
+        "1": 1484,
+        "2": 1992,
+        "3": 524
+      },
+      "reference_primary_baseline_rank_counts": {
+        "1": 280,
+        "2": 80,
+        "3": 40
+      },
+      "scenario_counts_by_organ": {
+        "heart": {
+          "non_top1_temporary_hold": 10,
+          "top1_eligible": 20,
+          "top1_negated_or_resolved": 20,
+          "top1_review_required": 20,
+          "top1_temporary_hold": 20,
+          "top2_temporary_hold": 10
+        },
+        "kidney": {
+          "non_top1_temporary_hold": 10,
+          "top1_eligible": 20,
+          "top1_negated_or_resolved": 20,
+          "top1_review_required": 20,
+          "top1_temporary_hold": 20,
+          "top2_temporary_hold": 10
+        },
+        "liver": {
+          "non_top1_temporary_hold": 10,
+          "top1_eligible": 20,
+          "top1_negated_or_resolved": 20,
+          "top1_review_required": 20,
+          "top1_temporary_hold": 20,
+          "top2_temporary_hold": 10
+        },
+        "lung": {
+          "non_top1_temporary_hold": 10,
+          "top1_eligible": 20,
+          "top1_negated_or_resolved": 20,
+          "top1_review_required": 20,
+          "top1_temporary_hold": 20,
+          "top2_temporary_hold": 10
+        }
+      },
+      "selectability_by_payload_position": {
+        "1": {
+          "excluded": 160,
+          "selectable": 240
+        },
+        "10": {
+          "excluded": 149,
+          "selectable": 251
+        },
+        "2": {
+          "excluded": 173,
+          "selectable": 227
+        },
+        "3": {
+          "excluded": 167,
+          "selectable": 233
+        },
+        "4": {
+          "excluded": 158,
+          "selectable": 242
+        },
+        "5": {
+          "excluded": 169,
+          "selectable": 231
+        },
+        "6": {
+          "excluded": 151,
+          "selectable": 249
+        },
+        "7": {
+          "excluded": 152,
+          "selectable": 248
+        },
+        "8": {
+          "excluded": 149,
+          "selectable": 251
+        },
+        "9": {
+          "excluded": 172,
+          "selectable": 228
+        }
+      },
+      "selectability_by_recipient_id_suffix": {
+        "1": {
+          "excluded": 180,
+          "selectable": 220
+        },
+        "10": {
+          "excluded": 161,
+          "selectable": 239
+        },
+        "2": {
+          "excluded": 147,
+          "selectable": 253
+        },
+        "3": {
+          "excluded": 134,
+          "selectable": 266
+        },
+        "4": {
+          "excluded": 158,
+          "selectable": 242
+        },
+        "5": {
+          "excluded": 168,
+          "selectable": 232
+        },
+        "6": {
+          "excluded": 162,
+          "selectable": 238
+        },
+        "7": {
+          "excluded": 169,
+          "selectable": 231
+        },
+        "8": {
+          "excluded": 161,
+          "selectable": 239
+        },
+        "9": {
+          "excluded": 160,
+          "selectable": 240
+        }
+      },
+      "state_counts": {
+        "eligible": 2149,
+        "review_required": 1014,
+        "temporary_hold": 837
+      },
+      "unique_note_count": 3970,
+      "unique_note_proportion": 0.9925,
+      "unique_notes_by_evidence_code": {
+        "active_infection": 322,
+        "active_malignancy_treatment": 299,
+        "explicit_temporary_deferral": 311,
+        "historical_condition_cleared": 998,
+        "indeterminate_lesion": 380,
+        "infection_workup_pending": 382,
+        "missing_or_conflicting_information": 370,
+        "negated_condition": 1062,
+        "no_current_concern": 1140,
+        "resolved_condition": 1035,
+        "sepsis_or_instability": 306,
+        "specialist_clearance_pending": 397
+      },
+      "unique_payload_order_signatures": 400,
+      "unique_template_family_count": 918
+    },
+    "training": {
+      "case_count": 1600,
+      "context_evidence_code_counts": {
+        "historical_condition_cleared": 736,
+        "indeterminate_lesion": 214,
+        "infection_workup_pending": 207,
+        "missing_or_conflicting_information": 203,
+        "negated_condition": 716,
+        "no_current_concern": 691,
+        "resolved_condition": 715,
+        "specialist_clearance_pending": 192
+      },
+      "evidence_code_counts": {
+        "active_infection": 1239,
+        "active_malignancy_treatment": 1212,
+        "explicit_temporary_deferral": 1167,
+        "historical_condition_cleared": 4023,
+        "indeterminate_lesion": 1560,
+        "infection_workup_pending": 1603,
+        "missing_or_conflicting_information": 1614,
+        "negated_condition": 4125,
+        "no_current_concern": 4632,
+        "resolved_condition": 4218,
+        "sepsis_or_instability": 1267,
+        "specialist_clearance_pending": 1573
+      },
+      "exclusion_reason_counts": {
+        "abo_incompatible": 1197,
+        "crossmatch_not_negative": 2403,
+        "organ_type_mismatch": 1600,
+        "size_incompatible": 1200
+      },
+      "kidney_hla_overlap_counts": {
+        "nonzero": 3200,
+        "zero": 800
+      },
+      "maximum_structurally_compatible": 6,
+      "minimum_structurally_compatible": 6,
+      "note_complexity_counts": {
+        "contrast": 3969,
+        "direct": 4048,
+        "multi_evidence": 4028,
+        "multi_evidence_contrast": 3955
+      },
+      "note_style_counts": {
+        "context_first": 3927,
+        "delayed_finding": 4078,
+        "finding_first": 4000,
+        "interleaved": 3995
+      },
+      "organ_counts": {
+        "heart": 400,
+        "kidney": 400,
+        "liver": 400,
+        "lung": 400
+      },
+      "organ_factor_coverage": {
+        "heart_status_1": 650,
+        "heart_status_2": 659,
+        "heart_status_3": 657,
+        "heart_status_4": 707,
+        "heart_status_5": 642,
+        "heart_status_6": 685,
+        "kidney_adult_candidate": 3511,
+        "kidney_cpra_80_to_97_9": 765,
+        "kidney_cpra_98_or_higher": 80,
+        "kidney_cpra_below_80": 3155,
+        "kidney_epts_omitted_for_pediatric": 489,
+        "kidney_epts_present_for_adult": 3511,
+        "kidney_longevity_priority_false": 3885,
+        "kidney_longevity_priority_true": 115,
+        "kidney_pediatric_candidate": 489,
+        "kidney_pediatric_priority_false": 3847,
+        "kidney_pediatric_priority_true": 153,
+        "liver_status_one_false": 3836,
+        "liver_status_one_true": 164,
+        "lung_priority_50_or_higher": 2042,
+        "lung_priority_below_50": 1958
+      },
+      "readiness_by_payload_position": {
+        "1": {
+          "eligible": 853,
+          "review_required": 433,
+          "temporary_hold": 314
+        },
+        "10": {
+          "eligible": 885,
+          "review_required": 426,
+          "temporary_hold": 289
+        },
+        "2": {
+          "eligible": 822,
+          "review_required": 463,
+          "temporary_hold": 315
+        },
+        "3": {
+          "eligible": 823,
+          "review_required": 421,
+          "temporary_hold": 356
+        },
+        "4": {
+          "eligible": 833,
+          "review_required": 421,
+          "temporary_hold": 346
+        },
+        "5": {
+          "eligible": 851,
+          "review_required": 440,
+          "temporary_hold": 309
+        },
+        "6": {
+          "eligible": 871,
+          "review_required": 402,
+          "temporary_hold": 327
+        },
+        "7": {
+          "eligible": 862,
+          "review_required": 403,
+          "temporary_hold": 335
+        },
+        "8": {
+          "eligible": 885,
+          "review_required": 391,
+          "temporary_hold": 324
+        },
+        "9": {
+          "eligible": 827,
+          "review_required": 441,
+          "temporary_hold": 332
+        }
+      },
+      "readiness_by_recipient_id_suffix": {
+        "1": {
+          "eligible": 842,
+          "review_required": 426,
+          "temporary_hold": 332
+        },
+        "10": {
+          "eligible": 844,
+          "review_required": 447,
+          "temporary_hold": 309
+        },
+        "2": {
+          "eligible": 854,
+          "review_required": 418,
+          "temporary_hold": 328
+        },
+        "3": {
+          "eligible": 848,
+          "review_required": 432,
+          "temporary_hold": 320
+        },
+        "4": {
+          "eligible": 830,
+          "review_required": 464,
+          "temporary_hold": 306
+        },
+        "5": {
+          "eligible": 845,
+          "review_required": 405,
+          "temporary_hold": 350
+        },
+        "6": {
+          "eligible": 861,
+          "review_required": 420,
+          "temporary_hold": 319
+        },
+        "7": {
+          "eligible": 850,
+          "review_required": 413,
+          "temporary_hold": 337
+        },
+        "8": {
+          "eligible": 886,
+          "review_required": 403,
+          "temporary_hold": 311
+        },
+        "9": {
+          "eligible": 852,
+          "review_required": 413,
+          "temporary_hold": 335
+        }
+      },
+      "reference_evidence_cardinality_counts": {
+        "1": 5890,
+        "2": 7987,
+        "3": 2123
+      },
+      "reference_primary_baseline_rank_counts": {
+        "1": 1120,
+        "2": 320,
+        "3": 160
+      },
+      "scenario_counts_by_organ": {
+        "heart": {
+          "non_top1_temporary_hold": 40,
+          "top1_eligible": 80,
+          "top1_negated_or_resolved": 80,
+          "top1_review_required": 80,
+          "top1_temporary_hold": 80,
+          "top2_temporary_hold": 40
+        },
+        "kidney": {
+          "non_top1_temporary_hold": 40,
+          "top1_eligible": 80,
+          "top1_negated_or_resolved": 80,
+          "top1_review_required": 80,
+          "top1_temporary_hold": 80,
+          "top2_temporary_hold": 40
+        },
+        "liver": {
+          "non_top1_temporary_hold": 40,
+          "top1_eligible": 80,
+          "top1_negated_or_resolved": 80,
+          "top1_review_required": 80,
+          "top1_temporary_hold": 80,
+          "top2_temporary_hold": 40
+        },
+        "lung": {
+          "non_top1_temporary_hold": 40,
+          "top1_eligible": 80,
+          "top1_negated_or_resolved": 80,
+          "top1_review_required": 80,
+          "top1_temporary_hold": 80,
+          "top2_temporary_hold": 40
+        }
+      },
+      "selectability_by_payload_position": {
+        "1": {
+          "excluded": 630,
+          "selectable": 970
+        },
+        "10": {
+          "excluded": 660,
+          "selectable": 940
+        },
+        "2": {
+          "excluded": 637,
+          "selectable": 963
+        },
+        "3": {
+          "excluded": 654,
+          "selectable": 946
+        },
+        "4": {
+          "excluded": 620,
+          "selectable": 980
+        },
+        "5": {
+          "excluded": 643,
+          "selectable": 957
+        },
+        "6": {
+          "excluded": 621,
+          "selectable": 979
+        },
+        "7": {
+          "excluded": 650,
+          "selectable": 950
+        },
+        "8": {
+          "excluded": 643,
+          "selectable": 957
+        },
+        "9": {
+          "excluded": 642,
+          "selectable": 958
+        }
+      },
+      "selectability_by_recipient_id_suffix": {
+        "1": {
+          "excluded": 644,
+          "selectable": 956
+        },
+        "10": {
+          "excluded": 617,
+          "selectable": 983
+        },
+        "2": {
+          "excluded": 640,
+          "selectable": 960
+        },
+        "3": {
+          "excluded": 651,
+          "selectable": 949
+        },
+        "4": {
+          "excluded": 635,
+          "selectable": 965
+        },
+        "5": {
+          "excluded": 632,
+          "selectable": 968
+        },
+        "6": {
+          "excluded": 673,
+          "selectable": 927
+        },
+        "7": {
+          "excluded": 643,
+          "selectable": 957
+        },
+        "8": {
+          "excluded": 640,
+          "selectable": 960
+        },
+        "9": {
+          "excluded": 625,
+          "selectable": 975
+        }
+      },
+      "state_counts": {
+        "eligible": 8512,
+        "review_required": 4241,
+        "temporary_hold": 3247
+      },
+      "unique_note_count": 15583,
+      "unique_note_proportion": 0.973938,
+      "unique_notes_by_evidence_code": {
+        "active_infection": 1226,
+        "active_malignancy_treatment": 1205,
+        "explicit_temporary_deferral": 1160,
+        "historical_condition_cleared": 3910,
+        "indeterminate_lesion": 1543,
+        "infection_workup_pending": 1585,
+        "missing_or_conflicting_information": 1597,
+        "negated_condition": 4025,
+        "no_current_concern": 4493,
+        "resolved_condition": 4109,
+        "sepsis_or_instability": 1254,
+        "specialist_clearance_pending": 1556
+      },
+      "unique_payload_order_signatures": 1600,
+      "unique_template_family_count": 1622
+    },
+    "validation": {
+      "case_count": 320,
+      "context_evidence_code_counts": {
+        "historical_condition_cleared": 149,
+        "indeterminate_lesion": 37,
+        "infection_workup_pending": 40,
+        "missing_or_conflicting_information": 32,
+        "negated_condition": 157,
+        "no_current_concern": 160,
+        "resolved_condition": 126,
+        "specialist_clearance_pending": 44
+      },
+      "evidence_code_counts": {
+        "active_infection": 239,
+        "active_malignancy_treatment": 240,
+        "explicit_temporary_deferral": 239,
+        "historical_condition_cleared": 817,
+        "indeterminate_lesion": 303,
+        "infection_workup_pending": 318,
+        "missing_or_conflicting_information": 324,
+        "negated_condition": 825,
+        "no_current_concern": 951,
+        "resolved_condition": 809,
+        "sepsis_or_instability": 245,
+        "specialist_clearance_pending": 328
+      },
+      "exclusion_reason_counts": {
+        "abo_incompatible": 244,
+        "crossmatch_not_negative": 476,
+        "organ_type_mismatch": 320,
+        "size_incompatible": 240
+      },
+      "kidney_hla_overlap_counts": {
+        "nonzero": 640,
+        "zero": 160
+      },
+      "maximum_structurally_compatible": 6,
+      "minimum_structurally_compatible": 6,
+      "note_complexity_counts": {
+        "contrast": 791,
+        "direct": 807,
+        "multi_evidence": 812,
+        "multi_evidence_contrast": 790
+      },
+      "note_style_counts": {
+        "context_first": 788,
+        "delayed_finding": 793,
+        "finding_first": 791,
+        "interleaved": 828
+      },
+      "organ_counts": {
+        "heart": 80,
+        "kidney": 80,
+        "liver": 80,
+        "lung": 80
+      },
+      "organ_factor_coverage": {
+        "heart_status_1": 151,
+        "heart_status_2": 127,
+        "heart_status_3": 141,
+        "heart_status_4": 139,
+        "heart_status_5": 127,
+        "heart_status_6": 115,
+        "kidney_adult_candidate": 706,
+        "kidney_cpra_80_to_97_9": 161,
+        "kidney_cpra_98_or_higher": 17,
+        "kidney_cpra_below_80": 622,
+        "kidney_epts_omitted_for_pediatric": 94,
+        "kidney_epts_present_for_adult": 706,
+        "kidney_longevity_priority_false": 781,
+        "kidney_longevity_priority_true": 19,
+        "kidney_pediatric_candidate": 94,
+        "kidney_pediatric_priority_false": 766,
+        "kidney_pediatric_priority_true": 34,
+        "liver_status_one_false": 775,
+        "liver_status_one_true": 25,
+        "lung_priority_50_or_higher": 410,
+        "lung_priority_below_50": 390
+      },
+      "readiness_by_payload_position": {
+        "1": {
+          "eligible": 177,
+          "review_required": 73,
+          "temporary_hold": 70
+        },
+        "10": {
+          "eligible": 160,
+          "review_required": 97,
+          "temporary_hold": 63
+        },
+        "2": {
+          "eligible": 166,
+          "review_required": 94,
+          "temporary_hold": 60
+        },
+        "3": {
+          "eligible": 168,
+          "review_required": 86,
+          "temporary_hold": 66
+        },
+        "4": {
+          "eligible": 172,
+          "review_required": 93,
+          "temporary_hold": 55
+        },
+        "5": {
+          "eligible": 186,
+          "review_required": 82,
+          "temporary_hold": 52
+        },
+        "6": {
+          "eligible": 167,
+          "review_required": 90,
+          "temporary_hold": 63
+        },
+        "7": {
+          "eligible": 170,
+          "review_required": 76,
+          "temporary_hold": 74
+        },
+        "8": {
+          "eligible": 167,
+          "review_required": 81,
+          "temporary_hold": 72
+        },
+        "9": {
+          "eligible": 179,
+          "review_required": 74,
+          "temporary_hold": 67
+        }
+      },
+      "readiness_by_recipient_id_suffix": {
+        "1": {
+          "eligible": 171,
+          "review_required": 81,
+          "temporary_hold": 68
+        },
+        "10": {
+          "eligible": 165,
+          "review_required": 79,
+          "temporary_hold": 76
+        },
+        "2": {
+          "eligible": 152,
+          "review_required": 101,
+          "temporary_hold": 67
+        },
+        "3": {
+          "eligible": 163,
+          "review_required": 87,
+          "temporary_hold": 70
+        },
+        "4": {
+          "eligible": 175,
+          "review_required": 82,
+          "temporary_hold": 63
+        },
+        "5": {
+          "eligible": 177,
+          "review_required": 83,
+          "temporary_hold": 60
+        },
+        "6": {
+          "eligible": 187,
+          "review_required": 72,
+          "temporary_hold": 61
+        },
+        "7": {
+          "eligible": 174,
+          "review_required": 85,
+          "temporary_hold": 61
+        },
+        "8": {
+          "eligible": 183,
+          "review_required": 84,
+          "temporary_hold": 53
+        },
+        "9": {
+          "eligible": 165,
+          "review_required": 92,
+          "temporary_hold": 63
+        }
+      },
+      "reference_evidence_cardinality_counts": {
+        "1": 1178,
+        "2": 1606,
+        "3": 416
+      },
+      "reference_primary_baseline_rank_counts": {
+        "1": 224,
+        "2": 64,
+        "3": 32
+      },
+      "scenario_counts_by_organ": {
+        "heart": {
+          "non_top1_temporary_hold": 8,
+          "top1_eligible": 16,
+          "top1_negated_or_resolved": 16,
+          "top1_review_required": 16,
+          "top1_temporary_hold": 16,
+          "top2_temporary_hold": 8
+        },
+        "kidney": {
+          "non_top1_temporary_hold": 8,
+          "top1_eligible": 16,
+          "top1_negated_or_resolved": 16,
+          "top1_review_required": 16,
+          "top1_temporary_hold": 16,
+          "top2_temporary_hold": 8
+        },
+        "liver": {
+          "non_top1_temporary_hold": 8,
+          "top1_eligible": 16,
+          "top1_negated_or_resolved": 16,
+          "top1_review_required": 16,
+          "top1_temporary_hold": 16,
+          "top2_temporary_hold": 8
+        },
+        "lung": {
+          "non_top1_temporary_hold": 8,
+          "top1_eligible": 16,
+          "top1_negated_or_resolved": 16,
+          "top1_review_required": 16,
+          "top1_temporary_hold": 16,
+          "top2_temporary_hold": 8
+        }
+      },
+      "selectability_by_payload_position": {
+        "1": {
+          "excluded": 122,
+          "selectable": 198
+        },
+        "10": {
+          "excluded": 124,
+          "selectable": 196
+        },
+        "2": {
+          "excluded": 131,
+          "selectable": 189
+        },
+        "3": {
+          "excluded": 116,
+          "selectable": 204
+        },
+        "4": {
+          "excluded": 124,
+          "selectable": 196
+        },
+        "5": {
+          "excluded": 131,
+          "selectable": 189
+        },
+        "6": {
+          "excluded": 131,
+          "selectable": 189
+        },
+        "7": {
+          "excluded": 136,
+          "selectable": 184
+        },
+        "8": {
+          "excluded": 136,
+          "selectable": 184
+        },
+        "9": {
+          "excluded": 129,
+          "selectable": 191
+        }
+      },
+      "selectability_by_recipient_id_suffix": {
+        "1": {
+          "excluded": 133,
+          "selectable": 187
+        },
+        "10": {
+          "excluded": 141,
+          "selectable": 179
+        },
+        "2": {
+          "excluded": 123,
+          "selectable": 197
+        },
+        "3": {
+          "excluded": 121,
+          "selectable": 199
+        },
+        "4": {
+          "excluded": 123,
+          "selectable": 197
+        },
+        "5": {
+          "excluded": 122,
+          "selectable": 198
+        },
+        "6": {
+          "excluded": 134,
+          "selectable": 186
+        },
+        "7": {
+          "excluded": 135,
+          "selectable": 185
+        },
+        "8": {
+          "excluded": 112,
+          "selectable": 208
+        },
+        "9": {
+          "excluded": 136,
+          "selectable": 184
+        }
+      },
+      "state_counts": {
+        "eligible": 1712,
+        "review_required": 846,
+        "temporary_hold": 642
+      },
+      "unique_note_count": 3176,
+      "unique_note_proportion": 0.9925,
+      "unique_notes_by_evidence_code": {
+        "active_infection": 239,
+        "active_malignancy_treatment": 240,
+        "explicit_temporary_deferral": 239,
+        "historical_condition_cleared": 812,
+        "indeterminate_lesion": 303,
+        "infection_workup_pending": 317,
+        "missing_or_conflicting_information": 322,
+        "negated_condition": 818,
+        "no_current_concern": 940,
+        "resolved_condition": 805,
+        "sepsis_or_instability": 244,
+        "specialist_clearance_pending": 328
+      },
+      "unique_payload_order_signatures": 320,
+      "unique_template_family_count": 816
+    }
+  },
+  "valid": true,
+  "validated_at_utc": "2026-09-07T16:26:19Z"
+}
