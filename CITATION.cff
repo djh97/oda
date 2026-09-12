@@ -2,8 +2,8 @@ cff-version: 1.2.0
 message: "If you use this software, please cite the archived release."
 title: "Reproducibility Artifacts for an Integrated Blockchain and Large Language Model Decision Support System for Organ Donation and Transplantation Workflows"
 type: software
-version: 2.0.0
-date-released: 2026-09-12
+version: 2.1.0
+date-released: 2026-09-13
 repository-code: "https://github.com/djh97/oda"
 authors:
   - given-names: Diana

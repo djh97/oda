@@ -121,6 +121,34 @@ Held-out evaluation is governed by the frozen protocol and append-only attempt
 records. Review the command help and the protocol before starting a new run.
 Generated outputs are written below `app/pipeline-output/` and are not tracked.
 
+### Output reliability analysis
+
+The post hoc reliability analysis separates strict schema completion,
+state-classification performance conditional on a complete valid output, and
+failure-penalized end-to-end performance. It reads the retained held-out run
+records without rerunning or modifying any model condition.
+
+```powershell
+cd app
+python -m evaluation.analyze_output_reliability
+```
+
+## Boundary and failure-path challenge
+
+A separate post hoc component suite exercises guard abstention, varying
+candidate-set sizes, strict model-output rejection, authenticated-encryption
+failures, and simulated storage-gateway faults without modifying the frozen
+model comparison or contacting external services.
+
+```powershell
+cd app
+python -m evaluation.run_robustness_challenges
+```
+
+The 20 scenarios and their interpretation limits are documented in
+`app/evaluation/ROBUSTNESS_CHALLENGE_COVERAGE.md`. The command writes a
+machine-readable result below `app/pipeline-output/current/robustness/`.
+
 ## End-to-end Sepolia workflow
 
 The demonstration deploys a fresh contract, registers synthetic actors and
