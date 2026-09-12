@@ -1,4 +1,4 @@
-# Enhancing Organ Donation and Transplantation Workflows using Blockchain and LLMs
+# An Integrated Blockchain and Large Language Model Decision Support System for Organ Donation and Transplantation Workflows
 
 This repository contains the research prototype and reproducibility materials
 for a synthetic study of organ donation and transplantation workflows. The
