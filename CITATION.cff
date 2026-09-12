@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the archived release."
+title: "Reproducibility Artifacts for Enhancing Organ Donation and Transplantation Workflows Using Blockchain and LLMs"
+type: software
+version: 2.0.0
+date-released: 2026-09-12
+repository-code: "https://github.com/djh97/oda"
+authors:
+  - given-names: Diana
+    family-names: Hawashin
+    affiliation: "Khalifa University of Science and Technology"
+    orcid: "https://orcid.org/0000-0003-0930-2622"
+  - given-names: Khaled
+    family-names: Salah
+    affiliation: "Khalifa University of Science and Technology"
+    orcid: "https://orcid.org/0000-0002-2310-2558"
+  - given-names: Hamda
+    family-names: "Al Breiki"
+    affiliation: "College of Technological Innovation, Zayed University"
+  - given-names: Raja
+    family-names: Jayaraman
+    affiliation: "New Mexico State University"
+    orcid: "https://orcid.org/0000-0002-2749-2688"
+  - given-names: Samer
+    family-names: Ellahham
+    affiliation: "Cleveland Clinic Abu Dhabi"
+    orcid: "https://orcid.org/0000-0003-1779-2414"
+  - given-names: Ibrar
+    family-names: Yaqoob
+    affiliation: "Charles Sturt University"
+    orcid: "https://orcid.org/0000-0002-8438-3429"
+keywords:
+  - organ transplantation
+  - blockchain
+  - large language models
+  - decision support
+  - smart contracts
+  - reproducibility
