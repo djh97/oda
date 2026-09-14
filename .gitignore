@@ -34,15 +34,6 @@ app/pipeline-output/
 **/*.pt
 **/*.pth
 
-# Superseded local material
-archive/
-
-# Manuscript and submission files belong outside this repository
-*.tex
-*.bib
-*.docx
-*.pdf
-
 # Private keys and credential exports
 *.pem
 *.key

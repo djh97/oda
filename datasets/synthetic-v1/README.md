@@ -1,9 +1,10 @@
 # Synthetic Multi-Organ Dataset v1
 
 This directory contains the deterministic data artifacts for protocol
-`ODA-SYNTH-MULTIORGAN-1.0`. Every donor, candidate, note, label, and identifier
-is synthetic. The records are intended only for technical validation and do
-not reproduce an official allocation policy or provide clinical ground truth.
+`ODA-SYNTH-MULTIORGAN-1.0`. The active protocol version is 1.2.0. Every donor,
+candidate, note, label, and identifier is synthetic. The records are intended
+only for technical validation and do not reproduce an official allocation
+policy or provide clinical ground truth.
 
 Fields prefixed with `synthetic_` are protocol inputs and must not be
 interpreted as values from an official allocation calculator. The synthetic
@@ -18,11 +19,12 @@ rather than an official Composite Allocation Score calculation.
 |---|---|
 | `training_cases.jsonl` | 1,600 source cases used to build supervised fine-tuning examples |
 | `validation_cases.jsonl` | 320 cases used for fine-tuning validation and service smoke tests |
-| `test_cases.jsonl` | Current 400-case pre-lock candidate; its exposed seed is retired and this file must be replaced before evaluation |
+| `test_cases.jsonl` | Final 400-case independent test split used in the reported evaluation |
 | `fine_tuning_training.jsonl` | Training messages in the exact runtime prompt and response schema |
 | `fine_tuning_validation.jsonl` | Validation messages in the exact runtime prompt and response schema |
 | `generation_manifest.json` | Seeds, counts, paths, byte sizes, and SHA-256 hashes |
 | `validation_report.json` | Machine-readable invariant and split-leakage checks |
+| `provenance/` | Preserved version 1.1 generation sources and portable version-lineage records |
 
 Each source case has one donor and ten candidates. Six candidates are
 structurally compatible by construction, and four exercise organ-type, ABO,
@@ -63,25 +65,25 @@ model the synthetic case ID and organ type followed by each `recipient_id` and
 `medical_notes` value. Tests fail if latent labels, structured ranking
 attributes, scores, or rank positions enter the model payload.
 
-## Generation and Freeze
+## Validation and Provenance
 
-Do not run the commands below against the current protocol yet. Test seed
-`2026090717` was exposed during an offline source audit and is retired. After
-author approval, replace the seed and regenerate the candidate test split
-without displaying its records. The training and validation seeds remain
-unchanged.
-
-From `Implementation/app`, run:
+From the repository's `app` directory, run:
 
 ```powershell
-python -m evaluation.generate_synthetic_data
 python -m evaluation.validate_synthetic_data
 ```
 
-Generation is deterministic for the versioned seeds. The command refuses to
-overwrite the dataset after a fine-tuning state or locked-test state exists.
-Any later dataset correction requires a new protocol version, seed set, and
-output directory.
+The retained files were generated under protocol version 1.1.0. Protocol
+version 1.2.0 subsequently added the hosted comparator and did not change the
+dataset design, seeds, prompt, taxonomy, or generated records. The
+`provenance/` directory preserves the exact version 1.1 protocol and generator,
+the version 1.2 amendment, and a portable lineage record. The validator checks
+that lineage in addition to every retained artifact hash.
+
+The two retired test seeds remain listed only in protocol history. Neither was
+used for the final test split. Any future dataset change requires a new
+protocol version, seed set, and output directory; the retained files must not
+be overwritten.
 
 ## Interpretation
 

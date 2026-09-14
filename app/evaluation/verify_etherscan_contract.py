@@ -65,7 +65,7 @@ def _api_key() -> str:
     value = os.getenv("ETHERSCAN_API_KEY", "").strip()
     if not value or value == "YOUR_ETHERSCAN_API_KEY":
         raise RuntimeError(
-            "ETHERSCAN_API_KEY is missing from Implementation/app/.env"
+            "ETHERSCAN_API_KEY is missing from app/.env"
         )
     return value
 

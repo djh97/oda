@@ -1,0 +1,38 @@
+{
+  "active_protocol": {
+    "path": "app/protocols/oda_synth_multiorgan_v1.json",
+    "sha256": "e61bcb9824728f9932cbf58dfd3d23b16234ac9707d112fc863ba992be447462",
+    "version": "1.2.0"
+  },
+  "amendment": {
+    "path": "datasets/synthetic-v1/provenance/protocol_amendment_v1.2.0.json",
+    "sha256": "efcaf4da68520f089a8ebc271972b29873895d6fffd780bbc58a6a03b1139263"
+  },
+  "completed_local_training_repeated": false,
+  "created_at_utc": "2026-09-07T23:08:11Z",
+  "held_out_model_execution_started": false,
+  "held_out_test_lock_present": false,
+  "parent_protocol": {
+    "path": "datasets/synthetic-v1/provenance/protocol_v1.1.0.json",
+    "sha256": "0dd6914084de9d57c4ebfeb34b6cf574c00d9e19d1e511eecee872d13f338341",
+    "version": "1.1.0"
+  },
+  "preserved_artifacts": {
+    "generation_manifest": {
+      "path": "datasets/synthetic-v1/generation_manifest.json",
+      "protocol_source_sha256": "0dd6914084de9d57c4ebfeb34b6cf574c00d9e19d1e511eecee872d13f338341",
+      "protocol_version": "1.1.0",
+      "sha256": "d0972131bb1b5122eb08d4c452d1da00979768915ea4a1c64b19f76b0b71b758"
+    }
+  },
+  "preserved_sources": {
+    "synthetic_dataset_generator": {
+      "path": "datasets/synthetic-v1/provenance/synthetic_dataset_v1.1.0.py",
+      "sha256": "d9ef1a3c64768e0dc6557dd883780ecf191b9cf06184d0f76978029dffec9529"
+    }
+  },
+  "protocol_id": "ODA-SYNTH-MULTIORGAN-1.0",
+  "schema_version": "1.0",
+  "scientific_configuration_changed": false,
+  "status": "verified_pretest_lineage"
+}

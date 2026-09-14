@@ -5,6 +5,9 @@ type: software
 version: 2.1.0
 date-released: 2026-09-13
 repository-code: "https://github.com/djh97/oda"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.22729788"
 authors:
   - given-names: Diana
     family-names: Hawashin

@@ -16,10 +16,10 @@ DEFAULT_PROTOCOL_FREEZE_PATH = (
     APP_DIR / "pipeline-output" / "current" / "protocol" / "protocol_freeze.json"
 )
 DEFAULT_PROTOCOL_LINEAGE_PATH = (
-    APP_DIR
-    / "pipeline-output"
-    / "current"
-    / "protocol"
+    APP_DIR.parent
+    / "datasets"
+    / "synthetic-v1"
+    / "provenance"
     / "protocol_lineage_v1.2.0.json"
 )
 SUPPORTED_ORGANS = ("kidney", "liver", "heart", "lung")
@@ -113,12 +113,12 @@ def assert_protocol_frozen(
 
 
 def _resolve_workspace_path(value: object) -> Path:
-    workspace = APP_DIR.parents[1].resolve()
-    candidate = (workspace / str(value or "")).resolve()
+    repository = APP_DIR.parent.resolve()
+    candidate = (repository / str(value or "")).resolve()
     try:
-        candidate.relative_to(workspace)
+        candidate.relative_to(repository)
     except ValueError as exc:
-        raise PolicyInputError("A protocol-lineage path leaves the workspace") from exc
+        raise PolicyInputError("A protocol-lineage path leaves the repository") from exc
     return candidate
 
 

@@ -79,6 +79,7 @@ class DatasetTests(unittest.TestCase):
             with (
                 patch.object(generator_cli, "FINE_TUNING_STATE_PATH", fine_tuning_state),
                 patch.object(generator_cli, "TEST_LOCK_PATH", test_lock),
+                patch.object(generator_cli, "assert_protocol_frozen", return_value={}),
                 patch.object(
                     generator_cli,
                     "assert_test_seed_not_retired",
@@ -91,6 +92,7 @@ class DatasetTests(unittest.TestCase):
             with (
                 patch.object(generator_cli, "FINE_TUNING_STATE_PATH", fine_tuning_state),
                 patch.object(generator_cli, "TEST_LOCK_PATH", test_lock),
+                patch.object(generator_cli, "assert_protocol_frozen", return_value={}),
                 patch.object(
                     generator_cli,
                     "assert_test_seed_not_retired",

@@ -17,6 +17,7 @@ $obsoleteNames = [System.Collections.Generic.HashSet[string]]::new(
     "LOGS_FROM_BLOCK",
     "LOGS_TO_BLOCK",
     "MATCH_RATIONALE_CID",
+    "OPENAI_BASE_MODEL",
     "SEED_DONOR_CID",
     "SEED_RECIPIENT1_CID",
     "SEED_RECIPIENT2_CID",
@@ -32,7 +33,7 @@ $obsoleteNames = [System.Collections.Generic.HashSet[string]]::new(
 ) | ForEach-Object { [void]$obsoleteNames.Add($_) }
 
 $updatedLines = [System.Collections.Generic.List[string]]::new()
-$baseModelWritten = $false
+$modelIdWritten = $false
 $removedCount = 0
 
 foreach ($line in [System.IO.File]::ReadAllLines($envPath)) {
@@ -42,10 +43,10 @@ foreach ($line in [System.IO.File]::ReadAllLines($envPath)) {
             $removedCount += 1
             continue
         }
-        if ($name -eq "OPENAI_BASE_MODEL") {
-            if (-not $baseModelWritten) {
-                $updatedLines.Add("OPENAI_BASE_MODEL=gpt-4o-mini-2024-07-18")
-                $baseModelWritten = $true
+        if ($name -eq "OPENAI_MODEL_ID") {
+            if (-not $modelIdWritten) {
+                $updatedLines.Add("OPENAI_MODEL_ID=gpt-4o-mini-2024-07-18")
+                $modelIdWritten = $true
             }
             continue
         }
@@ -53,8 +54,8 @@ foreach ($line in [System.IO.File]::ReadAllLines($envPath)) {
     $updatedLines.Add($line)
 }
 
-if (-not $baseModelWritten) {
-    $updatedLines.Add("OPENAI_BASE_MODEL=gpt-4o-mini-2024-07-18")
+if (-not $modelIdWritten) {
+    $updatedLines.Add("OPENAI_MODEL_ID=gpt-4o-mini-2024-07-18")
 }
 
 $temporaryPath = "$envPath.codex-tmp"

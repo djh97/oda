@@ -8,7 +8,6 @@ IMPLEMENTATION_DIR = APP_DIR.parent
 WORKSPACE_DIR = IMPLEMENTATION_DIR.parent
 EVIDENCE_BOUND_MODULES = {
     "test_benchmark_offchain.py",
-    "test_dataset.py",
     "test_evaluation_lock.py",
     "test_fine_tuning.py",
     "test_fine_tuning_loss_figure.py",

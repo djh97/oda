@@ -1,7 +1,7 @@
 # An Integrated Blockchain and Large Language Model Decision Support System for Organ Donation and Transplantation Workflows
 
 This repository contains the research prototype and reproducibility materials
-for a synthetic study of organ donation and transplantation workflows. The
+for a controlled synthetic evaluation of organ donation and transplantation workflows. The
 system combines organ-specific deterministic ranking, language-model review of
 candidate notes, a deterministic selection guard, encrypted off-chain storage,
 and role-gated workflow governance on Ethereum.
@@ -11,6 +11,9 @@ controlled readiness state to each synthetic note. Deterministic code preserves
 the structured-data order and skips only candidates classified as temporarily
 on hold. The software is a research prototype, not a clinical allocation system
 or an implementation of an operational transplant policy.
+
+The archived version associated with the paper is available at
+[Zenodo](https://doi.org/10.5281/zenodo.22729788).
 
 ## Repository contents
 
@@ -24,7 +27,7 @@ or an implementation of an operational transplant policy.
 |   |-- templates/        # Browser interface
 |   `-- tests/            # Python test suite
 |-- datasets/
-|   `-- synthetic-v1/     # Training, validation, and held-out test data
+|   `-- synthetic-v1/     # Data splits, validation report, and provenance
 |-- integration/          # Contract ABI and Sepolia deployment metadata
 |-- smart-contracts/
 |   |-- docs/             # Test objectives and expected outcomes
@@ -37,8 +40,8 @@ or an implementation of an operational transplant policy.
 `-- README.md
 ```
 
-Generated run artifacts, model weights, local environments, credentials, and
-manuscript files are intentionally excluded from version control.
+Generated run artifacts, model weights, local environments, and credentials are
+intentionally excluded from version control.
 
 ## Requirements
 
@@ -76,10 +79,13 @@ The repository-level `.gitignore` excludes it at every directory depth.
 
 ## Synthetic dataset
 
-The `ODA-SYNTH-MULTIORGAN-1.0` protocol defines 1,600 training cases, 320
-validation cases, and 400 held-out test cases distributed equally across
+Version 1.2.0 of the `ODA-SYNTH-MULTIORGAN-1.0` protocol defines 1,600 training
+cases, 320 validation cases, and 400 independent test cases distributed equally across
 kidney, liver, heart, and lung workflows. Every case, profile, note, label, and
-identifier is synthetic.
+identifier is synthetic. The committed data were generated under protocol
+version 1.1.0; version 1.2.0 added the hosted comparator without changing the
+dataset. Portable lineage records under `datasets/synthetic-v1/provenance/`
+bind the retained files to their exact generating protocol and source.
 
 Validate the retained dataset with
 
@@ -88,12 +94,8 @@ cd app
 python -m evaluation.validate_synthetic_data
 ```
 
-To recreate it from the frozen protocol, run
-
-```powershell
-python -m evaluation.generate_synthetic_data
-python -m evaluation.validate_synthetic_data
-```
+The retained split files are immutable evaluation artifacts. Do not overwrite
+them in place when developing a new protocol version.
 
 ## Model evaluation
 
@@ -103,22 +105,23 @@ The study compares a TF-IDF logistic model, unmodified
 output schema. The structured ranker and deterministic guard are unchanged
 across conditions.
 
-The principal commands are
+The principal evaluation commands are
 
 ```powershell
 cd app
 python -m evaluation.prepare_local_model
 python -m evaluation.preflight_local_lora
 python -m evaluation.train_local_lora
-python -m evaluation.finalize_local_protocol
 python -m evaluation.run_classical_baseline --validation-only
 python -m evaluation.run_model_evaluation --condition untuned
 python -m evaluation.run_model_evaluation --condition fine_tuned
 python -m evaluation.run_model_evaluation --condition openai
 ```
 
-Held-out evaluation is governed by the frozen protocol and append-only attempt
-records. Review the command help and the protocol before starting a new run.
+The one-time protocol transition utilities are retained for provenance and are
+not part of the active version 1.2.0 workflow. Test evaluation is governed by
+the frozen protocol and append-only attempt records. Review the command help
+and the protocol before starting a new run.
 Generated outputs are written below `app/pipeline-output/` and are not tracked.
 
 ### Output reliability analysis

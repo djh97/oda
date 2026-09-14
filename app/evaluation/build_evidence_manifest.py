@@ -50,7 +50,10 @@ UI_CAPTURE_FILES = (
 LOSS_FIGURE_FILE = JOURNAL_DIR / "fine_tuning_loss.png"
 LOSS_FIGURE_MANIFEST = OUTPUT_DIR / "model" / "fine_tuning_loss_manifest.json"
 
-EXPECTED_TITLE = "Enhancing Organ Donation and Transplantation Workflows using Blockchain and LLMs"
+EXPECTED_TITLE = (
+    "An Integrated Blockchain and Large Language Model Decision Support System "
+    "for Organ Donation and Transplantation Workflows"
+)
 EXPECTED_FUNDING = (
     "This research was funded by the Socio-Technical Systems Lab (STSL), "
     "Khalifa University of Science and Technology (KU-STSL)."
@@ -1194,7 +1197,7 @@ def build(*, require_final: bool = False) -> tuple[dict[str, object], dict[str, 
         "files": files,
         "manuscript_source_validation": manuscript_validation,
         "exclusions": [
-            "Implementation/app/.env",
+            "app/.env",
             "virtual environments",
             "Python caches",
             "Foundry build/cache directories",
