@@ -29,6 +29,7 @@ The archived version associated with the paper is available at
 |-- datasets/
 |   `-- synthetic-v1/     # Data splits, validation report, and provenance
 |-- integration/          # Contract ABI and Sepolia deployment metadata
+|-- reproducibility/      # Retained study evidence and offline verification
 |-- smart-contracts/
 |   |-- docs/             # Test objectives and expected outcomes
 |   |-- script/           # Deployment script
@@ -40,8 +41,9 @@ The archived version associated with the paper is available at
 `-- README.md
 ```
 
-Generated run artifacts, model weights, local environments, and credentials are
-intentionally excluded from version control.
+The retained records used for the paper are tracked under `reproducibility/`.
+New run artifacts, model weights, local environments, and credentials are
+excluded from version control.
 
 ## Requirements
 
@@ -54,7 +56,10 @@ intentionally excluded from version control.
 - An OpenAI API key only when reproducing the hosted comparator
 
 The exact Python package snapshot used in the study is recorded in
-`app/requirements-lock.txt`.
+`app/requirements-lock.txt`. The machine-learning pins reproduce the reported
+environment; they are historical research dependencies rather than a current
+production security baseline. New deployments should review and update them in
+an isolated environment and rerun the validation suite.
 
 ## Installation
 
@@ -123,6 +128,8 @@ not part of the active version 1.2.0 workflow. Test evaluation is governed by
 the frozen protocol and append-only attempt records. Review the command help
 and the protocol before starting a new run.
 Generated outputs are written below `app/pipeline-output/` and are not tracked.
+The immutable records selected for the paper are preserved separately under
+`reproducibility/evidence/`.
 
 ### Output reliability analysis
 
@@ -183,6 +190,23 @@ python -m uvicorn src.main:app --reload
 Open `http://127.0.0.1:8000/` after the server starts.
 
 ## Verification
+
+Verify the retained evidence bundle and synthetic dataset with
+
+```powershell
+python reproducibility/verify_evidence.py
+cd app
+python -m evaluation.validate_synthetic_data
+```
+
+The numerical model summaries and output-reliability results can be
+recalculated from the retained raw predictions without contacting any model
+provider:
+
+```powershell
+cd ..
+python reproducibility/verify_reported_metrics.py
+```
 
 Run the Python suite with
 

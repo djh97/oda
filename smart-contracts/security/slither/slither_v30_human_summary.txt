@@ -1,6 +1,6 @@
-'forge clean' running (wd: C:\Users\Ahmed\Downloads\DianaODA_BonView\Implementation\smart-contracts)
+'forge clean' running (wd: smart-contracts)
 'forge config --json' running
-'forge build --build-info --deny never --skip ./test/** ./script/** --force' running (wd: C:\Users\Ahmed\Downloads\DianaODA_BonView\Implementation\smart-contracts)
+'forge build --build-info --deny never --skip ./test/** ./script/** --force' running (wd: smart-contracts)
 INFO:Printers:
 Compiled with Foundry
 Total number of contracts in source files: 1

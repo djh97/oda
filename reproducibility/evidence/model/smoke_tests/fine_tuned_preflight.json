@@ -1,0 +1,243 @@
+{
+  "backup_reference_conforms": true,
+  "case_id": "020c5d9d8ee7d553",
+  "case_index": 0,
+  "completed_at_utc": "2026-09-07T23:11:28Z",
+  "condition": "fine_tuned_preflight",
+  "do_sample": false,
+  "endpoint": "local_transformers_generate",
+  "evidence_denominator": 10,
+  "evidence_exact_count": 8,
+  "guarded_decision": {
+    "backup_changed": true,
+    "backup_recipient_id": 217306,
+    "baseline_backup_recipient_id": 217309,
+    "baseline_primary_recipient_id": 217304,
+    "decision_reason": "The deterministic guard skipped protocol-defined temporary-hold candidates [217304] encountered before completing the primary-backup pair and selected the next available candidates in baseline order.",
+    "decision_source": "deterministic_guard",
+    "donor_id": 2173,
+    "note_assessments": [
+      {
+        "evidence_codes": [
+          "specialist_clearance_pending",
+          "indeterminate_lesion"
+        ],
+        "recipient_id": 217301,
+        "state": "review_required"
+      },
+      {
+        "evidence_codes": [
+          "resolved_condition"
+        ],
+        "recipient_id": 217309,
+        "state": "eligible"
+      },
+      {
+        "evidence_codes": [
+          "negated_condition",
+          "resolved_condition"
+        ],
+        "recipient_id": 217307,
+        "state": "eligible"
+      },
+      {
+        "evidence_codes": [
+          "active_malignancy_treatment",
+          "active_infection"
+        ],
+        "recipient_id": 217305,
+        "state": "temporary_hold"
+      },
+      {
+        "evidence_codes": [
+          "explicit_temporary_deferral",
+          "active_infection"
+        ],
+        "recipient_id": 217304,
+        "state": "temporary_hold"
+      },
+      {
+        "evidence_codes": [
+          "historical_condition_cleared",
+          "negated_condition"
+        ],
+        "recipient_id": 217310,
+        "state": "eligible"
+      },
+      {
+        "evidence_codes": [
+          "negated_condition"
+        ],
+        "recipient_id": 217308,
+        "state": "eligible"
+      },
+      {
+        "evidence_codes": [
+          "missing_or_conflicting_information",
+          "indeterminate_lesion"
+        ],
+        "recipient_id": 217306,
+        "state": "review_required"
+      },
+      {
+        "evidence_codes": [
+          "active_infection",
+          "explicit_temporary_deferral"
+        ],
+        "recipient_id": 217303,
+        "state": "temporary_hold"
+      },
+      {
+        "evidence_codes": [
+          "infection_workup_pending",
+          "indeterminate_lesion"
+        ],
+        "recipient_id": 217302,
+        "state": "review_required"
+      }
+    ],
+    "overrode_baseline": true,
+    "primary_recipient_id": 217309,
+    "review_required_recipient_ids": [
+      217306,
+      217301
+    ],
+    "temporary_hold_recipient_ids": [
+      217304,
+      217303
+    ]
+  },
+  "implementation_sha256": {
+    "decision_guard": "11df226aa4506686d48d53943b6b8aff9c7c884e0ca54a9fc08a66b1cb82a818",
+    "llm_client": "16eea9b8fa6ab6c395d53e4593970aaed13c2d34867ae9157876857904189ea4",
+    "local_llm_client": "a139fe9c1bc643049cb9a78023653ee398dc7b3a87daf5df0cb9c7db1cdb7b0e",
+    "local_training": "ac21399e49f101248472b2be6ede501e339ac713e9ff3261f8a79432136cdca9",
+    "policy": "246b5190b4ae99fdb6981a8b51d567f987aa78eea930bece11a3b3c4faaa0416",
+    "project_environment": "d206a1548f9d425094af7496bdb6b615aee9b0836bcde1962978943635daa79d",
+    "schemas": "bb239870c5bc8a60a5757713ae92a63b4f985639229c5f3dc64101f0dd0b4608",
+    "smoke_test": "1cc3e982eb0ba9e74260721e1b19a4ff546910131bbd734d2e4ce84f2e16be30"
+  },
+  "maximum_new_tokens": 512,
+  "model_id_requested": "oda-qwen2.5-1.5b-instruct-lora-v1.1.0",
+  "model_run": {
+    "adapter_id": "oda-qwen2.5-1.5b-instruct-lora-v1.1.0",
+    "adapter_sha256": "730f52373114b6c4536e3d9698f731811550cbd1b05411ba461d4eb9c0d31026",
+    "device": "NVIDIA GeForce RTX 3070 Ti",
+    "dtype": "float16",
+    "input_tokens": 1137,
+    "latency_ms": 35304.555,
+    "model_id": "oda-qwen2.5-1.5b-instruct-lora-v1.1.0",
+    "model_revision": "5fee7c4ed634dc66c6e318c8ac2897b8b9154536",
+    "output_tokens": 373,
+    "provider": "local_hugging_face_transformers",
+    "response_id": null,
+    "service_tier": null,
+    "system_fingerprint": null
+  },
+  "organ_type": "heart",
+  "parsed_review": {
+    "assessments": [
+      {
+        "evidence_codes": [
+          "specialist_clearance_pending",
+          "indeterminate_lesion"
+        ],
+        "recipient_id": 217301,
+        "state": "review_required"
+      },
+      {
+        "evidence_codes": [
+          "resolved_condition"
+        ],
+        "recipient_id": 217309,
+        "state": "eligible"
+      },
+      {
+        "evidence_codes": [
+          "negated_condition",
+          "resolved_condition"
+        ],
+        "recipient_id": 217307,
+        "state": "eligible"
+      },
+      {
+        "evidence_codes": [
+          "active_malignancy_treatment",
+          "active_infection"
+        ],
+        "recipient_id": 217305,
+        "state": "temporary_hold"
+      },
+      {
+        "evidence_codes": [
+          "explicit_temporary_deferral",
+          "active_infection"
+        ],
+        "recipient_id": 217304,
+        "state": "temporary_hold"
+      },
+      {
+        "evidence_codes": [
+          "historical_condition_cleared",
+          "negated_condition"
+        ],
+        "recipient_id": 217310,
+        "state": "eligible"
+      },
+      {
+        "evidence_codes": [
+          "negated_condition"
+        ],
+        "recipient_id": 217308,
+        "state": "eligible"
+      },
+      {
+        "evidence_codes": [
+          "missing_or_conflicting_information",
+          "indeterminate_lesion"
+        ],
+        "recipient_id": 217306,
+        "state": "review_required"
+      },
+      {
+        "evidence_codes": [
+          "active_infection",
+          "explicit_temporary_deferral"
+        ],
+        "recipient_id": 217303,
+        "state": "temporary_hold"
+      },
+      {
+        "evidence_codes": [
+          "infection_workup_pending",
+          "indeterminate_lesion"
+        ],
+        "recipient_id": 217302,
+        "state": "review_required"
+      }
+    ],
+    "case_id": "020c5d9d8ee7d553"
+  },
+  "primary_reference_conforms": true,
+  "provider": "local_hugging_face_transformers",
+  "purpose": "Validation-split service and schema smoke test; not a test-set outcome",
+  "raw_model_output": "{\"assessments\": [{\"evidence_codes\": [\"specialist_clearance_pending\", \"indeterminate_lesion\"], \"recipient_id\": 217301, \"state\": \"review_required\"}, {\"evidence_codes\": [\"resolved_condition\"], \"recipient_id\": 217309, \"state\": \"eligible\"}, {\"evidence_codes\": [\"negated_condition\", \"resolved_condition\"], \"recipient_id\": 217307, \"state\": \"eligible\"}, {\"evidence_codes\": [\"active_malignancy_treatment\", \"active_infection\"], \"recipient_id\": 217305, \"state\": \"temporary_hold\"}, {\"evidence_codes\": [\"explicit_temporary_deferral\", \"active_infection\"], \"recipient_id\": 217304, \"state\": \"temporary_hold\"}, {\"evidence_codes\": [\"historical_condition_cleared\", \"negated_condition\"], \"recipient_id\": 217310, \"state\": \"eligible\"}, {\"evidence_codes\": [\"negated_condition\"], \"recipient_id\": 217308, \"state\": \"eligible\"}, {\"evidence_codes\": [\"missing_or_conflicting_information\", \"indeterminate_lesion\"], \"recipient_id\": 217306, \"state\": \"review_required\"}, {\"evidence_codes\": [\"active_infection\", \"explicit_temporary_deferral\"], \"recipient_id\": 217303, \"state\": \"temporary_hold\"}, {\"evidence_codes\": [\"infection_workup_pending\", \"indeterminate_lesion\"], \"recipient_id\": 217302, \"state\": \"review_required\"}], \"case_id\": \"020c5d9d8ee7d553\"}",
+  "script_sha256": "1cc3e982eb0ba9e74260721e1b19a4ff546910131bbd734d2e4ce84f2e16be30",
+  "sdk_max_retries": 0,
+  "seed": 20260907,
+  "software_environment": {
+    "openai": "3.8.0",
+    "peft": "0.17.1",
+    "pydantic": "2.13.5",
+    "python": "3.12.10",
+    "torch": "2.8.0+cu128",
+    "transformers": "4.56.2"
+  },
+  "state_correct_count": 10,
+  "state_denominator": 10,
+  "status": "success",
+  "store": false,
+  "system_prompt_sha256": "fa65bccba2059b3abf7938a883ed6fa18d38ccedf57ff8ee9e6234886fd058db",
+  "temperature": 0,
+  "validation_file_sha256": "7c0b1c35d81a30088ceefa246804652d5de3b3d485d0cb448dd17eda4d9cfdbb"
+}

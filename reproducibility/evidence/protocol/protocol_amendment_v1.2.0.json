@@ -1,0 +1,52 @@
+{
+  "amended_at_utc": "2026-09-07T23:08:11Z",
+  "approval_basis": "The author authorized implementation changes needed for a concrete and valid synthetic study and requested the documented Qwen-versus-OpenAI comparison.",
+  "change": "Add the pinned gpt-4o-mini-2024-07-18 condition and its prespecified paired descriptive comparisons while preserving the completed local LoRA model through an explicit version-lineage record.",
+  "from_version": "1.1.0",
+  "held_out_model_execution_started": false,
+  "held_out_test_lock_present": false,
+  "official_model_and_pricing_source": "https://developers.openai.com/api/docs/models/gpt-4o-mini",
+  "preserved_evidence": {
+    "completed_local_adapter_sha256": "730f52373114b6c4536e3d9698f731811550cbd1b05411ba461d4eb9c0d31026",
+    "completed_local_training_sha256": "7ae726968aa08ce1d66c6c549c7c86f1b7c84ff884bc8684a0ccb8795be0df17",
+    "dated_manuscript_backup_sha256": "6e9b9f5e19f42445c0528fd921ae417570557294d4e5c31b4d6902ef641ac2db",
+    "generation_manifest_sha256": "d0972131bb1b5122eb08d4c452d1da00979768915ea4a1c64b19f76b0b71b758",
+    "parent_freeze_sha256": "f6f12b131ad8cfb8f663803324d616f6e9228cab54a5d82f6f0bc3822dea1dba",
+    "parent_protocol_sha256": "0dd6914084de9d57c4ebfeb34b6cf574c00d9e19d1e511eecee872d13f338341"
+  },
+  "protocol_id": "ODA-SYNTH-MULTIORGAN-1.0",
+  "reason": "Add the prospectively documented non-fine-tuned hosted comparator needed to distinguish the effect of local task adaptation from the performance and API cost of a general hosted model.",
+  "schema_version": "1.0",
+  "selected_hosted_comparator": {
+    "attempts_per_case": 1,
+    "endpoint": "chat_completions_structured_outputs",
+    "maximum_completion_tokens": 512,
+    "model_id": "gpt-4o-mini-2024-07-18",
+    "pricing": {
+      "accessed_on": "2026-09-08",
+      "currency": "USD",
+      "input_per_million_tokens": 0.15,
+      "output_per_million_tokens": 0.6,
+      "pricing_basis": "standard synchronous text-token rates; cached-input and Batch API discounts are not assumed",
+      "source_url": "https://developers.openai.com/api/docs/models/gpt-4o-mini"
+    },
+    "provider": "OpenAI",
+    "response_format": "strict_pydantic_schema",
+    "sdk_max_retries": 0,
+    "seed": 20260907,
+    "store": false,
+    "temperature": 0,
+    "timeout_seconds": 120
+  },
+  "status": "approved_pretest_amendment",
+  "to_version": "1.2.0",
+  "unchanged": [
+    "synthetic case-generation design and frozen test seed",
+    "training, validation, and test case counts",
+    "task definition, prompt, and note-readiness taxonomy",
+    "completed local LoRA adapter and training evidence",
+    "deterministic rankers and guard",
+    "primary and secondary outcome definitions",
+    "failure handling and one-attempt held-out evaluation rule"
+  ]
+}

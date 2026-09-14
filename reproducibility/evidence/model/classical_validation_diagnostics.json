@@ -1,0 +1,63 @@
+{
+  "feature_count": 3886,
+  "generated_at_utc": "2026-09-07T17:01:18Z",
+  "hyperparameters": {
+    "character_max_features": 30000,
+    "character_ngram_range": [
+      3,
+      5
+    ],
+    "class_weight": "balanced",
+    "evidence_probability_threshold": 0.5,
+    "maximum_iterations": 2000,
+    "min_document_frequency": 2,
+    "model_id": "tfidf-logistic-v1",
+    "random_seed": 2026090788,
+    "regularization_c": 1.0,
+    "word_max_features": 40000,
+    "word_ngram_range": [
+      1,
+      2
+    ]
+  },
+  "packages": {
+    "joblib": "1.6.0",
+    "numpy": "2.5.3",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.1"
+  },
+  "protocol_id": "ODA-SYNTH-MULTIORGAN-1.0",
+  "purpose": "Training-fit and validation-split diagnostics; no test predictions or metrics were generated",
+  "script_sha256": "d4bc1ef11c7f9ba5161df99b9d4ff022f7154bb94f7b1f9a78fcc3278cee4ba2",
+  "training_candidate_count": 16000,
+  "training_file_sha256": "4cac638b09a2ae941c0aefb868b3b364f2fde85df98d2e730d87f457cb6a31b0",
+  "training_seconds": 10.26,
+  "validation_candidate_count": 3200,
+  "validation_diagnostics": {
+    "candidate_count": 3200,
+    "evidence_exact_match": 0.242812,
+    "state_accuracy": 0.893437,
+    "state_by_class": {
+      "eligible": {
+        "f1": 0.914234,
+        "precision": 0.95368,
+        "recall": 0.877921,
+        "support": 1712
+      },
+      "review_required": {
+        "f1": 0.913308,
+        "precision": 0.856995,
+        "recall": 0.977541,
+        "support": 846
+      },
+      "temporary_hold": {
+        "f1": 0.813221,
+        "precision": 0.802731,
+        "recall": 0.823988,
+        "support": 642
+      }
+    },
+    "state_macro_f1": 0.880254
+  },
+  "validation_file_sha256": "7c0b1c35d81a30088ceefa246804652d5de3b3d485d0cb448dd17eda4d9cfdbb"
+}

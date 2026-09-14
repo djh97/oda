@@ -1,0 +1,58 @@
+{
+  "axis": {
+    "maximum": 600.0,
+    "minimum": 200.0,
+    "steps_per_epoch": 200.0,
+    "training_aggregation": "step_weighted_mean_of_logged_intervals",
+    "training_points": 3,
+    "unit": "optimizer_step",
+    "validation_points": 3
+  },
+  "browser": {
+    "executable_name": "chrome.exe",
+    "version": "152.0.7977.76"
+  },
+  "columns": {
+    "step": "step",
+    "training_loss": "loss",
+    "validation_loss": "eval_loss"
+  },
+  "env_file_read": false,
+  "generated_at_utc": "2026-09-08T15:43:20Z",
+  "inputs": {
+    "Implementation/app/evaluation/build_fine_tuning_loss_figure.py": {
+      "bytes": 25153,
+      "path": "Implementation/app/evaluation/build_fine_tuning_loss_figure.py",
+      "sha256": "7493299d31cde99eae13b1120e8ed49f1b328c2c4314d168de33c440ea6192f3"
+    },
+    "Implementation/app/pipeline-output/current/model/local_lora_training.json": {
+      "bytes": 27357,
+      "path": "Implementation/app/pipeline-output/current/model/local_lora_training.json",
+      "sha256": "7ae726968aa08ce1d66c6c549c7c86f1b7c84ff884bc8684a0ccb8795be0df17"
+    },
+    "Implementation/app/protocols/oda_synth_multiorgan_v1.json": {
+      "bytes": 13765,
+      "path": "Implementation/app/protocols/oda_synth_multiorgan_v1.json",
+      "sha256": "e61bcb9824728f9932cbf58dfd3d23b16234ac9707d112fc863ba992be447462"
+    }
+  },
+  "network_contacted": false,
+  "observations": {
+    "maximum_step": 600,
+    "minimum_step": 10,
+    "training": 60,
+    "validation": 3
+  },
+  "output": {
+    "bytes": 72290,
+    "dimensions_px": [
+      2126,
+      1200
+    ],
+    "effective_dpi_at_180_mm": 300.0,
+    "path": "Frontiers_Medical_Technology_2026-09-06/fine_tuning_loss.png",
+    "sha256": "902ec5e32dba3584f5bfaa3a77faaaca003df61fc1dda7db893db5b0e60253b1"
+  },
+  "schema_version": "1.0",
+  "selected_metrics_file": "Implementation/app/pipeline-output/current/model/local_lora_training.json"
+}

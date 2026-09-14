@@ -1,0 +1,103 @@
+{
+  "architecture": "Qwen2ForCausalLM",
+  "development_files": {
+    "training": {
+      "path": "Implementation/datasets/synthetic-v1/fine_tuning_training.jsonl",
+      "sha256": "9a5ca6ce87cdd5e2f7887a505bd4735808a38aa9babc0d3335f60f402227a826"
+    },
+    "validation": {
+      "path": "Implementation/datasets/synthetic-v1/fine_tuning_validation.jsonl",
+      "sha256": "eb9eafc09aa71995f41b51bd8abd568d028377ced0ec1936dd28de6cf7d4953e"
+    }
+  },
+  "files": {
+    ".gitattributes": {
+      "bytes": 1519,
+      "sha256": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361"
+    },
+    "LICENSE": {
+      "bytes": 11343,
+      "sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e"
+    },
+    "README.md": {
+      "bytes": 4890,
+      "sha256": "611575e8ce76abfa9fdb272889dc4f5f5de344fb0461eaea986f5b12e6e8a83e"
+    },
+    "config.json": {
+      "bytes": 660,
+      "sha256": "98d2ff8cc47488d08a2b0b3acf4eb99ef210779b42bd48605f6b8e36acdbf670"
+    },
+    "generation_config.json": {
+      "bytes": 242,
+      "sha256": "e558847a8b4402616f1273797b015104dc266fe4b520056fca88823ba8f8ebe6"
+    },
+    "merges.txt": {
+      "bytes": 1671839,
+      "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+    },
+    "model.safetensors": {
+      "bytes": 3087467144,
+      "sha256": "dd924a11b4c220f385b51ffa522daea7c9f3d850e31b162bb5661df483c6d3ee"
+    },
+    "tokenizer.json": {
+      "bytes": 7031645,
+      "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539"
+    },
+    "tokenizer_config.json": {
+      "bytes": 7305,
+      "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583"
+    },
+    "vocab.json": {
+      "bytes": 2776833,
+      "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    }
+  },
+  "license": "Apache-2.0",
+  "local_directory": "Implementation/app/.model-cache/Qwen2.5-1.5B-Instruct",
+  "model_type": "qwen2",
+  "parameter_count": 1543714304,
+  "preparation_script_sha256": "fc6f78498167d141fcec5ce7948e92ce6721ed0081bcb887c21b2839028990b8",
+  "repository": "Qwen/Qwen2.5-1.5B-Instruct",
+  "revision": "5fee7c4ed634dc66c6e318c8ac2897b8b9154536",
+  "revision_type": "immutable_commit",
+  "schema_version": "1.0",
+  "software_environment": {
+    "python": "3.12.10",
+    "safetensors": "0.6.2",
+    "tokenizers": "0.22.2",
+    "torch": "2.8.0+cu128",
+    "transformers": "4.56.2"
+  },
+  "status": "verified",
+  "token_audit": {
+    "assistant_only_loss_mask_verified": true,
+    "assistant_target_tokens": {
+      "maximum": 416,
+      "minimum": 319,
+      "p50": 365,
+      "p95": 387,
+      "p99": 397
+    },
+    "full_sequence_tokens": {
+      "maximum": 1631,
+      "minimum": 1334,
+      "p50": 1495,
+      "p95": 1567,
+      "p99": 1600
+    },
+    "prompt_tokens": {
+      "maximum": 1245,
+      "minimum": 1015,
+      "p50": 1132,
+      "p95": 1185,
+      "p99": 1211
+    },
+    "scope": "training and validation files only; the held-out test file was not opened",
+    "split_record_counts": {
+      "fine_tuning_training.jsonl": 1600,
+      "fine_tuning_validation.jsonl": 320
+    },
+    "total_record_count": 1920
+  },
+  "verified_at_utc": "2026-09-07T16:26:52Z"
+}

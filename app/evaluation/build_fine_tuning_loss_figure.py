@@ -19,6 +19,7 @@ from typing import Any, Mapping
 
 from evaluation.artifact_paths import portable_path, resolve_recorded_path
 from evaluation.build_manuscript_tables import _validate_fine_tuning_state
+from evaluation.publication_workspace import FIGURE_OUTPUT_DIR
 from evaluation.train_local_lora import MODEL_OUTPUT_DIR as MODEL_DIR
 from evaluation.train_local_lora import STATE_PATH
 from src.policy import DEFAULT_PROTOCOL_PATH
@@ -26,10 +27,8 @@ from src.policy import DEFAULT_PROTOCOL_PATH
 
 APP_DIR = Path(__file__).resolve().parents[1]
 IMPLEMENTATION_DIR = APP_DIR.parent
-WORKSPACE_DIR = IMPLEMENTATION_DIR.parent
-JOURNAL_DIR = WORKSPACE_DIR / "Frontiers_Medical_Technology_2026-09-06"
 SCRIPT_PATH = Path(__file__).resolve()
-OUTPUT_PATH = JOURNAL_DIR / "fine_tuning_loss.png"
+OUTPUT_PATH = FIGURE_OUTPUT_DIR / "fine_tuning_loss.png"
 MANIFEST_PATH = MODEL_DIR / "fine_tuning_loss_manifest.json"
 WIDTH_PX = 2126
 HEIGHT_PX = 1200

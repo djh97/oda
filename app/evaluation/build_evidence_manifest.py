@@ -16,15 +16,23 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable, Mapping
 
+from evaluation.publication_workspace import (
+    ARTICLE_ARCHIVE_DIR,
+    ARTICLE_SOURCE_DIR,
+    ARTICLE_SUPPORT_DIR,
+    FIGURE_OUTPUT_DIR,
+    FIGURE_SOURCE_DIR,
+    REPOSITORY_DIR,
+)
 from src.policy import RETIRED_TEST_SEEDS
 
 
 APP_DIR = Path(__file__).resolve().parents[1]
 IMPLEMENTATION_DIR = APP_DIR.parent
-WORKSPACE_DIR = IMPLEMENTATION_DIR.parent
-JOURNAL_DIR = WORKSPACE_DIR / "Frontiers_Medical_Technology_2026-09-06"
-JOURNAL_DOCS_DIR = JOURNAL_DIR / "docs"
-JOURNAL_ARCHIVE_DIR = JOURNAL_DIR / "archive"
+WORKSPACE_DIR = REPOSITORY_DIR
+JOURNAL_DIR = ARTICLE_SOURCE_DIR
+JOURNAL_DOCS_DIR = ARTICLE_SUPPORT_DIR
+JOURNAL_ARCHIVE_DIR = ARTICLE_ARCHIVE_DIR
 OUTPUT_DIR = APP_DIR / "pipeline-output" / "current"
 MANUSCRIPT_STAGING_DIR = OUTPUT_DIR / "manuscript"
 MANIFEST_PATH = OUTPUT_DIR / "evidence_manifest.json"
@@ -43,11 +51,11 @@ GENERATED_MANUSCRIPT_FILES = (
 )
 
 UI_CAPTURE_FILES = (
-    JOURNAL_DIR / "Full_UI.png",
-    JOURNAL_DIR / "LLM_Decision.png",
+    FIGURE_OUTPUT_DIR / "Full_UI.png",
+    FIGURE_OUTPUT_DIR / "LLM_Decision.png",
 )
 
-LOSS_FIGURE_FILE = JOURNAL_DIR / "fine_tuning_loss.png"
+LOSS_FIGURE_FILE = FIGURE_OUTPUT_DIR / "fine_tuning_loss.png"
 LOSS_FIGURE_MANIFEST = OUTPUT_DIR / "model" / "fine_tuning_loss_manifest.json"
 
 EXPECTED_TITLE = (
@@ -97,7 +105,11 @@ def _sha256(path: Path) -> str:
 
 
 def _relative(path: Path) -> str:
-    return path.resolve().relative_to(WORKSPACE_DIR.resolve()).as_posix()
+    resolved = path.resolve()
+    try:
+        return resolved.relative_to(WORKSPACE_DIR.resolve()).as_posix()
+    except ValueError:
+        return str(resolved)
 
 
 def _files_under(path: Path, pattern: str = "*") -> Iterable[Path]:
@@ -462,16 +474,16 @@ def _artifact_paths() -> list[Path]:
         JOURNAL_DOCS_DIR / "AUTHOR_DECISIONS_REQUIRED.md",
         JOURNAL_DOCS_DIR / "OVERLEAF_UPLOAD_MANIFEST.md",
         JOURNAL_DOCS_DIR / "Contribution_to_the_field.txt",
-        JOURNAL_DIR / "system_architecture.png",
-        JOURNAL_DIR / "system_architecture.svg",
-        JOURNAL_DIR / "sequence_enrollment.png",
-        JOURNAL_DIR / "sequence_enrollment.svg",
-        JOURNAL_DIR / "sequence_matching.png",
-        JOURNAL_DIR / "sequence_matching.svg",
-        JOURNAL_DIR / "foundry_tests.png",
-        JOURNAL_DIR / "foundry_tests[Original].png",
-        JOURNAL_DIR / "slither_analysis.png",
-        JOURNAL_DIR / "slither_analysis[Original].png",
+        FIGURE_OUTPUT_DIR / "system_architecture.png",
+        FIGURE_SOURCE_DIR / "system_architecture.svg",
+        FIGURE_OUTPUT_DIR / "sequence_enrollment.png",
+        FIGURE_SOURCE_DIR / "sequence_enrollment.svg",
+        FIGURE_OUTPUT_DIR / "sequence_matching.png",
+        FIGURE_SOURCE_DIR / "sequence_matching.svg",
+        FIGURE_OUTPUT_DIR / "foundry_tests.png",
+        FIGURE_SOURCE_DIR / "foundry_tests[Original].png",
+        FIGURE_OUTPUT_DIR / "slither_analysis.png",
+        FIGURE_SOURCE_DIR / "slither_analysis[Original].png",
         *UI_CAPTURE_FILES,
         LOSS_FIGURE_FILE,
         *GENERATED_MANUSCRIPT_FILES,
@@ -747,7 +759,7 @@ def _validate_ui_capture_manifest(run_dir: Path) -> None:
     verified = _verify_record_map(
         captures,
         base_dir=WORKSPACE_DIR,
-        permitted_root=JOURNAL_DIR,
+        permitted_root=FIGURE_OUTPUT_DIR,
         label="UI capture output manifest",
     )
     if verified != {path.resolve() for path in UI_CAPTURE_FILES}:
@@ -818,7 +830,7 @@ def _validate_loss_figure_manifest() -> None:
     candidate = Path(str(raw_output_path or ""))
     if not candidate.is_absolute():
         candidate = WORKSPACE_DIR / candidate
-    candidate = _inside(candidate, JOURNAL_DIR, label="Fine-tuning loss figure")
+    candidate = _inside(candidate, FIGURE_OUTPUT_DIR, label="Fine-tuning loss figure")
     if candidate != LOSS_FIGURE_FILE.resolve() or not candidate.is_file():
         raise RuntimeError("Fine-tuning loss-figure output path is missing or incorrect")
     if output.get("bytes") != candidate.stat().st_size or output.get("sha256") != _sha256(candidate):
@@ -866,7 +878,7 @@ def _validate_loss_figure_manifest() -> None:
 def _validate_publication_figure_assets() -> None:
     from evaluation.validate_figure_assets import validate
 
-    report = validate(JOURNAL_DIR)
+    report = validate(FIGURE_OUTPUT_DIR)
     failed = [
         name
         for name, result in report["figures"].items()
@@ -924,7 +936,7 @@ def _validate_software_evidence(run_dir: Path, manuscript: str) -> None:
         verified = _verify_record_map(
             {source.get("path"): {"bytes": source.get("bytes"), "sha256": source.get("sha256")}},
             base_dir=WORKSPACE_DIR,
-            permitted_root=JOURNAL_DIR,
+            permitted_root=FIGURE_SOURCE_DIR,
             label=f"{name.title()} terminal-capture source",
         )
         if verified != {expected_source}:

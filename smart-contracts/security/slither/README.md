@@ -8,6 +8,9 @@ and returned zero findings. The machine-readable result is
 
 The retained run analyzes contract SHA-256
 `178c9323754634a8c5c18c4c482cbbcddd9e0278dfa0e47c8c468b47f7af510a`.
+Machine-specific working-directory prefixes were normalized in the two text
+reports; the tool output, detector count, and machine-readable findings were
+not altered.
 
 Static analysis is not a proof of correctness. It supplements the Foundry
 state-transition and failure-path tests and does not establish clinical safety

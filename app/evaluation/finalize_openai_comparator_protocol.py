@@ -10,13 +10,16 @@ from pathlib import Path
 from typing import Any, Mapping
 
 from evaluation.artifact_paths import portable_path
+from evaluation.publication_workspace import (
+    ARTICLE_ARCHIVE_DIR,
+    ARTICLE_SOURCE_DIR,
+    ARTICLE_SUPPORT_DIR,
+)
 from src.llm_client import SYSTEM_PROMPT
 from src.policy import active_test_seed, assert_protocol_frozen, load_protocol
 
 
 APP_DIR = Path(__file__).resolve().parents[1]
-WORKSPACE_DIR = APP_DIR.parents[1]
-JOURNAL_DIR = WORKSPACE_DIR / "Frontiers_Medical_Technology_2026-09-06"
 ARCHIVE_DIR = (
     APP_DIR
     / "pipeline-output"
@@ -31,16 +34,15 @@ LINEAGE_PATH = FREEZE_DIR / "protocol_lineage_v1.2.0.json"
 TEST_LOCK_PATH = APP_DIR / "pipeline-output" / "current" / "evaluation" / "test_lock.json"
 GENERATION_MANIFEST_PATH = APP_DIR.parent / "datasets" / "synthetic-v1" / "generation_manifest.json"
 TRAINING_STATE_PATH = APP_DIR / "pipeline-output" / "current" / "model" / "local_lora_training.json"
-STUDY_PROTOCOL_PATH = JOURNAL_DIR / "docs" / "STUDY_PROTOCOL.md"
-MANUSCRIPT_PATH = JOURNAL_DIR / "Manuscript.tex"
+STUDY_PROTOCOL_PATH = ARTICLE_SUPPORT_DIR / "STUDY_PROTOCOL.md"
+MANUSCRIPT_PATH = ARTICLE_SOURCE_DIR / "Manuscript.tex"
 PARENT_PROTOCOL_PATH = ARCHIVE_DIR / "oda_synth_multiorgan_v1.v1.1.0.json"
 PARENT_FREEZE_PATH = ARCHIVE_DIR / "protocol_freeze.v1.1.0.json"
 PARENT_GENERATOR_PATH = ARCHIVE_DIR / "synthetic_dataset.v1.1.0.py"
 PARENT_LLM_CLIENT_PATH = ARCHIVE_DIR / "llm_client.v1.1.0.py"
 PARENT_MANUSCRIPT_PATH = ARCHIVE_DIR / "Manuscript.v1.1.0.tex"
 DATED_MANUSCRIPT_BACKUP_PATH = (
-    JOURNAL_DIR
-    / "archive"
+    ARTICLE_ARCHIVE_DIR
     / "manuscript_backups"
     / "Manuscript.pre-openai-comparator-2026-09-08.tex"
 )

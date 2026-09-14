@@ -50,6 +50,9 @@ jobs:
       - name: Validate retained synthetic dataset
         run: python -m evaluation.validate_synthetic_data > /dev/null
 
+      - name: Verify retained evidence checksums
+        run: python ../reproducibility/verify_evidence.py
+
   check:
     name: Foundry project
     runs-on: ubuntu-latest

@@ -1,0 +1,43 @@
+{
+  "checkpoint": "Implementation/app/pipeline-output/current/model/local_lora_checkpoints/checkpoint-400",
+  "checkpoint_inheritance_sha256": "7b24c60fd83c048abcaf2acf5f99a17055b21d9ca602e99b4ab0cd38604d2b4a",
+  "completed_at_utc": "2026-09-07T21:36:54Z",
+  "eval_loss_absolute_difference": 9.540468454360962e-06,
+  "eval_loss_absolute_tolerance": 0.0001,
+  "expected_eval_loss": 0.029150526970624924,
+  "held_out_test_file_opened": false,
+  "memory": {
+    "final_allocated_bytes": 3195760128,
+    "final_reserved_bytes": 3382706176,
+    "gpu_name": "NVIDIA GeForce RTX 3070 Ti",
+    "gpu_total_memory_bytes": 8589410304,
+    "maximum_allocated_bytes": 3195799040,
+    "maximum_reserved_bytes": 3382706176,
+    "peak_allocated_bytes": 5608356352
+  },
+  "metrics": {
+    "eval_loss": 0.029160067439079285,
+    "eval_model_preparation_time": 0.0,
+    "eval_runtime": 101.7511,
+    "eval_samples_per_second": 3.145,
+    "eval_steps_per_second": 3.145
+  },
+  "observed_eval_loss": 0.029160067439079285,
+  "prediction_steps": 320,
+  "purpose": "Verify full-split validation stability before the epoch-3 continuation",
+  "schema_version": "1.0",
+  "settings": {
+    "empty_cuda_cache_after_each_prediction_step": true,
+    "eval_accumulation_steps": 1,
+    "per_device_eval_batch_size": 1,
+    "prediction_loss_only": true
+  },
+  "source_hashes": {
+    "preflight_script": "dae5bdde16d5469ebb2026ca6dfe8ebc697283f5093fc9470568c106df9c95e6",
+    "training_script": "ac21399e49f101248472b2be6ede501e339ac713e9ff3261f8a79432136cdca9"
+  },
+  "status": "passed",
+  "validation_file": "Implementation/datasets/synthetic-v1/fine_tuning_validation.jsonl",
+  "validation_file_sha256": "eb9eafc09aa71995f41b51bd8abd568d028377ced0ec1936dd28de6cf7d4953e",
+  "validation_records": 320
+}

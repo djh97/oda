@@ -16,16 +16,15 @@ from evaluation.prepare_local_model import (
     MODEL_REVISION,
     OUTPUT_PATH as BASE_MODEL_MANIFEST_PATH,
 )
+from evaluation.publication_workspace import ARTICLE_SOURCE_DIR, ARTICLE_SUPPORT_DIR
 from src.llm_client import SYSTEM_PROMPT
 from src.policy import active_test_seed, assert_protocol_frozen
 
 
 APP_DIR = Path(__file__).resolve().parents[1]
-WORKSPACE_DIR = APP_DIR.parents[1]
-JOURNAL_DIR = WORKSPACE_DIR / "Frontiers_Medical_Technology_2026-09-06"
 PROTOCOL_PATH = APP_DIR / "protocols" / "oda_synth_multiorgan_v1.json"
-STUDY_PROTOCOL_PATH = JOURNAL_DIR / "docs" / "STUDY_PROTOCOL.md"
-MANUSCRIPT_PATH = JOURNAL_DIR / "Manuscript.tex"
+STUDY_PROTOCOL_PATH = ARTICLE_SUPPORT_DIR / "STUDY_PROTOCOL.md"
+MANUSCRIPT_PATH = ARTICLE_SOURCE_DIR / "Manuscript.tex"
 FREEZE_DIR = APP_DIR / "pipeline-output" / "current" / "protocol"
 FREEZE_PATH = FREEZE_DIR / "protocol_freeze.json"
 ORIGINAL_FREEZE_PATH = FREEZE_DIR / "protocol_freeze_v1.0.0_openai.json"

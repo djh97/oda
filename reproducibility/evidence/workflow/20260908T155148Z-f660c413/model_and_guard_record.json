@@ -1,0 +1,210 @@
+{
+  "case_id": "oda-demo-kidney-001",
+  "guarded_decision": {
+    "backup_changed": true,
+    "backup_recipient_id": 8,
+    "baseline_backup_recipient_id": 6,
+    "baseline_primary_recipient_id": 10,
+    "decision_reason": "The deterministic guard skipped protocol-defined temporary-hold candidates [10] encountered before completing the primary-backup pair and selected the next available candidates in baseline order.",
+    "decision_source": "deterministic_guard",
+    "donor_id": 1,
+    "note_assessments": [
+      {
+        "evidence_codes": [
+          "historical_condition_cleared",
+          "no_current_concern"
+        ],
+        "recipient_id": 1,
+        "state": "eligible"
+      },
+      {
+        "evidence_codes": [
+          "specialist_clearance_pending"
+        ],
+        "recipient_id": 2,
+        "state": "review_required"
+      },
+      {
+        "evidence_codes": [
+          "resolved_condition",
+          "historical_condition_cleared"
+        ],
+        "recipient_id": 3,
+        "state": "eligible"
+      },
+      {
+        "evidence_codes": [
+          "missing_or_conflicting_information"
+        ],
+        "recipient_id": 4,
+        "state": "review_required"
+      },
+      {
+        "evidence_codes": [
+          "infection_workup_pending"
+        ],
+        "recipient_id": 5,
+        "state": "review_required"
+      },
+      {
+        "evidence_codes": [
+          "no_current_concern"
+        ],
+        "recipient_id": 6,
+        "state": "eligible"
+      },
+      {
+        "evidence_codes": [
+          "resolved_condition",
+          "historical_condition_cleared"
+        ],
+        "recipient_id": 7,
+        "state": "eligible"
+      },
+      {
+        "evidence_codes": [
+          "indeterminate_lesion"
+        ],
+        "recipient_id": 8,
+        "state": "review_required"
+      },
+      {
+        "evidence_codes": [
+          "active_infection"
+        ],
+        "recipient_id": 9,
+        "state": "temporary_hold"
+      },
+      {
+        "evidence_codes": [
+          "explicit_temporary_deferral",
+          "sepsis_or_instability"
+        ],
+        "recipient_id": 10,
+        "state": "temporary_hold"
+      }
+    ],
+    "overrode_baseline": true,
+    "primary_recipient_id": 6,
+    "review_required_recipient_ids": [
+      8,
+      5
+    ],
+    "temporary_hold_recipient_ids": [
+      10,
+      9
+    ]
+  },
+  "metadata": {
+    "adapter_id": "oda-qwen2.5-1.5b-instruct-lora-v1.1.0",
+    "adapter_sha256": "730f52373114b6c4536e3d9698f731811550cbd1b05411ba461d4eb9c0d31026",
+    "device": "NVIDIA GeForce RTX 3070 Ti",
+    "dtype": "float16",
+    "input_tokens": 993,
+    "latency_ms": 41784.199,
+    "model_id": "oda-qwen2.5-1.5b-instruct-lora-v1.1.0",
+    "model_revision": "5fee7c4ed634dc66c6e318c8ac2897b8b9154536",
+    "output_tokens": 298,
+    "provider": "local_hugging_face_transformers",
+    "response_id": null,
+    "service_tier": null,
+    "system_fingerprint": null
+  },
+  "model_id_requested": "oda-qwen2.5-1.5b-instruct-lora-v1.1.0",
+  "model_request_config": {
+    "do_sample": false,
+    "maximum_new_tokens": 512,
+    "provider": "local_hugging_face_transformers",
+    "seed": 20260907,
+    "system_prompt_sha256": "fa65bccba2059b3abf7938a883ed6fa18d38ccedf57ff8ee9e6234886fd058db",
+    "temperature": 0
+  },
+  "parsed_review": {
+    "assessments": [
+      {
+        "evidence_codes": [
+          "historical_condition_cleared",
+          "no_current_concern"
+        ],
+        "recipient_id": 1,
+        "state": "eligible"
+      },
+      {
+        "evidence_codes": [
+          "specialist_clearance_pending"
+        ],
+        "recipient_id": 2,
+        "state": "review_required"
+      },
+      {
+        "evidence_codes": [
+          "resolved_condition",
+          "historical_condition_cleared"
+        ],
+        "recipient_id": 3,
+        "state": "eligible"
+      },
+      {
+        "evidence_codes": [
+          "missing_or_conflicting_information"
+        ],
+        "recipient_id": 4,
+        "state": "review_required"
+      },
+      {
+        "evidence_codes": [
+          "infection_workup_pending"
+        ],
+        "recipient_id": 5,
+        "state": "review_required"
+      },
+      {
+        "evidence_codes": [
+          "no_current_concern"
+        ],
+        "recipient_id": 6,
+        "state": "eligible"
+      },
+      {
+        "evidence_codes": [
+          "resolved_condition",
+          "historical_condition_cleared"
+        ],
+        "recipient_id": 7,
+        "state": "eligible"
+      },
+      {
+        "evidence_codes": [
+          "indeterminate_lesion"
+        ],
+        "recipient_id": 8,
+        "state": "review_required"
+      },
+      {
+        "evidence_codes": [
+          "active_infection"
+        ],
+        "recipient_id": 9,
+        "state": "temporary_hold"
+      },
+      {
+        "evidence_codes": [
+          "explicit_temporary_deferral",
+          "sepsis_or_instability"
+        ],
+        "recipient_id": 10,
+        "state": "temporary_hold"
+      }
+    ],
+    "case_id": "oda-demo-kidney-001"
+  },
+  "raw_response": "{\"assessments\": [{\"evidence_codes\": [\"historical_condition_cleared\", \"no_current_concern\"], \"recipient_id\": 1, \"state\": \"eligible\"}, {\"evidence_codes\": [\"specialist_clearance_pending\"], \"recipient_id\": 2, \"state\": \"review_required\"}, {\"evidence_codes\": [\"resolved_condition\", \"historical_condition_cleared\"], \"recipient_id\": 3, \"state\": \"eligible\"}, {\"evidence_codes\": [\"missing_or_conflicting_information\"], \"recipient_id\": 4, \"state\": \"review_required\"}, {\"evidence_codes\": [\"infection_workup_pending\"], \"recipient_id\": 5, \"state\": \"review_required\"}, {\"evidence_codes\": [\"no_current_concern\"], \"recipient_id\": 6, \"state\": \"eligible\"}, {\"evidence_codes\": [\"resolved_condition\", \"historical_condition_cleared\"], \"recipient_id\": 7, \"state\": \"eligible\"}, {\"evidence_codes\": [\"indeterminate_lesion\"], \"recipient_id\": 8, \"state\": \"review_required\"}, {\"evidence_codes\": [\"active_infection\"], \"recipient_id\": 9, \"state\": \"temporary_hold\"}, {\"evidence_codes\": [\"explicit_temporary_deferral\", \"sepsis_or_instability\"], \"recipient_id\": 10, \"state\": \"temporary_hold\"}], \"case_id\": \"oda-demo-kidney-001\"}",
+  "reference_comparison": {
+    "backup_conforms": true,
+    "observed_backup_recipient_id": 8,
+    "observed_primary_recipient_id": 6,
+    "primary_conforms": true,
+    "reference_backup_recipient_id": 8,
+    "reference_primary_recipient_id": 6
+  }
+}

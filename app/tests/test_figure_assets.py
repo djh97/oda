@@ -131,7 +131,7 @@ def test_final_evidence_gate_rejects_nonpublication_figure_geometry(
         _write_pair(tmp_path, name)
     for name in figures.TERMINAL_CAPTURE_NAMES:
         _write_rgb_png(tmp_path / f"{name}.png", 3600, 2000)
-    monkeypatch.setattr(evidence, "JOURNAL_DIR", tmp_path)
+    monkeypatch.setattr(evidence, "FIGURE_OUTPUT_DIR", tmp_path)
 
     evidence._validate_publication_figure_assets()
 

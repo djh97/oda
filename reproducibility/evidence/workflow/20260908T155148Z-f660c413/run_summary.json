@@ -1,0 +1,243 @@
+{
+  "chain_id": 11155111,
+  "completed_at_utc": "2026-09-08T16:09:39Z",
+  "contract_address": "0x9B227a44A52F9685B724d6a9Fb5C0DAfacb85Db0",
+  "contract_build_sha256": "da83c18ac933febc41232c657a1ed1aeb664fc7a00335d8ccfb0972ad03c06ee",
+  "contract_source_sha256": "178c9323754634a8c5c18c4c482cbbcddd9e0278dfa0e47c8c468b47f7af510a",
+  "decision_cid": "bafkreiadz5or2isg2sceggolqruhjbztkppqhp5qfrlaoopwygqdf2ddqe",
+  "demo_case_id": "oda-demo-kidney-001",
+  "demo_case_sha256": "d6021c1c7a7e313ee85bfafd910b5caaec00807e168450e68b37dcc5d7917b44",
+  "demo_reference_comparison": {
+    "backup_conforms": true,
+    "observed_backup_recipient_id": 8,
+    "observed_primary_recipient_id": 6,
+    "primary_conforms": true,
+    "reference_backup_recipient_id": 8,
+    "reference_primary_recipient_id": 6
+  },
+  "deployed_runtime_sha256": "e0a926a9b69653321dc5b1b897aa44e7e4a6919af110a5e7059bd501c21cece0",
+  "deployment_tx_hash": "0xb020b2640cf17cded9889e1e27871c72e13766f32a174d8d988ffb1ca1b24f0b",
+  "deployment_verification_sha256": "74e46c2a7b2cbe36736040787832c68dfc3522ba433e5df81a0530dc5d73341b",
+  "fee_native_total": "0.028158206199096640",
+  "fee_wei_total": 28158206199096640,
+  "final_checks": {
+    "active_recipient_transplanted": true,
+    "all_transactions_succeeded": true,
+    "backup_recipient_not_transplanted": true,
+    "backup_reservation_released": true,
+    "decision_cid_matches": true,
+    "deployed_code_matches_artifact": true,
+    "donor_finalized": true,
+    "donor_has_no_open_match": true,
+    "match_finalized": true,
+    "match_not_cancelled": true,
+    "onchain_active_recipient_matches_guard": true,
+    "onchain_backup_matches_guard": true,
+    "onchain_primary_matches_guard": true,
+    "primary_reservation_released": true,
+    "recorded_by_decision_service": true,
+    "transaction_plan_complete": true
+  },
+  "foundry_artifact_sha256": "e57dcee8f975294942349db209d5996eb93f4a5e37a83302a5e4954837ee510d",
+  "foundry_configuration_sha256": "0c78e40f9f114eaad063fa0078b3e7da7cd3d45b0dc1c141ec589fdfdcd402f3",
+  "gas_used_total": 6932168,
+  "guarded_decision": {
+    "backup_changed": true,
+    "backup_recipient_id": 8,
+    "baseline_backup_recipient_id": 6,
+    "baseline_primary_recipient_id": 10,
+    "decision_reason": "The deterministic guard skipped protocol-defined temporary-hold candidates [10] encountered before completing the primary-backup pair and selected the next available candidates in baseline order.",
+    "decision_source": "deterministic_guard",
+    "donor_id": 1,
+    "note_assessments": [
+      {
+        "evidence_codes": [
+          "historical_condition_cleared",
+          "no_current_concern"
+        ],
+        "recipient_id": 1,
+        "state": "eligible"
+      },
+      {
+        "evidence_codes": [
+          "specialist_clearance_pending"
+        ],
+        "recipient_id": 2,
+        "state": "review_required"
+      },
+      {
+        "evidence_codes": [
+          "resolved_condition",
+          "historical_condition_cleared"
+        ],
+        "recipient_id": 3,
+        "state": "eligible"
+      },
+      {
+        "evidence_codes": [
+          "missing_or_conflicting_information"
+        ],
+        "recipient_id": 4,
+        "state": "review_required"
+      },
+      {
+        "evidence_codes": [
+          "infection_workup_pending"
+        ],
+        "recipient_id": 5,
+        "state": "review_required"
+      },
+      {
+        "evidence_codes": [
+          "no_current_concern"
+        ],
+        "recipient_id": 6,
+        "state": "eligible"
+      },
+      {
+        "evidence_codes": [
+          "resolved_condition",
+          "historical_condition_cleared"
+        ],
+        "recipient_id": 7,
+        "state": "eligible"
+      },
+      {
+        "evidence_codes": [
+          "indeterminate_lesion"
+        ],
+        "recipient_id": 8,
+        "state": "review_required"
+      },
+      {
+        "evidence_codes": [
+          "active_infection"
+        ],
+        "recipient_id": 9,
+        "state": "temporary_hold"
+      },
+      {
+        "evidence_codes": [
+          "explicit_temporary_deferral",
+          "sepsis_or_instability"
+        ],
+        "recipient_id": 10,
+        "state": "temporary_hold"
+      }
+    ],
+    "overrode_baseline": true,
+    "primary_recipient_id": 6,
+    "review_required_recipient_ids": [
+      8,
+      5
+    ],
+    "temporary_hold_recipient_ids": [
+      10,
+      9
+    ]
+  },
+  "implementation_sha256": {
+    "artifact_paths": "7958210ac78d05f8c372f10d9ccb99d76d414d38271ea29484b1e653b7991f50",
+    "contract": "178c9323754634a8c5c18c4c482cbbcddd9e0278dfa0e47c8c468b47f7af510a",
+    "decision_guard": "11df226aa4506686d48d53943b6b8aff9c7c884e0ca54a9fc08a66b1cb82a818",
+    "ipfs_client": "7fc9e04f23e663d5f0f71a5aad37d801b18bfabf6d2107b37c85fe52f7805802",
+    "llm_client": "16eea9b8fa6ab6c395d53e4593970aaed13c2d34867ae9157876857904189ea4",
+    "local_llm_client": "a139fe9c1bc643049cb9a78023653ee398dc7b3a87daf5df0cb9c7db1cdb7b0e",
+    "pinata_client": "791f7185143cf912630a5f3ccc4f44da76e95a80b65ae34e28e758df857892fe",
+    "policy": "246b5190b4ae99fdb6981a8b51d567f987aa78eea930bece11a3b3c4faaa0416",
+    "project_environment": "d206a1548f9d425094af7496bdb6b615aee9b0836bcde1962978943635daa79d",
+    "schemas": "bb239870c5bc8a60a5757713ae92a63b4f985639229c5f3dc64101f0dd0b4608",
+    "secure_storage": "7fe66228c53d26b3ffd83e791619dd76d0b87fe5fa0c55add13a751d2e279fa1",
+    "transactions": "1cb1b24dcea7565e790785f2f32f697a9fd24ac6dfd0e3dc57c5640c90ae71de",
+    "workflow": "64476fc23ee182e68c30436a7c3efa05fd543c6ad18998a8a7a2d1e6de3296af"
+  },
+  "match_id": 1,
+  "model": {
+    "adapter_id": "oda-qwen2.5-1.5b-instruct-lora-v1.1.0",
+    "adapter_sha256": "730f52373114b6c4536e3d9698f731811550cbd1b05411ba461d4eb9c0d31026",
+    "device": "NVIDIA GeForce RTX 3070 Ti",
+    "dtype": "float16",
+    "input_tokens": 993,
+    "latency_ms": 41784.199,
+    "model_id": "oda-qwen2.5-1.5b-instruct-lora-v1.1.0",
+    "model_revision": "5fee7c4ed634dc66c6e318c8ac2897b8b9154536",
+    "output_tokens": 298,
+    "provider": "local_hugging_face_transformers",
+    "response_id": null,
+    "service_tier": null,
+    "system_fingerprint": null
+  },
+  "model_and_guard_record_sha256": "fafe8ebbb3af87fec5970016de4099a5df2f327ce3e71b27e652d3e47c888cbc",
+  "model_evidence": {
+    "classical_validation_diagnostics_sha256": "ec7b938424d4934fe98533890bd786588c991bc24e8ba76c42059efc224aeaf1",
+    "fine_tuned_attempts_sha256": "5974e206c506649fbd86c8071d9c57d710213966251ffeb10714248d91019c85",
+    "fine_tuned_config_sha256": "9d0f0a596194357ff3697515aabe3952095bf4244d178f5b2c6732064ce508c8",
+    "fine_tuned_raw_sha256": "1de4ffad85a54d65775a90868c860f7e97d77472a99d0d9b0b4b1dec3f2dfb0c",
+    "fine_tuned_smoke_test_sha256": "2e17bbe749fb6a63a3962e6547127a9f799eaab83981fdb2746aa97992633056",
+    "fine_tuned_summary_sha256": "a63cb8f79a0d25077cbe78a04610077fe7b8ece296c8be3a84e63c5edbac369b",
+    "fine_tuned_vs_openai_comparison_sha256": "be7f7386dcedc11d2c0877519f41aae45170c60810603023ebfdc75f1521c09d",
+    "fine_tuning_training_sha256": "9a5ca6ce87cdd5e2f7887a505bd4735808a38aa9babc0d3335f60f402227a826",
+    "fine_tuning_validation_sha256": "eb9eafc09aa71995f41b51bd8abd568d028377ced0ec1936dd28de6cf7d4953e",
+    "generation_manifest_sha256": "d0972131bb1b5122eb08d4c452d1da00979768915ea4a1c64b19f76b0b71b758",
+    "local_base_model_manifest_sha256": "edbcf948cd6de4780636c0a30d64952cbb06fec3c0dcc9096dbfff075003f7cc",
+    "local_lora_checkpoint_inheritance_sha256": "7b24c60fd83c048abcaf2acf5f99a17055b21d9ca602e99b4ab0cd38604d2b4a",
+    "local_lora_preflight_sha256": "bf55d981a52ac45f8a37428f0f997c50871c4ca6e453c94714cb7b3bb72e0f3b",
+    "local_lora_training_sha256": "7ae726968aa08ce1d66c6c549c7c86f1b7c84ff884bc8684a0ccb8795be0df17",
+    "local_lora_validation_preflight_sha256": "df042b74d1ec8a82f3eb0e46fbbd98b3435034f2ede4f6dc8542315be32de959",
+    "local_training_result_001_sha256": "ac21399e49f101248472b2be6ede501e339ac713e9ff3261f8a79432136cdca9",
+    "local_training_result_002_sha256": "2278c87abda25a637ea9ce4061098fe218f3d74c225def8bdf746e632c7fe9f4",
+    "local_training_result_003_sha256": "ee7c7985743e442624123803054465768752aa12a572d60caaff69abd2c4e9ff",
+    "local_training_result_004_sha256": "f0acedf99e19ec0a5b797ffbd0b94328172ccd90f7f385bbc521cda2701b03ab",
+    "local_training_result_005_sha256": "8aa40ce145adb73cb3a75194dc0224702a95850ec5275cabb728496bbd749fc6",
+    "local_training_result_006_sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+    "local_training_result_007_sha256": "61d96db795a512cdc81107e589bcce59d3be999c96013d49e9e0e9a51ef9b950",
+    "local_training_result_008_sha256": "57255613bbe23c9497211ca68561ff429a51e871dbaf5a59998fa4c8f7fe168a",
+    "local_training_result_009_sha256": "9c5ae00e602b8860cbd784ba82a8aa14e8feecec692e7076590d014d7b7fdafa",
+    "local_training_result_010_sha256": "5fd4cea2574beb6b70ba31582179880d331b723f5b5119ee67c29d45b983f7be",
+    "local_training_result_011_sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+    "local_training_result_012_sha256": "1834ab9783068410ee47654a154fef66f0c9ed1b3fa8157b00340ee51dd0d724",
+    "openai_api_cost_sha256": "f2923b978d32fde6477b7c6bc9a4eaf7ae41b9cdda6c490be03d7882beff0921",
+    "openai_attempts_sha256": "d0d0ab716073c460bf7c08208479d76b7fbfbc1b9c45ec98dd97536a9a274a08",
+    "openai_comparator_access_check_sha256": "b60876895e50ea4d13f49591a7dc63c488ae54c3cb8ce70c58cbe43dfb6cea1a",
+    "openai_config_sha256": "3010fd1a2dac1dc54ee20f740f3707d0f1be06b05fc6946d0f75129b0441007d",
+    "openai_raw_sha256": "1bdb2d373fe7e471f16b3690a94150ec1446d51ee9623088f0d389a8f8d228fe",
+    "openai_smoke_test_sha256": "838e9c03e84edfe1217185988cbce34e04b3908cbdb5e962bb6dcb7a38e0e6a7",
+    "openai_summary_sha256": "83e7aafcc466ca4a7e4df0d8f41f8923cec033743eab9c6efd14ac5aa731d2b7",
+    "protocol_amendment_sha256": "efcaf4da68520f089a8ebc271972b29873895d6fffd780bbc58a6a03b1139263",
+    "protocol_lineage_sha256": "50f18c9f1af0ea56364edf3a690dea726ab0446c78751ac4b87a5af88efbec62",
+    "test_cases_sha256": "1f4a41be76cdb922fe6f6de33b006899e5c34eea52eb50dc518d57572e24f11b",
+    "test_lock_sha256": "cb7ae4a7acaf80a68752fbb41289dbf686f385cd139babbb194d879a41d7c948",
+    "tfidf_logistic_attempts_sha256": "0b05afac1772bc61dc164ee74cf3bd5b4895b4e7990c11ad46390b0f658a910e",
+    "tfidf_logistic_config_sha256": "38237ae67ac01d2b92ec3397c49236ad58283f44e1244890b4e61b7e0a30259a",
+    "tfidf_logistic_raw_sha256": "5606a30d8609cf948fdcf39517fa470b428b7875aae16594688ed812e14ac8d2",
+    "tfidf_logistic_summary_sha256": "d7af5dbdbf9d30b9f6ee66db30bc25b46c3ece15bbf8ca7a1fa274e60ee93277",
+    "tfidf_logistic_vs_fine_tuned_comparison_sha256": "d9287e8d0843f579fbe6f98088133e1ccd79f36b6211154349a14592688e15e8",
+    "tfidf_logistic_vs_openai_comparison_sha256": "d1780cf45a00fb957ff810d0094e670b0d3e26680213ffe9f0065a7d562134e0",
+    "tfidf_logistic_vs_untuned_comparison_sha256": "40645dabc3a43f1f87000c36d6aaf080cbbbeee17840b507133927bd5dd80cf9",
+    "training_cases_sha256": "4cac638b09a2ae941c0aefb868b3b364f2fde85df98d2e730d87f457cb6a31b0",
+    "untuned_attempts_sha256": "51dec908e4f8a104467c0a5707910690d4b1506c762de9c2352bb4e918177269",
+    "untuned_config_sha256": "249327dffb1dc87aa6a7b6db01aca2d9b2adce47fc2919f465ff653e966c8d41",
+    "untuned_raw_sha256": "7bfd0189e1d2a4fe833da6cde93c36455a6b8a4baa1e74c588042649a4b23631",
+    "untuned_smoke_test_sha256": "223b8120ed76bc2d9c65c6a8cdfe2f6a4d6d6ec667b950dbb93fa21428eaa571",
+    "untuned_summary_sha256": "51012fe8955c4fb365158ee33794ab224563e14b75c6c6c2d8b6704f37097596",
+    "untuned_vs_fine_tuned_comparison_sha256": "28009c3b0236206068f9b2fbc57013460ada34353a0997f0164da319b62cca5b",
+    "untuned_vs_openai_comparison_sha256": "2282283b5af534a0acfafa83efaea5de6aa50da3ac93eaa90fc7b2393de56948",
+    "validation_cases_sha256": "7c0b1c35d81a30088ceefa246804652d5de3b3d485d0cb448dd17eda4d9cfdbb"
+  },
+  "model_id_requested": "oda-qwen2.5-1.5b-instruct-lora-v1.1.0",
+  "network": "sepolia",
+  "predeployment_timings_seconds": {
+    "contract_build": 20.270015,
+    "decision_preparation_and_persistence": 45.686306,
+    "encrypted_profile_upload_and_readback": 31.359686
+  },
+  "protocol_id": "ODA-SYNTH-MULTIORGAN-1.0",
+  "protocol_sha256": "e61bcb9824728f9932cbf58dfd3d23b16234ac9707d112fc863ba992be447462",
+  "transaction_count": 45,
+  "transaction_plan_validation": {
+    "complete": true,
+    "expected_transaction_count": 45,
+    "observed_transaction_count": 45,
+    "unique_transaction_hash_count": 45
+  }
+}

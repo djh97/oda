@@ -1,0 +1,23 @@
+{
+  "base_model_directory": "Implementation/app/.model-cache/Qwen2.5-1.5B-Instruct",
+  "completed_at_utc": "2026-09-07T21:27:58Z",
+  "development_row_index": 982,
+  "development_split": "training",
+  "gpu_name": "NVIDIA GeForce RTX 3070 Ti",
+  "held_out_test_file_opened": false,
+  "loss_finite": true,
+  "peak_gpu_memory_bytes": 6823092736,
+  "purpose": "Discarded implementation preflight on the longest training/validation sequence; no resulting weights were retained",
+  "schema_version": "1.0",
+  "sequence_tokens": 1631,
+  "source_hashes": {
+    "base_model_manifest": "edbcf948cd6de4780636c0a30d64952cbb06fec3c0dcc9096dbfff075003f7cc",
+    "preflight_script": "b49f462c4a44ee81d6081f4840c06c0274dfc25fb657f4fefab0c6cef08048a3",
+    "protocol": "0dd6914084de9d57c4ebfeb34b6cf574c00d9e19d1e511eecee872d13f338341",
+    "training": "9a5ca6ce87cdd5e2f7887a505bd4735808a38aa9babc0d3335f60f402227a826",
+    "training_script": "ac21399e49f101248472b2be6ede501e339ac713e9ff3261f8a79432136cdca9",
+    "validation": "eb9eafc09aa71995f41b51bd8abd568d028377ced0ec1936dd28de6cf7d4953e"
+  },
+  "status": "passed",
+  "trainable_parameters_with_gradients": 18464768
+}

@@ -1,0 +1,81 @@
+{
+  "contract_address": "0x9B227a44A52F9685B724d6a9Fb5C0DAfacb85Db0",
+  "cost_script_sha256": "2b431cf1126c52317bf6a10760cf7c67e56207ab1cf2e0ed7d27b0db5cd10d4d",
+  "eth_usd": "2498.49",
+  "eth_usd_observed_at": "2026-09-08T16:54:50Z",
+  "eth_usd_source_url": "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd&include_last_updated_at=true",
+  "gas_price_scenarios_gwei": [
+    "5",
+    "15",
+    "30"
+  ],
+  "interpretation": "USD values are illustrative mainnet-style scenarios obtained by applying the stated gas prices and ETH/USD observation to measured gas units. They are not costs paid on Sepolia.",
+  "measured_gas_used_total": 6932168,
+  "measured_sepolia_fee_test_eth": "0.028158206199096640",
+  "measured_sepolia_fee_wei": 28158206199096640,
+  "measured_transaction_count": 45,
+  "network": "sepolia",
+  "scenario_totals": {
+    "gas_15_gwei": {
+      "eth": "0.103982520000",
+      "usd": "259.7993"
+    },
+    "gas_30_gwei": {
+      "eth": "0.207965040000",
+      "usd": "519.5986"
+    },
+    "gas_5_gwei": {
+      "eth": "0.034660840000",
+      "usd": "86.5998"
+    }
+  },
+  "sepolia_fee_has_market_value": false,
+  "source_run_summary_sha256": "e9e4204ba6b0522dbb006b91fd01396df6d3898c3178737c0c92d8cf48373f13",
+  "table7_interpretation": "Function-level USD values reproduce the manuscript's fixed 9 March 2026 network scenarios by applying each stated gas price and token price to the measured Sepolia gas units. They are arithmetic comparisons, not fees measured on those networks, and do not model chain-specific L1-data or fee components.",
+  "table7_network_scenarios": [
+    {
+      "gas_price_gwei": "0.04",
+      "key": "ethereum",
+      "network": "Ethereum",
+      "token": "ETH",
+      "token_price_usd": "1944.53"
+    },
+    {
+      "gas_price_gwei": "146.00",
+      "key": "polygon",
+      "network": "Polygon",
+      "token": "POL",
+      "token_price_usd": "0.177"
+    },
+    {
+      "gas_price_gwei": "0.02",
+      "key": "arbitrum",
+      "network": "Arbitrum",
+      "token": "ETH",
+      "token_price_usd": "1944.53"
+    },
+    {
+      "gas_price_gwei": "0.01",
+      "key": "optimism",
+      "network": "Optimism",
+      "token": "ETH",
+      "token_price_usd": "1944.53"
+    },
+    {
+      "gas_price_gwei": "0.05",
+      "key": "zksync",
+      "network": "zkSync Era",
+      "token": "ETH",
+      "token_price_usd": "1944.53"
+    }
+  ],
+  "table7_observation_date": "2026-03-09",
+  "table7_scenario_totals_usd": {
+    "arbitrum": "0.269596",
+    "ethereum": "0.539192",
+    "optimism": "0.134798",
+    "polygon": "0.179141",
+    "zksync": "0.673990"
+  },
+  "transaction_manifest_sha256": "791a7572a6a707f913809a41ddb0fa770b5d4b771d2938aca36cf8858cfee5c9"
+}

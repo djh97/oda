@@ -1,0 +1,107 @@
+{
+  "all_measured_backup_conform": true,
+  "all_measured_primary_conform": true,
+  "attempt_ledger_event_count": 66,
+  "attempt_ledger_sha256": "a2e7f338b48fa388a281acb28a340b6d5ac7baff2c102302359b69d8a748d23a",
+  "benchmark_script_sha256": "207ed906d7eb49fe69e4228476c7ce211d8a6ca21f01f1a5977e0d980662ec69",
+  "canonical_model_id_observed": "oda-qwen2.5-1.5b-instruct-lora-v1.1.0",
+  "demo_case_sha256": "d6021c1c7a7e313ee85bfafd910b5caaec00807e168450e68b37dcc5d7917b44",
+  "environment": {
+    "logical_cpu_count": 16,
+    "machine": "AMD64",
+    "packages": {
+      "cryptography": "50.0.1",
+      "peft": "0.17.1",
+      "pydantic": "2.13.5",
+      "requests": "2.34.2",
+      "torch": "2.8.0+cu128",
+      "transformers": "4.56.2"
+    },
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 165 Stepping 5, GenuineIntel",
+    "python": "3.12.10"
+  },
+  "failed_measured_attempts_rerun": false,
+  "generated_at_utc": "2026-09-08T16:54:49Z",
+  "implementation_sha256": {
+    "artifact_paths": "7958210ac78d05f8c372f10d9ccb99d76d414d38271ea29484b1e653b7991f50",
+    "benchmark": "207ed906d7eb49fe69e4228476c7ce211d8a6ca21f01f1a5977e0d980662ec69",
+    "decision_guard": "11df226aa4506686d48d53943b6b8aff9c7c884e0ca54a9fc08a66b1cb82a818",
+    "ipfs_client": "7fc9e04f23e663d5f0f71a5aad37d801b18bfabf6d2107b37c85fe52f7805802",
+    "llm_client": "16eea9b8fa6ab6c395d53e4593970aaed13c2d34867ae9157876857904189ea4",
+    "local_llm_client": "a139fe9c1bc643049cb9a78023653ee398dc7b3a87daf5df0cb9c7db1cdb7b0e",
+    "local_training_state": "7ae726968aa08ce1d66c6c549c7c86f1b7c84ff884bc8684a0ccb8795be0df17",
+    "policy": "246b5190b4ae99fdb6981a8b51d567f987aa78eea930bece11a3b3c4faaa0416",
+    "project_environment": "d206a1548f9d425094af7496bdb6b615aee9b0836bcde1962978943635daa79d",
+    "schemas": "bb239870c5bc8a60a5757713ae92a63b4f985639229c5f3dc64101f0dd0b4608",
+    "secure_storage": "7fe66228c53d26b3ffd83e791619dd76d0b87fe5fa0c55add13a751d2e279fa1"
+  },
+  "interrupted_attempts_retained_as_failures": 0,
+  "ipfs_fetch_retries_per_measurement": 0,
+  "measured_runs_attempted": 30,
+  "measured_runs_failed": 0,
+  "measured_runs_requested": 30,
+  "measured_runs_successful": 30,
+  "model_id_requested": "oda-qwen2.5-1.5b-instruct-lora-v1.1.0",
+  "model_request_config": {
+    "do_sample": false,
+    "maximum_new_tokens": 512,
+    "provider": "local_hugging_face_transformers",
+    "seed": 20260907,
+    "system_prompt_sha256": "fa65bccba2059b3abf7938a883ed6fa18d38ccedf57ff8ee9e6234886fd058db",
+    "temperature": 0
+  },
+  "protocol_id": "ODA-SYNTH-MULTIORGAN-1.0",
+  "protocol_sha256": "e61bcb9824728f9932cbf58dfd3d23b16234ac9707d112fc863ba992be447462",
+  "raw_runs_sha256": "1e2ddbf0d95f96b773451ac78fea46c6a22e1d5e0f67e76eb10e1ce6a0fe18e8",
+  "replacement_attempt_count": 0,
+  "source_run_summary_sha256": "e9e4204ba6b0522dbb006b91fd01396df6d3898c3178737c0c92d8cf48373f13",
+  "source_workflow_run": "Implementation/app/pipeline-output/current/full_workflow/20260908T155148Z-f660c413",
+  "timings": {
+    "deterministic_guard": {
+      "max_seconds": 0.000133,
+      "mean_seconds": 8.6e-05,
+      "median_seconds": 8e-05,
+      "min_seconds": 6.3e-05,
+      "n": 30,
+      "p95_seconds": 0.000123
+    },
+    "encrypted_record_retrieval": {
+      "max_seconds": 5.005744,
+      "mean_seconds": 2.4283,
+      "median_seconds": 2.184601,
+      "min_seconds": 1.700319,
+      "n": 30,
+      "p95_seconds": 3.924475
+    },
+    "model_note_review": {
+      "max_seconds": 38.598979,
+      "mean_seconds": 34.802129,
+      "median_seconds": 35.207286,
+      "min_seconds": 29.538903,
+      "n": 30,
+      "p95_seconds": 37.953033
+    },
+    "protocol_ranking": {
+      "max_seconds": 0.001002,
+      "mean_seconds": 0.000686,
+      "median_seconds": 0.000671,
+      "min_seconds": 0.000488,
+      "n": 30,
+      "p95_seconds": 0.000909
+    },
+    "total": {
+      "max_seconds": 41.179039,
+      "mean_seconds": 37.231564,
+      "median_seconds": 37.455996,
+      "min_seconds": 31.379889,
+      "n": 30,
+      "p95_seconds": 40.593438
+    }
+  },
+  "token_totals": {
+    "input": 29790,
+    "output": 8940
+  },
+  "warmup_runs_excluded": 3
+}

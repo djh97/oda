@@ -9,11 +9,11 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Iterable
 
+from evaluation.publication_workspace import REPOSITORY_DIR, external_directories
 
 APP_DIR = Path(__file__).resolve().parents[1]
 IMPLEMENTATION_DIR = APP_DIR.parent
-WORKSPACE_DIR = IMPLEMENTATION_DIR.parent
-JOURNAL_DIR = WORKSPACE_DIR / "Frontiers_Medical_Technology_2026-09-06"
+WORKSPACE_DIR = REPOSITORY_DIR
 OUTPUT_PATH = APP_DIR / "pipeline-output" / "current" / "security_audit.json"
 
 TEXT_SUFFIXES = {
@@ -63,7 +63,10 @@ def _utc_now() -> str:
 
 
 def _relative(path: Path) -> str:
-    return path.resolve().relative_to(WORKSPACE_DIR.resolve()).as_posix()
+    try:
+        return path.resolve().relative_to(WORKSPACE_DIR.resolve()).as_posix()
+    except ValueError:
+        return f"external/{path.name}"
 
 
 def _is_private_env_file(path: Path) -> bool:
@@ -72,7 +75,8 @@ def _is_private_env_file(path: Path) -> bool:
 
 
 def active_text_files() -> Iterable[Path]:
-    for root in (IMPLEMENTATION_DIR, JOURNAL_DIR):
+    roots = (IMPLEMENTATION_DIR, *external_directories())
+    for root in dict.fromkeys(path.resolve() for path in roots if path.exists()):
         for path in root.rglob("*"):
             if not path.is_file() or path == OUTPUT_PATH or _is_private_env_file(path):
                 continue

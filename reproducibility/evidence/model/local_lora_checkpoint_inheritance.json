@@ -1,0 +1,204 @@
+{
+  "active_checkpoint": {
+    "aggregate_sha256": "9bd57cbe0827b554a993804a78a74ac5f36752aa72ca3e730199e6c587fe7fa7",
+    "files": {
+      "README.md": {
+        "bytes": 5344,
+        "sha256": "61d96db795a512cdc81107e589bcce59d3be999c96013d49e9e0e9a51ef9b950"
+      },
+      "adapter_config.json": {
+        "bytes": 1056,
+        "sha256": "043d36548224794472d60a86b2350bc2aa88c3d337c165653d9f26626ffc72af"
+      },
+      "adapter_model.safetensors": {
+        "bytes": 73911112,
+        "sha256": "ee7c7985743e442624123803054465768752aa12a572d60caaff69abd2c4e9ff"
+      },
+      "optimizer.pt": {
+        "bytes": 148048187,
+        "sha256": "9b6670ce24ab577c5e86e7be6efdfca8c91228d881d102e18c17956ac65fb0ab"
+      },
+      "rng_state.pth": {
+        "bytes": 14709,
+        "sha256": "9b079376051d988e154511443321a7b789b565a7a965a828bdfb497d76274847"
+      },
+      "scaler.pt": {
+        "bytes": 1383,
+        "sha256": "87f2d000dc631405afde961c10f41c60d43c2b5bce5123ad757c695960d49fa6"
+      },
+      "scheduler.pt": {
+        "bytes": 1465,
+        "sha256": "4a79672077af3fb095e62508725285aafabbb1e98f132c5b5bfccd133a394e44"
+      },
+      "trainer_state.json": {
+        "bytes": 8012,
+        "sha256": "3e8e0dc6460c3793037337aac81ac18372c34692bc6259d4e8abead7f7183e78"
+      },
+      "training_args.bin": {
+        "bytes": 6033,
+        "sha256": "25b2865629bf3f4d95a27796a3e9d09a69a672c4d3af8adeb112ee5909664e50"
+      }
+    },
+    "path": "Implementation/app/pipeline-output/current/model/local_lora_checkpoints/checkpoint-400"
+  },
+  "changed_source_keys": [
+    "training_script"
+  ],
+  "completed_progress": {
+    "epoch": 2.0,
+    "epoch_end_validation": [
+      {
+        "epoch": 1.0,
+        "eval_loss": 0.03396410867571831,
+        "step": 200
+      },
+      {
+        "epoch": 2.0,
+        "eval_loss": 0.029150526970624924,
+        "step": 400
+      }
+    ],
+    "global_step": 400,
+    "maximum_step": 600
+  },
+  "configuration": {
+    "assistant_only_loss": true,
+    "attention_implementation": "sdpa",
+    "base_model_snapshot": "Qwen/Qwen2.5-1.5B-Instruct@5fee7c4ed634dc66c6e318c8ac2897b8b9154536",
+    "effective_train_batch_size": 8,
+    "epochs": 3,
+    "gradient_accumulation_steps": 8,
+    "gradient_checkpointing": true,
+    "learning_rate": 0.0002,
+    "learning_rate_scheduler": "linear",
+    "load_best_model_at_end": true,
+    "lora_alpha": 32,
+    "lora_bias": "none",
+    "lora_dropout": 0.05,
+    "lora_rank": 16,
+    "maximum_gradient_norm": 1.0,
+    "maximum_sequence_tokens": 2048,
+    "method": "LoRA",
+    "optimizer": "adamw_torch",
+    "per_device_train_batch_size": 1,
+    "per_device_validation_batch_size": 1,
+    "precision": "float16",
+    "save_and_evaluate_each_epoch": true,
+    "seed": 20260907,
+    "selection_metric": "validation_loss",
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ],
+    "warmup_ratio": 0.03,
+    "weight_decay": 0.0
+  },
+  "created_at_utc": "2026-09-07T21:28:26Z",
+  "current_source_hashes": {
+    "base_model_manifest": "edbcf948cd6de4780636c0a30d64952cbb06fec3c0dcc9096dbfff075003f7cc",
+    "generation_manifest": "d0972131bb1b5122eb08d4c452d1da00979768915ea4a1c64b19f76b0b71b758",
+    "llm_client": "fce0fc88de7e21d4d6ff519c7a298c3b262e15cbf9c7f1a32de0232f5e799797",
+    "protocol": "0dd6914084de9d57c4ebfeb34b6cf574c00d9e19d1e511eecee872d13f338341",
+    "requirements_ml": "1834ab9783068410ee47654a154fef66f0c9ed1b3fa8157b00340ee51dd0d724",
+    "schemas": "bb239870c5bc8a60a5757713ae92a63b4f985639229c5f3dc64101f0dd0b4608",
+    "system_prompt": "fa65bccba2059b3abf7938a883ed6fa18d38ccedf57ff8ee9e6234886fd058db",
+    "training_file": "9a5ca6ce87cdd5e2f7887a505bd4735808a38aa9babc0d3335f60f402227a826",
+    "training_script": "ac21399e49f101248472b2be6ede501e339ac713e9ff3261f8a79432136cdca9",
+    "validation_file": "eb9eafc09aa71995f41b51bd8abd568d028377ced0ec1936dd28de6cf7d4953e"
+  },
+  "held_out_test_file_opened": false,
+  "operational_changes": [
+    "Retain validation loss only instead of prediction logits.",
+    "Move validation losses to host memory after every prediction step.",
+    "Release unreferenced CUDA cache after every validation prediction step.",
+    "Use the final epoch-end validation record instead of running a duplicate validation pass."
+  ],
+  "preparation_script_sha256": "15662353779f6d94aa3d30a5f4b0b48f1f63f906ba92212d6d50ee9e3e21d23e",
+  "protocol_id": "ODA-SYNTH-MULTIORGAN-1.0",
+  "protocol_version": "1.1.0",
+  "purpose": "Continue the interrupted pre-test LoRA run from its latest durable checkpoint",
+  "runtime_memory_management": {
+    "duplicate_post_training_evaluation": false,
+    "empty_cuda_cache_after_each_prediction_step": true,
+    "eval_accumulation_steps": 1,
+    "prediction_loss_only": true,
+    "purpose": "Bound CUDA allocator growth for variable-length training and validation batches under Windows WDDM.",
+    "scientific_hyperparameters_changed": false,
+    "torch_empty_cache_steps": 1
+  },
+  "schema_version": "1.0",
+  "scientific_configuration_changed": false,
+  "source_attempt": {
+    "archive_note_path": "Implementation/app/pipeline-output/archive/pretest_training_attempt_2026-09-08_final-eval-memory/ARCHIVE_NOTE.md",
+    "archive_note_sha256": "344fd5c33bd6a83a010d81519d9fff6a2941505550e2c05595b8d281ba087764",
+    "path": "Implementation/app/pipeline-output/archive/pretest_training_attempt_2026-09-08_final-eval-memory",
+    "runtime_memory_management": {
+      "purpose": "Bound CUDA allocator growth for variable-length batches under Windows WDDM.",
+      "scientific_hyperparameters_changed": false,
+      "torch_empty_cache_steps": 1
+    },
+    "source_hashes": {
+      "base_model_manifest": "edbcf948cd6de4780636c0a30d64952cbb06fec3c0dcc9096dbfff075003f7cc",
+      "generation_manifest": "d0972131bb1b5122eb08d4c452d1da00979768915ea4a1c64b19f76b0b71b758",
+      "llm_client": "fce0fc88de7e21d4d6ff519c7a298c3b262e15cbf9c7f1a32de0232f5e799797",
+      "protocol": "0dd6914084de9d57c4ebfeb34b6cf574c00d9e19d1e511eecee872d13f338341",
+      "requirements_ml": "1834ab9783068410ee47654a154fef66f0c9ed1b3fa8157b00340ee51dd0d724",
+      "schemas": "bb239870c5bc8a60a5757713ae92a63b4f985639229c5f3dc64101f0dd0b4608",
+      "system_prompt": "fa65bccba2059b3abf7938a883ed6fa18d38ccedf57ff8ee9e6234886fd058db",
+      "training_file": "9a5ca6ce87cdd5e2f7887a505bd4735808a38aa9babc0d3335f60f402227a826",
+      "training_script": "bc4e18dbfa9d3e3a2c80ec0274d745e66024a31b75b3c919805d9bc53902abc1",
+      "validation_file": "eb9eafc09aa71995f41b51bd8abd568d028377ced0ec1936dd28de6cf7d4953e"
+    },
+    "state_path": "Implementation/app/pipeline-output/archive/pretest_training_attempt_2026-09-08_final-eval-memory/local_lora_training.json",
+    "state_sha256": "a7e6657b62595cfc56e8ed899ec760430a3a4dd1055ad93e5ce8872e87de2e5f",
+    "status": "running"
+  },
+  "source_checkpoint": {
+    "aggregate_sha256": "9bd57cbe0827b554a993804a78a74ac5f36752aa72ca3e730199e6c587fe7fa7",
+    "files": {
+      "README.md": {
+        "bytes": 5344,
+        "sha256": "61d96db795a512cdc81107e589bcce59d3be999c96013d49e9e0e9a51ef9b950"
+      },
+      "adapter_config.json": {
+        "bytes": 1056,
+        "sha256": "043d36548224794472d60a86b2350bc2aa88c3d337c165653d9f26626ffc72af"
+      },
+      "adapter_model.safetensors": {
+        "bytes": 73911112,
+        "sha256": "ee7c7985743e442624123803054465768752aa12a572d60caaff69abd2c4e9ff"
+      },
+      "optimizer.pt": {
+        "bytes": 148048187,
+        "sha256": "9b6670ce24ab577c5e86e7be6efdfca8c91228d881d102e18c17956ac65fb0ab"
+      },
+      "rng_state.pth": {
+        "bytes": 14709,
+        "sha256": "9b079376051d988e154511443321a7b789b565a7a965a828bdfb497d76274847"
+      },
+      "scaler.pt": {
+        "bytes": 1383,
+        "sha256": "87f2d000dc631405afde961c10f41c60d43c2b5bce5123ad757c695960d49fa6"
+      },
+      "scheduler.pt": {
+        "bytes": 1465,
+        "sha256": "4a79672077af3fb095e62508725285aafabbb1e98f132c5b5bfccd133a394e44"
+      },
+      "trainer_state.json": {
+        "bytes": 8012,
+        "sha256": "3e8e0dc6460c3793037337aac81ac18372c34692bc6259d4e8abead7f7183e78"
+      },
+      "training_args.bin": {
+        "bytes": 6033,
+        "sha256": "25b2865629bf3f4d95a27796a3e9d09a69a672c4d3af8adeb112ee5909664e50"
+      }
+    },
+    "path": "Implementation/app/pipeline-output/archive/pretest_training_attempt_2026-09-08_final-eval-memory/local_lora_checkpoints/checkpoint-400"
+  },
+  "status": "verified"
+}

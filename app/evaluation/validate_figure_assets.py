@@ -13,10 +13,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from evaluation.publication_workspace import FIGURE_OUTPUT_DIR
 
 APP_DIR = Path(__file__).resolve().parents[1]
-WORKSPACE_DIR = APP_DIR.parent.parent
-JOURNAL_DIR = WORKSPACE_DIR / "Frontiers_Medical_Technology_2026-09-06"
 EDITABLE_FIGURE_NAMES = (
     "system_architecture",
     "sequence_enrollment",
@@ -270,7 +269,7 @@ def validate(directory: Path, *, final_width_mm: float = FINAL_WIDTH_MM) -> dict
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--directory", type=Path, default=JOURNAL_DIR)
+    parser.add_argument("--directory", type=Path, default=FIGURE_OUTPUT_DIR)
     parser.add_argument("--output", type=Path)
     parser.add_argument("--final-width-mm", type=float, default=FINAL_WIDTH_MM)
     args = parser.parse_args()

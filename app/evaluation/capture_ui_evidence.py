@@ -20,19 +20,19 @@ from pathlib import Path
 from typing import Any, Iterable
 
 from evaluation.project_environment import CONTROLLED_ENV_NAMES
+from evaluation.publication_workspace import FIGURE_OUTPUT_DIR, REPOSITORY_DIR
 from src.evidence_view import CURRENT_OUTPUT_DIR, load_latest_evidence
 
 
 APP_DIR = Path(__file__).resolve().parents[1]
 IMPLEMENTATION_DIR = APP_DIR.parent
-WORKSPACE_DIR = IMPLEMENTATION_DIR.parent
-JOURNAL_DIR = WORKSPACE_DIR / "Frontiers_Medical_Technology_2026-09-06"
+WORKSPACE_DIR = REPOSITORY_DIR
 SCRIPT_PATH = Path(__file__).resolve()
 POINTER_PATH = CURRENT_OUTPUT_DIR / "latest_full_workflow.json"
 
 CAPTURES = (
-    ("full", JOURNAL_DIR / "Full_UI.png", 1000, 980),
-    ("decision", JOURNAL_DIR / "LLM_Decision.png", 1000, 960),
+    ("full", FIGURE_OUTPUT_DIR / "Full_UI.png", 1000, 980),
+    ("decision", FIGURE_OUTPUT_DIR / "LLM_Decision.png", 1000, 960),
 )
 
 
@@ -55,7 +55,11 @@ def _read_object(path: Path) -> dict[str, Any]:
 
 
 def _relative(path: Path) -> str:
-    return path.resolve().relative_to(WORKSPACE_DIR.resolve()).as_posix()
+    resolved = path.resolve()
+    try:
+        return resolved.relative_to(WORKSPACE_DIR.resolve()).as_posix()
+    except ValueError:
+        return str(resolved)
 
 
 def _record(path: Path) -> dict[str, object]:

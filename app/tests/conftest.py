@@ -2,10 +2,10 @@ from pathlib import Path
 
 import pytest
 
+from evaluation.publication_workspace import ARTICLE_SOURCE_DIR
 
 APP_DIR = Path(__file__).resolve().parents[1]
 IMPLEMENTATION_DIR = APP_DIR.parent
-WORKSPACE_DIR = IMPLEMENTATION_DIR.parent
 EVIDENCE_BOUND_MODULES = {
     "test_benchmark_offchain.py",
     "test_evaluation_lock.py",
@@ -20,7 +20,7 @@ REQUIRED_LOCAL_ARTIFACTS = (
     APP_DIR / "pipeline-output" / "current" / "protocol" / "protocol_freeze.json",
     APP_DIR / "pipeline-output" / "current" / "model" / "local_lora_training.json",
     IMPLEMENTATION_DIR / "smart-contracts" / "out" / "TransplantManagement.sol" / "TransplantManagement.json",
-    WORKSPACE_DIR / "Frontiers_Medical_Technology_2026-09-06" / "Manuscript.tex",
+    ARTICLE_SOURCE_DIR / "Manuscript.tex",
 )
 
 

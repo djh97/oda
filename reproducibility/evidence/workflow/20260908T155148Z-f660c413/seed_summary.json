@@ -1,0 +1,18 @@
+{
+  "case_id": "oda-demo-kidney-001",
+  "contract_address": "0x9B227a44A52F9685B724d6a9Fb5C0DAfacb85Db0",
+  "donor_cid": "bafkreie5zbdomh7sxzab46dtnwlgf3k5kwmiyu4p62qunptrjuxvkpc57y",
+  "recipient_cids": {
+    "1": "bafkreihqzf33ow5mrrmrfvrjf7ka7b25rv4znofgl2a6rlw7uitk7nu434",
+    "10": "bafkreihuoqn62mhyo6jzlfmqo2gcppdmyrrvngepmh46szjyjkxj2l6kqu",
+    "2": "bafkreib5lm4tdlwgpdutzlxkk76jsuxuw7ena24n4tdws7eqkivi42m7xq",
+    "3": "bafkreieu7rw4oahdqn56uuke6cob2qio7btqay5sz3kkoeafulxy32aqs4",
+    "4": "bafkreicxx2dvcbfmoi4woirijovjjpt6lrbsir3aji3ewkbjwp5xcvmj4q",
+    "5": "bafkreibepnnu2fvwsf3bbjc7h57dqbwazhpaeoe2o7gy5zhuazv63z6lji",
+    "6": "bafkreifefe3k77h62tgc3gaggfno6eyjm3rm5b5crbbrifxyzew4d47iym",
+    "7": "bafkreibvhsw27ur3pfuccogpkbpt3pantpav3kwav7nzexfxutclgmstgy",
+    "8": "bafkreiconiita6gkrlqez2pzstz5nr5qhokrnlxipqw6gtvqpnzphn2qzu",
+    "9": "bafkreifnsf7j25lw57jql5lks4gnghaqrkbi6oz7ar4ovcoehqvuwyp5rq"
+  },
+  "transactions": 38
+}

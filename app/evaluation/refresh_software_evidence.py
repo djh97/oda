@@ -16,12 +16,16 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
 
+from evaluation.publication_workspace import (
+    FIGURE_OUTPUT_DIR,
+    FIGURE_SOURCE_DIR,
+    REPOSITORY_DIR,
+)
 
 APP_DIR = Path(__file__).resolve().parents[1]
 IMPLEMENTATION_DIR = APP_DIR.parent
-WORKSPACE_DIR = IMPLEMENTATION_DIR.parent
+WORKSPACE_DIR = REPOSITORY_DIR
 SMART_CONTRACTS_DIR = IMPLEMENTATION_DIR / "smart-contracts"
-JOURNAL_DIR = WORKSPACE_DIR / "Frontiers_Medical_Technology_2026-09-06"
 OUTPUT_DIR = APP_DIR / "pipeline-output" / "current" / "software"
 MANIFEST_PATH = OUTPUT_DIR / "software_verification_manifest.json"
 PYTEST_LOG_PATH = OUTPUT_DIR / "python_pytest.txt"
@@ -37,10 +41,10 @@ CONTRACT_ARTIFACT_PATH = (
 )
 SCRIPT_PATH = Path(__file__).resolve()
 SOLC_VERSION = "0.8.26"
-FOUNDRY_FIGURE_PNG_PATH = JOURNAL_DIR / "foundry_tests.png"
-SLITHER_FIGURE_PNG_PATH = JOURNAL_DIR / "slither_analysis.png"
-FOUNDRY_CAPTURE_SOURCE_PATH = JOURNAL_DIR / "foundry_tests[Original].png"
-SLITHER_CAPTURE_SOURCE_PATH = JOURNAL_DIR / "slither_analysis[Original].png"
+FOUNDRY_FIGURE_PNG_PATH = FIGURE_OUTPUT_DIR / "foundry_tests.png"
+SLITHER_FIGURE_PNG_PATH = FIGURE_OUTPUT_DIR / "slither_analysis.png"
+FOUNDRY_CAPTURE_SOURCE_PATH = FIGURE_SOURCE_DIR / "foundry_tests[Original].png"
+SLITHER_CAPTURE_SOURCE_PATH = FIGURE_SOURCE_DIR / "slither_analysis[Original].png"
 FOUNDRY_FIGURE_SIZE = (2126, 1882)
 SLITHER_FIGURE_SIZE = (2126, 841)
 
@@ -58,7 +62,11 @@ def _sha256(path: Path) -> str:
 
 
 def _relative(path: Path) -> str:
-    return path.resolve().relative_to(WORKSPACE_DIR.resolve()).as_posix()
+    resolved = path.resolve()
+    try:
+        return resolved.relative_to(WORKSPACE_DIR.resolve()).as_posix()
+    except ValueError:
+        return str(resolved)
 
 
 def _record(path: Path) -> dict[str, object]:

@@ -1,0 +1,9 @@
+{
+  "artifact_runtime_sha256": "e0a926a9b69653321dc5b1b897aa44e7e4a6919af110a5e7059bd501c21cece0",
+  "contract_address": "0x9B227a44A52F9685B724d6a9Fb5C0DAfacb85Db0",
+  "deployed_runtime_sha256": "e0a926a9b69653321dc5b1b897aa44e7e4a6919af110a5e7059bd501c21cece0",
+  "deployment_tx_hash": "0xb020b2640cf17cded9889e1e27871c72e13766f32a174d8d988ffb1ca1b24f0b",
+  "matches": true,
+  "runtime_byte_count": 13784,
+  "verified_at_utc": "2026-09-08T16:00:39Z"
+}

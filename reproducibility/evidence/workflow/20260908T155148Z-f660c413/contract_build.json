@@ -1,0 +1,24 @@
+{
+  "artifact_compiler": {
+    "version": "0.8.26+commit.8a97fa7a"
+  },
+  "artifact_sha256": "e57dcee8f975294942349db209d5996eb93f4a5e37a83302a5e4954837ee510d",
+  "command": [
+    "forge",
+    "build",
+    "--force",
+    "--offline",
+    "--use",
+    "solc-0.8.26"
+  ],
+  "contract_source_sha256": "178c9323754634a8c5c18c4c482cbbcddd9e0278dfa0e47c8c468b47f7af510a",
+  "forge_version": "forge Version: 1.6.0-v1.6.0-rc1\nCommit SHA: b272ce3366987406406e9eb1b82596653a3ad628\nBuild Timestamp: 2026-01-22T15:23:42.262041000Z (1769095422)\nBuild Profile: dist",
+  "foundry_configuration_sha256": "0c78e40f9f114eaad063fa0078b3e7da7cd3d45b0dc1c141ec589fdfdcd402f3",
+  "offline": true,
+  "solc_binary": {
+    "bytes": 9699328,
+    "filename": "solc-0.8.26",
+    "sha256": "537fd8d8d4a0433a971bf456fc06f7b021cdcee27b252f74da49e0d8559aeb67"
+  },
+  "solc_version": "solc, the solidity compiler commandline interface\nVersion: 0.8.26+commit.8a97fa7a.Windows.msvc"
+}

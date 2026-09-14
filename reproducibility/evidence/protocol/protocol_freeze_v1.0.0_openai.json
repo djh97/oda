@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "status": "frozen",
+  "protocol_id": "ODA-SYNTH-MULTIORGAN-1.0",
+  "protocol_version": "1.0.0",
+  "frozen_at_utc": "2026-09-07T15:17:54Z",
+  "approval_basis": "Author delegated the synthetic-case design and authorized progression on 2026-09-07.",
+  "active_test_seed_sha256": "04f74117345e66b122890f8bd811e08b30382caadc435028c7ae30dd445dec02",
+  "retired_test_seeds": [
+    2026090703,
+    2026090717
+  ],
+  "source_hashes": {
+    "protocol_json_sha256": "cfa13e12f82b982c7378e0e3db3dffe3c378f6e40a7cf9f54c4063891257bb79",
+    "study_protocol_sha256": "a7123973aa68adb20232f8d375f7fb96ec1a2063d714006fd271bc07075a9c64",
+    "manuscript_sha256_at_freeze": "da7a093a216678523a0a9fe6b107de35a997a2d653226714cdcad4bab14711e8"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "status": "approved_pretest_amendment",
+  "protocol_id": "ODA-SYNTH-MULTIORGAN-1.0",
+  "from_version": "1.0.0",
+  "to_version": "1.1.0",
+  "amended_at_utc": "2026-09-07T16:25:27Z",
+  "approval_basis": "Author delegated implementation and protocol decisions and authorized goal resumption on 2026-09-07.",
+  "reason": "The prespecified OpenAI fine-tuning request was definitively rejected with HTTP 403 because self-serve training was unavailable to the study account. A provider reconciliation found no created job.",
+  "held_out_test_lock_present": false,
+  "held_out_model_execution_started": false,
+  "unchanged": [
+    "synthetic case-generation design and frozen test seed",
+    "training, validation, and test case counts",
+    "task definition and note-readiness taxonomy",
+    "deterministic rankers and guard",
+    "outcomes and statistical analysis",
+    "one-attempt held-out evaluation rule"
+  ],
+  "official_provider_notice": "https://developers.openai.com/api/docs/deprecations#update-to-openais-self-serve-fine-tuning",
+  "preserved_evidence": {
+    "original_protocol_freeze_sha256": "77e0d3b92719971a1138230e7919024c36af0ef1b8ba1a81d6bd3b70c15a6ed9",
+    "openai_rejection_state_sha256": "9b2cfca4adce3f06962ffd7870fc7886395058fc497a88f17cf662eb5b77d99d",
+    "local_base_model_manifest_sha256": "f1ca264b677b9da8674570181e2c30bec1a218b4d70df42b958b5c896838ca4f"
+  }
+}

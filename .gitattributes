@@ -6,3 +6,6 @@
 *.jpg binary
 *.jpeg binary
 *.eps binary
+
+# Preserve retained evidence byte-for-byte so published checksums remain stable.
+reproducibility/evidence/** binary

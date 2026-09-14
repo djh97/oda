@@ -1,0 +1,53 @@
+{
+  "cost_usd": {
+    "input": "0.07743285",
+    "mean_per_locked_case": "0.00033268",
+    "output": "0.05563980",
+    "total": "0.13307265"
+  },
+  "generated_at_utc": "2026-09-08T13:51:40Z",
+  "interpretation": "Lower bound from records with provider token usage; cases without usage are not assigned zero cost.",
+  "missing_usage_case_ids": [
+    "164bd7133fc5efd2",
+    "3237bab8d927d6ed",
+    "55b82d5766a36def",
+    "570ea48e76748a97",
+    "5a8e46012f70285d",
+    "6176e93c70b2fd74",
+    "70cc4eb6e94da8d6",
+    "7db6d3a5d60613b9",
+    "9605e0e5ba7d89ba",
+    "dcaca9bf51833260",
+    "e275cbaf44ecd6c7",
+    "f36e241b7fc145eb"
+  ],
+  "model_id": "gpt-4o-mini-2024-07-18",
+  "pricing": {
+    "accessed_on": "2026-09-08",
+    "currency": "USD",
+    "input_per_million_tokens": 0.15,
+    "output_per_million_tokens": 0.6,
+    "pricing_basis": "standard synchronous text-token rates; cached-input and Batch API discounts are not assumed",
+    "source_url": "https://developers.openai.com/api/docs/models/gpt-4o-mini"
+  },
+  "protocol_id": "ODA-SYNTH-MULTIORGAN-1.0",
+  "protocol_version": "1.2.0",
+  "records_missing_token_usage": 12,
+  "records_with_token_usage": 388,
+  "schema_version": "1.0",
+  "source_hashes": {
+    "analysis_summary": "83e7aafcc466ca4a7e4df0d8f41f8923cec033743eab9c6efd14ac5aa731d2b7",
+    "configuration": "3010fd1a2dac1dc54ee20f740f3707d0f1be06b05fc6946d0f75129b0441007d",
+    "cost_script": "e3b64145adfe240f8ed85217cb8a3c0fb0cbeb29028dc581c211ce9a62bc2919",
+    "protocol": "e61bcb9824728f9932cbf58dfd3d23b16234ac9707d112fc863ba992be447462",
+    "raw_records": "1bdb2d373fe7e471f16b3690a94150ec1446d51ee9623088f0d389a8f8d228fe",
+    "test_lock": "cb7ae4a7acaf80a68752fbb41289dbf686f385cd139babbb194d879a41d7c948"
+  },
+  "status": "observed_usage_lower_bound",
+  "test_case_count": 400,
+  "token_usage": {
+    "combined_total": 608952,
+    "input_total": 516219,
+    "output_total": 92733
+  }
+}

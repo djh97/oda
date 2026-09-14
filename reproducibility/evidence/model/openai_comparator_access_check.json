@@ -1,0 +1,39 @@
+{
+  "checked_at_utc": "2026-09-07T23:09:25Z",
+  "held_out_test_lock_present": false,
+  "model_id_matches": true,
+  "model_id_requested": "gpt-4o-mini-2024-07-18",
+  "model_id_returned": "gpt-4o-mini-2024-07-18",
+  "model_retrievable": true,
+  "openai_sdk_version": "3.8.0",
+  "owned_by": "system",
+  "protocol_id": "ODA-SYNTH-MULTIORGAN-1.0",
+  "protocol_sha256": "e61bcb9824728f9932cbf58dfd3d23b16234ac9707d112fc863ba992be447462",
+  "protocol_version": "1.2.0",
+  "purpose": "Authenticated model-access check using no study case data",
+  "runtime_settings": {
+    "attempts_per_case": 1,
+    "endpoint": "chat_completions_structured_outputs",
+    "maximum_completion_tokens": 512,
+    "model_id": "gpt-4o-mini-2024-07-18",
+    "pricing": {
+      "accessed_on": "2026-09-08",
+      "currency": "USD",
+      "input_per_million_tokens": 0.15,
+      "output_per_million_tokens": 0.6,
+      "pricing_basis": "standard synchronous text-token rates; cached-input and Batch API discounts are not assumed",
+      "source_url": "https://developers.openai.com/api/docs/models/gpt-4o-mini"
+    },
+    "provider": "OpenAI",
+    "response_format": "strict_pydantic_schema",
+    "sdk_max_retries": 0,
+    "seed": 20260907,
+    "store": false,
+    "temperature": 0,
+    "timeout_seconds": 120
+  },
+  "schema_version": "1.0",
+  "script_sha256": "4a673788fd3e74ed0ea766fa87c99fd141bffc11eb3012c6827b0f98483a52c4",
+  "status": "passed",
+  "test_case_data_opened": false
+}

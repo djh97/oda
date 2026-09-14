@@ -1,0 +1,729 @@
+{
+  "analysis_script_sha256": "a77103d7254ffd398cbfe7a08dc11b8f1592d64c44eaaff5e9cecb7967642e09",
+  "analysis_type": "post_hoc_output_reliability_decomposition",
+  "bootstrap": {
+    "estimand": "design-standardized performance for the fixed synthetic benchmark mixture",
+    "resamples": 10000,
+    "seed": 2026090799,
+    "strata": [
+      "organ_type",
+      "scenario_family"
+    ],
+    "stratum_count": 24
+  },
+  "conditions": {
+    "deterministic_ranker_only": {
+      "case_count": 400,
+      "decision_outcomes": {
+        "complete_primary_backup_pair": {
+          "count": 400,
+          "denominator": 400,
+          "proportion": 1.0
+        },
+        "held_or_unavailable_primary": {
+          "count": 120,
+          "denominator": 400,
+          "proportion": 0.3
+        },
+        "held_primary": {
+          "count": 120,
+          "denominator": 400,
+          "proportion": 0.3
+        },
+        "reference_primary_agreement": {
+          "count": 280,
+          "denominator": 400,
+          "proportion": 0.7
+        },
+        "unavailable_primary": {
+          "count": 0,
+          "denominator": 400,
+          "proportion": 0.0
+        }
+      },
+      "state_classification": null,
+      "stratified_bootstrap_95ci": {
+        "complete_primary_backup_pair": [
+          1.0,
+          1.0
+        ],
+        "held_primary": [
+          0.3,
+          0.3
+        ],
+        "reference_primary_agreement": [
+          0.7,
+          0.7
+        ],
+        "unavailable_primary": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "fine_tuned": {
+      "case_count": 400,
+      "conditional_state_classification": {
+        "accuracy": 0.99328,
+        "by_class": {
+          "eligible": {
+            "f1": 0.995084,
+            "fn": 0,
+            "fp": 20,
+            "precision": 0.990215,
+            "recall": 1.0,
+            "support": 2024,
+            "tp": 2024
+          },
+          "review_required": {
+            "f1": 0.986552,
+            "fn": 21,
+            "fp": 4,
+            "precision": 0.995657,
+            "recall": 0.977612,
+            "support": 938,
+            "tp": 917
+          },
+          "temporary_hold": {
+            "f1": 0.996695,
+            "fn": 4,
+            "fp": 1,
+            "precision": 0.998675,
+            "recall": 0.994723,
+            "support": 758,
+            "tp": 754
+          }
+        },
+        "candidate_count": 3720,
+        "macro_f1": 0.992777
+      },
+      "decision_outcomes": {
+        "complete_primary_backup_pair": {
+          "count": 372,
+          "denominator": 400,
+          "proportion": 0.93
+        },
+        "held_or_unavailable_primary": {
+          "count": 28,
+          "denominator": 400,
+          "proportion": 0.07
+        },
+        "held_primary": {
+          "count": 0,
+          "denominator": 400,
+          "proportion": 0.0
+        },
+        "reference_primary_agreement": {
+          "count": 372,
+          "denominator": 400,
+          "proportion": 0.93
+        },
+        "unavailable_primary": {
+          "count": 28,
+          "denominator": 400,
+          "proportion": 0.07
+        }
+      },
+      "failure_penalized_state_classification": {
+        "accuracy": 0.92375,
+        "by_class": {
+          "eligible": {
+            "f1": 0.965419,
+            "fn": 125,
+            "fp": 20,
+            "precision": 0.990215,
+            "recall": 0.941833,
+            "support": 2149,
+            "tp": 2024
+          },
+          "review_required": {
+            "f1": 0.947804,
+            "fn": 97,
+            "fp": 4,
+            "precision": 0.995657,
+            "recall": 0.904339,
+            "support": 1014,
+            "tp": 917
+          },
+          "temporary_hold": {
+            "f1": 0.947236,
+            "fn": 83,
+            "fp": 1,
+            "precision": 0.998675,
+            "recall": 0.900836,
+            "support": 837,
+            "tp": 754
+          }
+        },
+        "candidate_count": 4000,
+        "macro_f1": 0.953486
+      },
+      "retained_failure_types": {
+        "LLMOutputSchemaError": 28
+      },
+      "stratified_bootstrap_95ci": {
+        "complete_primary_backup_pair": [
+          0.905,
+          0.9525
+        ],
+        "conditional_macro_f1": [
+          0.989808,
+          0.99543
+        ],
+        "failure_penalized_macro_f1": [
+          0.938108,
+          0.967409
+        ],
+        "held_primary": [
+          0.0,
+          0.0
+        ],
+        "reference_primary_agreement": [
+          0.905,
+          0.9525
+        ],
+        "strict_schema_complete_output": [
+          0.905,
+          0.9525
+        ],
+        "temporary_hold_sensitivity": [
+          0.86457,
+          0.933495
+        ],
+        "unavailable_primary": [
+          0.0475,
+          0.095
+        ]
+      },
+      "strict_schema_complete_output": {
+        "count": 372,
+        "denominator": 400,
+        "proportion": 0.93
+      }
+    },
+    "openai": {
+      "case_count": 400,
+      "conditional_state_classification": {
+        "accuracy": 0.996649,
+        "by_class": {
+          "eligible": {
+            "f1": 0.998085,
+            "fn": 4,
+            "fp": 4,
+            "precision": 0.998085,
+            "recall": 0.998085,
+            "support": 2089,
+            "tp": 2085
+          },
+          "review_required": {
+            "f1": 0.993909,
+            "fn": 5,
+            "fp": 7,
+            "precision": 0.992901,
+            "recall": 0.994919,
+            "support": 984,
+            "tp": 979
+          },
+          "temporary_hold": {
+            "f1": 0.996278,
+            "fn": 4,
+            "fp": 2,
+            "precision": 0.997516,
+            "recall": 0.995043,
+            "support": 807,
+            "tp": 803
+          }
+        },
+        "candidate_count": 3880,
+        "macro_f1": 0.996091
+      },
+      "decision_outcomes": {
+        "complete_primary_backup_pair": {
+          "count": 388,
+          "denominator": 400,
+          "proportion": 0.97
+        },
+        "held_or_unavailable_primary": {
+          "count": 13,
+          "denominator": 400,
+          "proportion": 0.0325
+        },
+        "held_primary": {
+          "count": 1,
+          "denominator": 400,
+          "proportion": 0.0025
+        },
+        "reference_primary_agreement": {
+          "count": 387,
+          "denominator": 400,
+          "proportion": 0.9675
+        },
+        "unavailable_primary": {
+          "count": 12,
+          "denominator": 400,
+          "proportion": 0.03
+        }
+      },
+      "failure_penalized_state_classification": {
+        "accuracy": 0.96675,
+        "by_class": {
+          "eligible": {
+            "f1": 0.983955,
+            "fn": 64,
+            "fp": 4,
+            "precision": 0.998085,
+            "recall": 0.970219,
+            "support": 2149,
+            "tp": 2085
+          },
+          "review_required": {
+            "f1": 0.979,
+            "fn": 35,
+            "fp": 7,
+            "precision": 0.992901,
+            "recall": 0.965483,
+            "support": 1014,
+            "tp": 979
+          },
+          "temporary_hold": {
+            "f1": 0.978076,
+            "fn": 34,
+            "fp": 2,
+            "precision": 0.997516,
+            "recall": 0.959379,
+            "support": 837,
+            "tp": 803
+          }
+        },
+        "candidate_count": 4000,
+        "macro_f1": 0.980343
+      },
+      "retained_failure_types": {
+        "LLMOutputSchemaError": 12
+      },
+      "stratified_bootstrap_95ci": {
+        "complete_primary_backup_pair": [
+          0.9525,
+          0.985
+        ],
+        "conditional_macro_f1": [
+          0.993865,
+          0.99808
+        ],
+        "failure_penalized_macro_f1": [
+          0.970816,
+          0.988521
+        ],
+        "held_primary": [
+          0.0,
+          0.0075
+        ],
+        "reference_primary_agreement": [
+          0.95,
+          0.9825
+        ],
+        "strict_schema_complete_output": [
+          0.9525,
+          0.985
+        ],
+        "temporary_hold_sensitivity": [
+          0.93698,
+          0.979243
+        ],
+        "unavailable_primary": [
+          0.015,
+          0.0475
+        ]
+      },
+      "strict_schema_complete_output": {
+        "count": 388,
+        "denominator": 400,
+        "proportion": 0.97
+      }
+    },
+    "tfidf_logistic": {
+      "case_count": 400,
+      "conditional_state_classification": {
+        "accuracy": 0.64725,
+        "by_class": {
+          "eligible": {
+            "f1": 0.608222,
+            "fn": 1143,
+            "fp": 153,
+            "precision": 0.86799,
+            "recall": 0.468125,
+            "support": 2149,
+            "tp": 1006
+          },
+          "review_required": {
+            "f1": 0.659895,
+            "fn": 137,
+            "fp": 767,
+            "precision": 0.533455,
+            "recall": 0.864892,
+            "support": 1014,
+            "tp": 877
+          },
+          "temporary_hold": {
+            "f1": 0.694199,
+            "fn": 131,
+            "fp": 491,
+            "precision": 0.589808,
+            "recall": 0.843489,
+            "support": 837,
+            "tp": 706
+          }
+        },
+        "candidate_count": 4000,
+        "macro_f1": 0.654105
+      },
+      "decision_outcomes": {
+        "complete_primary_backup_pair": {
+          "count": 398,
+          "denominator": 400,
+          "proportion": 0.995
+        },
+        "held_or_unavailable_primary": {
+          "count": 30,
+          "denominator": 400,
+          "proportion": 0.075
+        },
+        "held_primary": {
+          "count": 28,
+          "denominator": 400,
+          "proportion": 0.07
+        },
+        "reference_primary_agreement": {
+          "count": 311,
+          "denominator": 400,
+          "proportion": 0.7775
+        },
+        "unavailable_primary": {
+          "count": 2,
+          "denominator": 400,
+          "proportion": 0.005
+        }
+      },
+      "failure_penalized_state_classification": {
+        "accuracy": 0.64475,
+        "by_class": {
+          "eligible": {
+            "f1": 0.606959,
+            "fn": 1146,
+            "fp": 153,
+            "precision": 0.867647,
+            "recall": 0.466729,
+            "support": 2149,
+            "tp": 1003
+          },
+          "review_required": {
+            "f1": 0.658371,
+            "fn": 141,
+            "fp": 765,
+            "precision": 0.532967,
+            "recall": 0.860947,
+            "support": 1014,
+            "tp": 873
+          },
+          "temporary_hold": {
+            "f1": 0.695007,
+            "fn": 134,
+            "fp": 483,
+            "precision": 0.592749,
+            "recall": 0.839904,
+            "support": 837,
+            "tp": 703
+          }
+        },
+        "candidate_count": 4000,
+        "macro_f1": 0.653446
+      },
+      "retained_failure_types": {
+        "GuardAbstention": 2
+      },
+      "stratified_bootstrap_95ci": {
+        "complete_primary_backup_pair": [
+          0.9875,
+          1.0
+        ],
+        "conditional_macro_f1": [
+          0.640849,
+          0.667199
+        ],
+        "failure_penalized_macro_f1": [
+          0.640236,
+          0.666655
+        ],
+        "held_primary": [
+          0.05,
+          0.0925
+        ],
+        "reference_primary_agreement": [
+          0.7375,
+          0.815
+        ],
+        "strict_schema_complete_output": [
+          1.0,
+          1.0
+        ],
+        "temporary_hold_sensitivity": [
+          0.81588,
+          0.862903
+        ],
+        "unavailable_primary": [
+          0.0,
+          0.0125
+        ]
+      },
+      "strict_schema_complete_output": {
+        "count": 400,
+        "denominator": 400,
+        "proportion": 1.0
+      }
+    },
+    "untuned": {
+      "case_count": 400,
+      "conditional_state_classification": null,
+      "decision_outcomes": {
+        "complete_primary_backup_pair": {
+          "count": 0,
+          "denominator": 400,
+          "proportion": 0.0
+        },
+        "held_or_unavailable_primary": {
+          "count": 400,
+          "denominator": 400,
+          "proportion": 1.0
+        },
+        "held_primary": {
+          "count": 0,
+          "denominator": 400,
+          "proportion": 0.0
+        },
+        "reference_primary_agreement": {
+          "count": 0,
+          "denominator": 400,
+          "proportion": 0.0
+        },
+        "unavailable_primary": {
+          "count": 400,
+          "denominator": 400,
+          "proportion": 1.0
+        }
+      },
+      "failure_penalized_state_classification": {
+        "accuracy": 0.0,
+        "by_class": {
+          "eligible": {
+            "f1": 0.0,
+            "fn": 2149,
+            "fp": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "support": 2149,
+            "tp": 0
+          },
+          "review_required": {
+            "f1": 0.0,
+            "fn": 1014,
+            "fp": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "support": 1014,
+            "tp": 0
+          },
+          "temporary_hold": {
+            "f1": 0.0,
+            "fn": 837,
+            "fp": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "support": 837,
+            "tp": 0
+          }
+        },
+        "candidate_count": 4000,
+        "macro_f1": 0.0
+      },
+      "retained_failure_types": {
+        "LLMOutputCoverageError": 2,
+        "LLMOutputSchemaError": 398
+      },
+      "stratified_bootstrap_95ci": {
+        "complete_primary_backup_pair": [
+          0.0,
+          0.0
+        ],
+        "conditional_macro_f1": null,
+        "failure_penalized_macro_f1": [
+          0.0,
+          0.0
+        ],
+        "held_primary": [
+          0.0,
+          0.0
+        ],
+        "reference_primary_agreement": [
+          0.0,
+          0.0
+        ],
+        "strict_schema_complete_output": [
+          0.0,
+          0.0
+        ],
+        "temporary_hold_sensitivity": [
+          0.0,
+          0.0
+        ],
+        "unavailable_primary": [
+          1.0,
+          1.0
+        ]
+      },
+      "strict_schema_complete_output": {
+        "count": 0,
+        "denominator": 400,
+        "proportion": 0.0
+      }
+    }
+  },
+  "definitions": {
+    "conditional_state_classification": "State-classification metrics calculated only from strict schema-valid complete outputs.",
+    "failure_penalized_state_classification": "State-classification metrics over all cases, with every candidate in an invalid or unavailable output treated as an incorrect abstention.",
+    "held_primary": "A completed pair whose selected primary has the study-generated temporary-hold state.",
+    "stratified_bootstrap": "Percentile intervals from case resampling within each organ-by-scenario stratum, preserving the fixed benchmark composition in every resample.",
+    "strict_schema_complete_output": "A response that satisfies the complete prespecified schema for all ten candidates.",
+    "unavailable_primary": "A case for which no complete primary-backup pair was produced."
+  },
+  "generated_at_utc": "2026-09-12T19:43:07Z",
+  "input_files": {
+    "fine_tuned": {
+      "config_path": "C:\\Users\\Ahmed\\ODA_Diana_2026-09-09\\app\\pipeline-output\\current\\evaluation\\fine_tuned_config.json",
+      "config_sha256": "9d0f0a596194357ff3697515aabe3952095bf4244d178f5b2c6732064ce508c8",
+      "records_path": "C:\\Users\\Ahmed\\ODA_Diana_2026-09-09\\app\\pipeline-output\\current\\evaluation\\fine_tuned_raw.jsonl",
+      "records_sha256": "1de4ffad85a54d65775a90868c860f7e97d77472a99d0d9b0b4b1dec3f2dfb0c"
+    },
+    "openai": {
+      "config_path": "C:\\Users\\Ahmed\\ODA_Diana_2026-09-09\\app\\pipeline-output\\current\\evaluation\\openai_config.json",
+      "config_sha256": "3010fd1a2dac1dc54ee20f740f3707d0f1be06b05fc6946d0f75129b0441007d",
+      "records_path": "C:\\Users\\Ahmed\\ODA_Diana_2026-09-09\\app\\pipeline-output\\current\\evaluation\\openai_raw.jsonl",
+      "records_sha256": "1bdb2d373fe7e471f16b3690a94150ec1446d51ee9623088f0d389a8f8d228fe"
+    },
+    "test_cases": {
+      "path": "C:\\Users\\Ahmed\\ODA_Diana_2026-09-09\\datasets\\synthetic-v1\\test_cases.jsonl",
+      "sha256": "1f4a41be76cdb922fe6f6de33b006899e5c34eea52eb50dc518d57572e24f11b"
+    },
+    "tfidf_logistic": {
+      "config_path": "C:\\Users\\Ahmed\\ODA_Diana_2026-09-09\\app\\pipeline-output\\current\\evaluation\\tfidf_logistic_config.json",
+      "config_sha256": "38237ae67ac01d2b92ec3397c49236ad58283f44e1244890b4e61b7e0a30259a",
+      "records_path": "C:\\Users\\Ahmed\\ODA_Diana_2026-09-09\\app\\pipeline-output\\current\\evaluation\\tfidf_logistic_raw.jsonl",
+      "records_sha256": "5606a30d8609cf948fdcf39517fa470b428b7875aae16594688ed812e14ac8d2"
+    },
+    "untuned": {
+      "config_path": "C:\\Users\\Ahmed\\ODA_Diana_2026-09-09\\app\\pipeline-output\\current\\evaluation\\untuned_config.json",
+      "config_sha256": "249327dffb1dc87aa6a7b6db01aca2d9b2adce47fc2919f465ff653e966c8d41",
+      "records_path": "C:\\Users\\Ahmed\\ODA_Diana_2026-09-09\\app\\pipeline-output\\current\\evaluation\\untuned_raw.jsonl",
+      "records_sha256": "7bfd0189e1d2a4fe833da6cde93c36455a6b8a4baa1e74c588042649a4b23631"
+    }
+  },
+  "paired_strict_output_comparison": {
+    "case_validity_counts": {
+      "both_valid": 360,
+      "left_only_valid": 12,
+      "neither_valid": 0,
+      "right_only_valid": 28
+    },
+    "left": "fine_tuned",
+    "left_classification": {
+      "accuracy": 0.994444,
+      "by_class": {
+        "eligible": {
+          "f1": 0.995943,
+          "fn": 0,
+          "fp": 16,
+          "precision": 0.991919,
+          "recall": 1.0,
+          "support": 1964,
+          "tp": 1964
+        },
+        "review_required": {
+          "f1": 0.988901,
+          "fn": 17,
+          "fp": 3,
+          "precision": 0.996644,
+          "recall": 0.981278,
+          "support": 908,
+          "tp": 891
+        },
+        "temporary_hold": {
+          "f1": 0.997249,
+          "fn": 3,
+          "fp": 1,
+          "precision": 0.998623,
+          "recall": 0.995879,
+          "support": 728,
+          "tp": 725
+        }
+      },
+      "candidate_count": 3600,
+      "macro_f1": 0.994031
+    },
+    "right": "openai",
+    "right_classification": {
+      "accuracy": 0.996667,
+      "by_class": {
+        "eligible": {
+          "f1": 0.998218,
+          "fn": 3,
+          "fp": 4,
+          "precision": 0.997964,
+          "recall": 0.998473,
+          "support": 1964,
+          "tp": 1961
+        },
+        "review_required": {
+          "f1": 0.993946,
+          "fn": 5,
+          "fp": 6,
+          "precision": 0.993399,
+          "recall": 0.994493,
+          "support": 908,
+          "tp": 903
+        },
+        "temporary_hold": {
+          "f1": 0.995873,
+          "fn": 4,
+          "fp": 2,
+          "precision": 0.997245,
+          "recall": 0.994505,
+          "support": 728,
+          "tp": 724
+        }
+      },
+      "candidate_count": 3600,
+      "macro_f1": 0.996013
+    },
+    "stratified_bootstrap_95ci": {
+      "common_valid_macro_f1_right_minus_left": [
+        -0.00116,
+        0.005126
+      ],
+      "complete_pair_right_minus_left": [
+        0.01,
+        0.07
+      ],
+      "failure_penalized_macro_f1_right_minus_left": [
+        0.010192,
+        0.043781
+      ],
+      "reference_primary_agreement_right_minus_left": [
+        0.0075,
+        0.0675
+      ],
+      "strict_output_right_minus_left": [
+        0.01,
+        0.07
+      ]
+    }
+  }
+}

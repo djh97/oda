@@ -1,0 +1,68 @@
+{
+  "active_protocol": {
+    "path": "Implementation/app/protocols/oda_synth_multiorgan_v1.json",
+    "sha256": "e61bcb9824728f9932cbf58dfd3d23b16234ac9707d112fc863ba992be447462",
+    "version": "1.2.0"
+  },
+  "amendment": {
+    "path": "Implementation/app/pipeline-output/current/protocol/protocol_amendment_v1.2.0.json",
+    "sha256": "efcaf4da68520f089a8ebc271972b29873895d6fffd780bbc58a6a03b1139263"
+  },
+  "completed_local_training_repeated": false,
+  "created_at_utc": "2026-09-07T23:08:11Z",
+  "held_out_model_execution_started": false,
+  "held_out_test_lock_present": false,
+  "parent_protocol": {
+    "path": "Implementation/app/pipeline-output/archive/pretest_protocol_v1.1.0_2026-09-08_openai-comparator-amendment/oda_synth_multiorgan_v1.v1.1.0.json",
+    "sha256": "0dd6914084de9d57c4ebfeb34b6cf574c00d9e19d1e511eecee872d13f338341",
+    "version": "1.1.0"
+  },
+  "post_generation_source_changes": {
+    "protocol": {
+      "after_sha256": "e61bcb9824728f9932cbf58dfd3d23b16234ac9707d112fc863ba992be447462",
+      "before_sha256": "0dd6914084de9d57c4ebfeb34b6cf574c00d9e19d1e511eecee872d13f338341"
+    },
+    "synthetic_dataset_generator": {
+      "after_sha256": "bab878015a048b1cd038c8a88dced6293726741e53fc2044e2524920d6869cfb",
+      "before_sha256": "d9ef1a3c64768e0dc6557dd883780ecf191b9cf06184d0f76978029dffec9529"
+    }
+  },
+  "post_training_source_changes": {
+    "llm_client": {
+      "after_sha256": "16eea9b8fa6ab6c395d53e4593970aaed13c2d34867ae9157876857904189ea4",
+      "before_sha256": "fce0fc88de7e21d4d6ff519c7a298c3b262e15cbf9c7f1a32de0232f5e799797"
+    },
+    "protocol": {
+      "after_sha256": "e61bcb9824728f9932cbf58dfd3d23b16234ac9707d112fc863ba992be447462",
+      "before_sha256": "0dd6914084de9d57c4ebfeb34b6cf574c00d9e19d1e511eecee872d13f338341"
+    }
+  },
+  "preserved_artifacts": {
+    "generation_manifest": {
+      "path": "Implementation/datasets/synthetic-v1/generation_manifest.json",
+      "protocol_source_sha256": "0dd6914084de9d57c4ebfeb34b6cf574c00d9e19d1e511eecee872d13f338341",
+      "protocol_version": "1.1.0",
+      "sha256": "d0972131bb1b5122eb08d4c452d1da00979768915ea4a1c64b19f76b0b71b758"
+    },
+    "local_lora_training": {
+      "path": "Implementation/app/pipeline-output/current/model/local_lora_training.json",
+      "protocol_source_sha256": "0dd6914084de9d57c4ebfeb34b6cf574c00d9e19d1e511eecee872d13f338341",
+      "protocol_version": "1.1.0",
+      "sha256": "7ae726968aa08ce1d66c6c549c7c86f1b7c84ff884bc8684a0ccb8795be0df17"
+    }
+  },
+  "preserved_sources": {
+    "local_training_llm_client": {
+      "path": "Implementation/app/pipeline-output/archive/pretest_protocol_v1.1.0_2026-09-08_openai-comparator-amendment/llm_client.v1.1.0.py",
+      "sha256": "fce0fc88de7e21d4d6ff519c7a298c3b262e15cbf9c7f1a32de0232f5e799797"
+    },
+    "synthetic_dataset_generator": {
+      "path": "Implementation/app/pipeline-output/archive/pretest_protocol_v1.1.0_2026-09-08_openai-comparator-amendment/synthetic_dataset.v1.1.0.py",
+      "sha256": "d9ef1a3c64768e0dc6557dd883780ecf191b9cf06184d0f76978029dffec9529"
+    }
+  },
+  "protocol_id": "ODA-SYNTH-MULTIORGAN-1.0",
+  "schema_version": "1.0",
+  "scientific_configuration_changed": false,
+  "status": "verified_pretest_lineage"
+}

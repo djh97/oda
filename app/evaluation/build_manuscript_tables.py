@@ -76,7 +76,6 @@ from src.schemas import ModelRunMetadata
 
 APP_DIR = Path(__file__).resolve().parents[1]
 WORKSPACE_DIR = APP_DIR.parents[1]
-JOURNAL_DIR = WORKSPACE_DIR / "Frontiers_Medical_Technology_2026-09-06"
 EVALUATION_DIR = APP_DIR / "pipeline-output" / "current" / "evaluation"
 MODEL_DIR = APP_DIR / "pipeline-output" / "current" / "model"
 MANUSCRIPT_STAGING_DIR = APP_DIR / "pipeline-output" / "current" / "manuscript"

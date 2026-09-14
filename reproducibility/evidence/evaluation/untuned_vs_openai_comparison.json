@@ -1,0 +1,281 @@
+{
+  "bootstrap": {
+    "resamples": 10000,
+    "seed": 2026091299
+  },
+  "case_count": 400,
+  "comparison_script_sha256": "ac58b49a266028757e9e8aa4ccbd031939cd38860eb0f839900ba8da1df9e29a",
+  "delta_95ci_cluster_bootstrap": {
+    "all_ten_states_exact": [
+      0.9125,
+      0.96
+    ],
+    "guarded_top1_conformance": [
+      0.95,
+      0.9825
+    ],
+    "macro_f1": [
+      0.970689,
+      0.988787
+    ],
+    "model_success": [
+      0.9525,
+      0.985
+    ],
+    "selection_rate": [
+      0.9525,
+      0.985
+    ],
+    "temporary_hold_recall": [
+      0.935942,
+      0.979319
+    ],
+    "unsafe_introduction_rate": [
+      0.0,
+      0.0
+    ],
+    "unsafe_or_missing_primary_rate": [
+      -0.9825,
+      -0.95
+    ]
+  },
+  "delta_right_minus_left": {
+    "all_ten_states_exact": 0.9375,
+    "guarded_top1_conformance": 0.9675,
+    "macro_f1": 0.980343,
+    "model_success": 0.97,
+    "selection_rate": 0.97,
+    "temporary_hold_recall": 0.959379,
+    "unsafe_introduction_rate": 0.0,
+    "unsafe_or_missing_primary_rate": -0.9675
+  },
+  "generated_at_utc": "2026-09-08T13:50:21Z",
+  "left": {
+    "config": {
+      "attempt_log_file": "Implementation/app/pipeline-output/current/evaluation/untuned_attempts.jsonl",
+      "attempt_log_sha256": "51dec908e4f8a104467c0a5707910690d4b1506c762de9c2352bb4e918177269",
+      "attempted_case_count": 400,
+      "attempts_per_case_per_condition": 1,
+      "condition": "untuned",
+      "current_invocation_target_case_count": 400,
+      "do_sample": false,
+      "endpoint": "local_transformers_generate",
+      "evaluation_in_progress": false,
+      "evaluation_invocations": [
+        {
+          "invoked_at_utc": "2026-09-07T23:27:55Z",
+          "requested_case_limit": null
+        }
+      ],
+      "failed_record_count": 400,
+      "first_invoked_at_utc": "2026-09-07T23:27:55Z",
+      "last_completed_at_utc": "2026-09-08T01:08:23Z",
+      "last_invoked_at_utc": "2026-09-07T23:27:55Z",
+      "maximum_new_tokens": 512,
+      "model_id_requested": "Qwen/Qwen2.5-1.5B-Instruct@5fee7c4ed634dc66c6e318c8ac2897b8b9154536",
+      "protocol_id": "ODA-SYNTH-MULTIORGAN-1.0",
+      "provider": "local_hugging_face_transformers",
+      "raw_file_sha256": "7bfd0189e1d2a4fe833da6cde93c36455a6b8a4baa1e74c588042649a4b23631",
+      "raw_record_count": 400,
+      "sdk_max_retries": 0,
+      "seed": 20260907,
+      "software_environment": {
+        "openai": "3.8.0",
+        "peft": "0.17.1",
+        "pydantic": "2.13.5",
+        "python": "3.12.10",
+        "torch": "2.8.0+cu128",
+        "transformers": "4.56.2"
+      },
+      "store": false,
+      "successful_record_count": 0,
+      "temperature": 0,
+      "test_case_count": 400,
+      "test_file": "Implementation/datasets/synthetic-v1/test_cases.jsonl",
+      "test_file_sha256": "1f4a41be76cdb922fe6f6de33b006899e5c34eea52eb50dc518d57572e24f11b",
+      "test_lock": {
+        "analyzer_sha256": "cd4717a94058ed6999d426fee8f3cedfb1c9db29648b5e30a4d7008272ae025e",
+        "artifact_paths_sha256": "7958210ac78d05f8c372f10d9ccb99d76d414d38271ea29484b1e653b7991f50",
+        "classical_baseline_sha256": "d4bc1ef11c7f9ba5161df99b9d4ff022f7154bb94f7b1f9a78fcc3278cee4ba2",
+        "comparison_sha256": "ac58b49a266028757e9e8aa4ccbd031939cd38860eb0f839900ba8da1df9e29a",
+        "evaluator_sha256": "869452598fbdea5971c63aee50c6bf247bfd02b0596d97466c990a80c5f0e363",
+        "generator_sha256": "bab878015a048b1cd038c8a88dced6293726741e53fc2044e2524920d6869cfb",
+        "guard_sha256": "11df226aa4506686d48d53943b6b8aff9c7c884e0ca54a9fc08a66b1cb82a818",
+        "llm_client_sha256": "16eea9b8fa6ab6c395d53e4593970aaed13c2d34867ae9157876857904189ea4",
+        "local_llm_client_sha256": "a139fe9c1bc643049cb9a78023653ee398dc7b3a87daf5df0cb9c7db1cdb7b0e",
+        "local_training_script_sha256": "ac21399e49f101248472b2be6ede501e339ac713e9ff3261f8a79432136cdca9",
+        "locked_at_utc": "2026-09-07T23:27:03Z",
+        "model_api_cost_script_sha256": "e3b64145adfe240f8ed85217cb8a3c0fb0cbeb29028dc581c211ce9a62bc2919",
+        "policy_sha256": "246b5190b4ae99fdb6981a8b51d567f987aa78eea930bece11a3b3c4faaa0416",
+        "pretest_artifact_sha256": {
+          "classical_validation_diagnostics": "ec7b938424d4934fe98533890bd786588c991bc24e8ba76c42059efc224aeaf1",
+          "fine_tuned_smoke_test": "2e17bbe749fb6a63a3962e6547127a9f799eaab83981fdb2746aa97992633056",
+          "fine_tuning_training": "9a5ca6ce87cdd5e2f7887a505bd4735808a38aa9babc0d3335f60f402227a826",
+          "fine_tuning_validation": "eb9eafc09aa71995f41b51bd8abd568d028377ced0ec1936dd28de6cf7d4953e",
+          "generation_manifest": "d0972131bb1b5122eb08d4c452d1da00979768915ea4a1c64b19f76b0b71b758",
+          "local_base_model_manifest": "edbcf948cd6de4780636c0a30d64952cbb06fec3c0dcc9096dbfff075003f7cc",
+          "local_lora_checkpoint_inheritance": "7b24c60fd83c048abcaf2acf5f99a17055b21d9ca602e99b4ab0cd38604d2b4a",
+          "local_lora_preflight": "bf55d981a52ac45f8a37428f0f997c50871c4ca6e453c94714cb7b3bb72e0f3b",
+          "local_lora_training": "7ae726968aa08ce1d66c6c549c7c86f1b7c84ff884bc8684a0ccb8795be0df17",
+          "local_lora_validation_preflight": "df042b74d1ec8a82f3eb0e46fbbd98b3435034f2ede4f6dc8542315be32de959",
+          "openai_comparator_access_check": "b60876895e50ea4d13f49591a7dc63c488ae54c3cb8ce70c58cbe43dfb6cea1a",
+          "openai_smoke_test": "838e9c03e84edfe1217185988cbce34e04b3908cbdb5e962bb6dcb7a38e0e6a7",
+          "protocol_amendment": "efcaf4da68520f089a8ebc271972b29873895d6fffd780bbc58a6a03b1139263",
+          "protocol_lineage": "50f18c9f1af0ea56364edf3a690dea726ab0446c78751ac4b87a5af88efbec62",
+          "training_cases": "4cac638b09a2ae941c0aefb868b3b364f2fde85df98d2e730d87f457cb6a31b0",
+          "untuned_smoke_test": "223b8120ed76bc2d9c65c6a8cdfe2f6a4d6d6ec667b950dbb93fa21428eaa571",
+          "validation_cases": "7c0b1c35d81a30088ceefa246804652d5de3b3d485d0cb448dd17eda4d9cfdbb"
+        },
+        "protocol_amendment_sha256": "efcaf4da68520f089a8ebc271972b29873895d6fffd780bbc58a6a03b1139263",
+        "protocol_freeze_sha256": "14f60678b04d4b81a8685c808fcbd49087ffda918ce6d5c1b75b2fd5c5241a27",
+        "protocol_id": "ODA-SYNTH-MULTIORGAN-1.0",
+        "protocol_lineage_sha256": "50f18c9f1af0ea56364edf3a690dea726ab0446c78751ac4b87a5af88efbec62",
+        "protocol_sha256": "e61bcb9824728f9932cbf58dfd3d23b16234ac9707d112fc863ba992be447462",
+        "requirements_lock_sha256": "c6bcb396e2736d92aab9c5534b2e3935f6a1469712a443570501ea86f578374f",
+        "requirements_ml_sha256": "1834ab9783068410ee47654a154fef66f0c9ed1b3fa8157b00340ee51dd0d724",
+        "schemas_sha256": "bb239870c5bc8a60a5757713ae92a63b4f985639229c5f3dc64101f0dd0b4608",
+        "smoke_test_sha256": "1cc3e982eb0ba9e74260721e1b19a4ff546910131bbd734d2e4ce84f2e16be30",
+        "system_prompt_sha256": "fa65bccba2059b3abf7938a883ed6fa18d38ccedf57ff8ee9e6234886fd058db",
+        "test_file_sha256": "1f4a41be76cdb922fe6f6de33b006899e5c34eea52eb50dc518d57572e24f11b"
+      }
+    },
+    "label": "untuned",
+    "metrics": {
+      "all_ten_states_exact": 0.0,
+      "guarded_top1_conformance": 0.0,
+      "macro_f1": 0.0,
+      "model_success": 0.0,
+      "selection_rate": 0.0,
+      "temporary_hold_recall": 0.0,
+      "unsafe_introduction_rate": 0.0,
+      "unsafe_or_missing_primary_rate": 1.0
+    },
+    "path": "Implementation/app/pipeline-output/current/evaluation/untuned_raw.jsonl",
+    "sha256": "7bfd0189e1d2a4fe833da6cde93c36455a6b8a4baa1e74c588042649a4b23631"
+  },
+  "paired_exact_mcnemar": {
+    "all_ten_states_exact": {
+      "discordant_pairs": 375,
+      "left_only": 0,
+      "right_only": 375,
+      "two_sided_exact_p": 0.0
+    },
+    "guarded_top1_conformance": {
+      "discordant_pairs": 387,
+      "left_only": 0,
+      "right_only": 387,
+      "two_sided_exact_p": 0.0
+    },
+    "unsafe_or_missing_primary": {
+      "discordant_pairs": 387,
+      "left_only": 387,
+      "right_only": 0,
+      "two_sided_exact_p": 0.0
+    }
+  },
+  "right": {
+    "config": {
+      "attempt_log_file": "Implementation/app/pipeline-output/current/evaluation/openai_attempts.jsonl",
+      "attempt_log_sha256": "d0d0ab716073c460bf7c08208479d76b7fbfbc1b9c45ec98dd97536a9a274a08",
+      "attempted_case_count": 400,
+      "attempts_per_case_per_condition": 1,
+      "condition": "openai",
+      "current_invocation_target_case_count": 400,
+      "do_sample": false,
+      "endpoint": "chat_completions_structured_outputs",
+      "evaluation_in_progress": false,
+      "evaluation_invocations": [
+        {
+          "invoked_at_utc": "2026-09-08T13:23:12Z",
+          "requested_case_limit": null
+        }
+      ],
+      "failed_record_count": 12,
+      "first_invoked_at_utc": "2026-09-08T13:23:12Z",
+      "last_completed_at_utc": "2026-09-08T13:43:30Z",
+      "last_invoked_at_utc": "2026-09-08T13:23:12Z",
+      "maximum_new_tokens": 512,
+      "model_id_requested": "gpt-4o-mini-2024-07-18",
+      "protocol_id": "ODA-SYNTH-MULTIORGAN-1.0",
+      "provider": "OpenAI",
+      "raw_file_sha256": "1bdb2d373fe7e471f16b3690a94150ec1446d51ee9623088f0d389a8f8d228fe",
+      "raw_record_count": 400,
+      "sdk_max_retries": 0,
+      "seed": 20260907,
+      "software_environment": {
+        "openai": "3.8.0",
+        "peft": "0.17.1",
+        "pydantic": "2.13.5",
+        "python": "3.12.10",
+        "torch": "2.8.0+cu128",
+        "transformers": "4.56.2"
+      },
+      "store": false,
+      "successful_record_count": 388,
+      "temperature": 0,
+      "test_case_count": 400,
+      "test_file": "Implementation/datasets/synthetic-v1/test_cases.jsonl",
+      "test_file_sha256": "1f4a41be76cdb922fe6f6de33b006899e5c34eea52eb50dc518d57572e24f11b",
+      "test_lock": {
+        "analyzer_sha256": "cd4717a94058ed6999d426fee8f3cedfb1c9db29648b5e30a4d7008272ae025e",
+        "artifact_paths_sha256": "7958210ac78d05f8c372f10d9ccb99d76d414d38271ea29484b1e653b7991f50",
+        "classical_baseline_sha256": "d4bc1ef11c7f9ba5161df99b9d4ff022f7154bb94f7b1f9a78fcc3278cee4ba2",
+        "comparison_sha256": "ac58b49a266028757e9e8aa4ccbd031939cd38860eb0f839900ba8da1df9e29a",
+        "evaluator_sha256": "869452598fbdea5971c63aee50c6bf247bfd02b0596d97466c990a80c5f0e363",
+        "generator_sha256": "bab878015a048b1cd038c8a88dced6293726741e53fc2044e2524920d6869cfb",
+        "guard_sha256": "11df226aa4506686d48d53943b6b8aff9c7c884e0ca54a9fc08a66b1cb82a818",
+        "llm_client_sha256": "16eea9b8fa6ab6c395d53e4593970aaed13c2d34867ae9157876857904189ea4",
+        "local_llm_client_sha256": "a139fe9c1bc643049cb9a78023653ee398dc7b3a87daf5df0cb9c7db1cdb7b0e",
+        "local_training_script_sha256": "ac21399e49f101248472b2be6ede501e339ac713e9ff3261f8a79432136cdca9",
+        "locked_at_utc": "2026-09-07T23:27:03Z",
+        "model_api_cost_script_sha256": "e3b64145adfe240f8ed85217cb8a3c0fb0cbeb29028dc581c211ce9a62bc2919",
+        "policy_sha256": "246b5190b4ae99fdb6981a8b51d567f987aa78eea930bece11a3b3c4faaa0416",
+        "pretest_artifact_sha256": {
+          "classical_validation_diagnostics": "ec7b938424d4934fe98533890bd786588c991bc24e8ba76c42059efc224aeaf1",
+          "fine_tuned_smoke_test": "2e17bbe749fb6a63a3962e6547127a9f799eaab83981fdb2746aa97992633056",
+          "fine_tuning_training": "9a5ca6ce87cdd5e2f7887a505bd4735808a38aa9babc0d3335f60f402227a826",
+          "fine_tuning_validation": "eb9eafc09aa71995f41b51bd8abd568d028377ced0ec1936dd28de6cf7d4953e",
+          "generation_manifest": "d0972131bb1b5122eb08d4c452d1da00979768915ea4a1c64b19f76b0b71b758",
+          "local_base_model_manifest": "edbcf948cd6de4780636c0a30d64952cbb06fec3c0dcc9096dbfff075003f7cc",
+          "local_lora_checkpoint_inheritance": "7b24c60fd83c048abcaf2acf5f99a17055b21d9ca602e99b4ab0cd38604d2b4a",
+          "local_lora_preflight": "bf55d981a52ac45f8a37428f0f997c50871c4ca6e453c94714cb7b3bb72e0f3b",
+          "local_lora_training": "7ae726968aa08ce1d66c6c549c7c86f1b7c84ff884bc8684a0ccb8795be0df17",
+          "local_lora_validation_preflight": "df042b74d1ec8a82f3eb0e46fbbd98b3435034f2ede4f6dc8542315be32de959",
+          "openai_comparator_access_check": "b60876895e50ea4d13f49591a7dc63c488ae54c3cb8ce70c58cbe43dfb6cea1a",
+          "openai_smoke_test": "838e9c03e84edfe1217185988cbce34e04b3908cbdb5e962bb6dcb7a38e0e6a7",
+          "protocol_amendment": "efcaf4da68520f089a8ebc271972b29873895d6fffd780bbc58a6a03b1139263",
+          "protocol_lineage": "50f18c9f1af0ea56364edf3a690dea726ab0446c78751ac4b87a5af88efbec62",
+          "training_cases": "4cac638b09a2ae941c0aefb868b3b364f2fde85df98d2e730d87f457cb6a31b0",
+          "untuned_smoke_test": "223b8120ed76bc2d9c65c6a8cdfe2f6a4d6d6ec667b950dbb93fa21428eaa571",
+          "validation_cases": "7c0b1c35d81a30088ceefa246804652d5de3b3d485d0cb448dd17eda4d9cfdbb"
+        },
+        "protocol_amendment_sha256": "efcaf4da68520f089a8ebc271972b29873895d6fffd780bbc58a6a03b1139263",
+        "protocol_freeze_sha256": "14f60678b04d4b81a8685c808fcbd49087ffda918ce6d5c1b75b2fd5c5241a27",
+        "protocol_id": "ODA-SYNTH-MULTIORGAN-1.0",
+        "protocol_lineage_sha256": "50f18c9f1af0ea56364edf3a690dea726ab0446c78751ac4b87a5af88efbec62",
+        "protocol_sha256": "e61bcb9824728f9932cbf58dfd3d23b16234ac9707d112fc863ba992be447462",
+        "requirements_lock_sha256": "c6bcb396e2736d92aab9c5534b2e3935f6a1469712a443570501ea86f578374f",
+        "requirements_ml_sha256": "1834ab9783068410ee47654a154fef66f0c9ed1b3fa8157b00340ee51dd0d724",
+        "schemas_sha256": "bb239870c5bc8a60a5757713ae92a63b4f985639229c5f3dc64101f0dd0b4608",
+        "smoke_test_sha256": "1cc3e982eb0ba9e74260721e1b19a4ff546910131bbd734d2e4ce84f2e16be30",
+        "system_prompt_sha256": "fa65bccba2059b3abf7938a883ed6fa18d38ccedf57ff8ee9e6234886fd058db",
+        "test_file_sha256": "1f4a41be76cdb922fe6f6de33b006899e5c34eea52eb50dc518d57572e24f11b"
+      }
+    },
+    "label": "openai",
+    "metrics": {
+      "all_ten_states_exact": 0.9375,
+      "guarded_top1_conformance": 0.9675,
+      "macro_f1": 0.980343,
+      "model_success": 0.97,
+      "selection_rate": 0.97,
+      "temporary_hold_recall": 0.959379,
+      "unsafe_introduction_rate": 0.0,
+      "unsafe_or_missing_primary_rate": 0.0325
+    },
+    "path": "Implementation/app/pipeline-output/current/evaluation/openai_raw.jsonl",
+    "sha256": "1bdb2d373fe7e471f16b3690a94150ec1446d51ee9623088f0d389a8f8d228fe"
+  },
+  "test_file": "Implementation/datasets/synthetic-v1/test_cases.jsonl",
+  "test_file_sha256": "1f4a41be76cdb922fe6f6de33b006899e5c34eea52eb50dc518d57572e24f11b"
+}

@@ -12,7 +12,7 @@ Command
 
 Console result
 --------------
-'forge clean' running (wd: C:\Users\Ahmed\Downloads\DianaODA_BonView\Implementation\smart-contracts)
+'forge clean' running (wd: smart-contracts)
 'forge config --json' running
-'forge build --build-info --deny never --skip ./test/** ./script/** --force' running (wd: C:\Users\Ahmed\Downloads\DianaODA_BonView\Implementation\smart-contracts)
+'forge build --build-info --deny never --skip ./test/** ./script/** --force' running (wd: smart-contracts)
 . analyzed (1 contracts with 102 detectors), 0 result(s) found

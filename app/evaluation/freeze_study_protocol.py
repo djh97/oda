@@ -11,15 +11,14 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Mapping
 
+from evaluation.publication_workspace import ARTICLE_SOURCE_DIR, ARTICLE_SUPPORT_DIR
 from src.policy import RETIRED_TEST_SEEDS
 
 
 APP_DIR = Path(__file__).resolve().parents[1]
-WORKSPACE_DIR = APP_DIR.parents[1]
-JOURNAL_DIR = WORKSPACE_DIR / "Frontiers_Medical_Technology_2026-09-06"
 PROTOCOL_PATH = APP_DIR / "protocols" / "oda_synth_multiorgan_v1.json"
-STUDY_PROTOCOL_PATH = JOURNAL_DIR / "docs" / "STUDY_PROTOCOL.md"
-MANUSCRIPT_PATH = JOURNAL_DIR / "Manuscript.tex"
+STUDY_PROTOCOL_PATH = ARTICLE_SUPPORT_DIR / "STUDY_PROTOCOL.md"
+MANUSCRIPT_PATH = ARTICLE_SOURCE_DIR / "Manuscript.tex"
 FREEZE_PATH = APP_DIR / "pipeline-output" / "current" / "protocol" / "protocol_freeze.json"
 FINE_TUNING_STATE_PATH = APP_DIR / "pipeline-output" / "current" / "model" / "fine_tuning_job.json"
 TEST_LOCK_PATH = APP_DIR / "pipeline-output" / "current" / "evaluation" / "test_lock.json"

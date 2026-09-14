@@ -1,0 +1,237 @@
+{
+  "candidate_set_sizes_exercised": [
+    2,
+    3,
+    4,
+    10,
+    20
+  ],
+  "category_counts": {
+    "guard_boundary": {
+      "failed": 0,
+      "passed": 10
+    },
+    "model_output_validation": {
+      "failed": 0,
+      "passed": 4
+    },
+    "storage_failure": {
+      "failed": 0,
+      "passed": 6
+    }
+  },
+  "evaluation_type": "post_hoc_component_robustness_challenge",
+  "external_services_contacted": false,
+  "failed": 0,
+  "frozen_model_comparison_modified": false,
+  "interpretation": "This post hoc suite tests deterministic component behavior under specified boundary and injected-failure conditions. It does not evaluate clinical validity, live-service availability, key compromise, chain reorganizations, or model accuracy on independently authored notes.",
+  "passed": 20,
+  "scenario_count": 20,
+  "scenarios": [
+    {
+      "category": "guard_boundary",
+      "name": "two_candidates_both_available",
+      "observed": {
+        "outcome": "selected",
+        "pair": [
+          1,
+          2
+        ]
+      },
+      "status": "passed"
+    },
+    {
+      "category": "guard_boundary",
+      "name": "two_candidates_one_held",
+      "observed": {
+        "outcome": "abstained",
+        "reason": "Fewer than two candidates remain after temporary holds"
+      },
+      "status": "passed"
+    },
+    {
+      "category": "guard_boundary",
+      "name": "two_candidates_both_held",
+      "observed": {
+        "outcome": "abstained",
+        "reason": "Fewer than two candidates remain after temporary holds"
+      },
+      "status": "passed"
+    },
+    {
+      "category": "guard_boundary",
+      "name": "three_candidates_top_held",
+      "observed": {
+        "outcome": "selected",
+        "pair": [
+          2,
+          3
+        ]
+      },
+      "status": "passed"
+    },
+    {
+      "category": "guard_boundary",
+      "name": "three_candidates_two_held",
+      "observed": {
+        "outcome": "abstained",
+        "reason": "Fewer than two candidates remain after temporary holds"
+      },
+      "status": "passed"
+    },
+    {
+      "category": "guard_boundary",
+      "name": "ten_candidates_first_eight_held",
+      "observed": {
+        "outcome": "selected",
+        "pair": [
+          9,
+          10
+        ]
+      },
+      "status": "passed"
+    },
+    {
+      "category": "guard_boundary",
+      "name": "twenty_candidates_mixed_holds",
+      "observed": {
+        "outcome": "selected",
+        "pair": [
+          2,
+          4
+        ]
+      },
+      "status": "passed"
+    },
+    {
+      "category": "guard_boundary",
+      "name": "one_structurally_selectable_candidate",
+      "observed": {
+        "outcome": "abstained",
+        "reason": "Fewer than two structurally compatible candidates"
+      },
+      "status": "passed"
+    },
+    {
+      "category": "guard_boundary",
+      "name": "zero_structurally_selectable_candidates",
+      "observed": {
+        "outcome": "abstained",
+        "reason": "Fewer than two structurally compatible candidates"
+      },
+      "status": "passed"
+    },
+    {
+      "category": "guard_boundary",
+      "name": "review_required_candidates_remain_ordered",
+      "observed": {
+        "outcome": "selected",
+        "pair": [
+          1,
+          2
+        ]
+      },
+      "status": "passed"
+    },
+    {
+      "category": "model_output_validation",
+      "name": "missing_candidate_assessment",
+      "observed": {
+        "outcome": "rejected",
+        "reason": "The note review has incomplete coverage; missing=[3], extra=[]"
+      },
+      "status": "passed"
+    },
+    {
+      "category": "model_output_validation",
+      "name": "extra_candidate_assessment",
+      "observed": {
+        "outcome": "rejected",
+        "reason": "The note review has incomplete coverage; missing=[], extra=[4]"
+      },
+      "status": "passed"
+    },
+    {
+      "category": "model_output_validation",
+      "name": "wrong_case_identifier",
+      "observed": {
+        "outcome": "rejected",
+        "reason": "Model returned case_id 'wrong-case'; expected 'robustness-case'"
+      },
+      "status": "passed"
+    },
+    {
+      "category": "model_output_validation",
+      "name": "state_evidence_mismatch",
+      "observed": {
+        "outcome": "rejected",
+        "reason": "Model output failed strict schema validation: 1 validation error for NoteReviewBatch\nassessments.0\n  Value error, Evidence codes must belong to the selected readiness state [type=value_error, input_value={'recipient_id': 1, 'stat...': ['active_infection']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/value_error"
+      },
+      "status": "passed"
+    },
+    {
+      "category": "storage_failure",
+      "name": "tampered_ciphertext",
+      "observed": {
+        "outcome": "rejected",
+        "reason": "Encrypted record failed authentication or decoding"
+      },
+      "status": "passed"
+    },
+    {
+      "category": "storage_failure",
+      "name": "wrong_encryption_key",
+      "observed": {
+        "outcome": "rejected",
+        "reason": "Encrypted record key identifier does not match the configured key"
+      },
+      "status": "passed"
+    },
+    {
+      "category": "storage_failure",
+      "name": "wrong_record_context",
+      "observed": {
+        "outcome": "rejected",
+        "reason": "Encryption context mismatch; expected 'donor:1', found 'recipient:1'"
+      },
+      "status": "passed"
+    },
+    {
+      "category": "storage_failure",
+      "name": "malformed_encryption_envelope",
+      "observed": {
+        "outcome": "rejected",
+        "reason": "Encrypted record envelope has unexpected or missing fields"
+      },
+      "status": "passed"
+    },
+    {
+      "category": "storage_failure",
+      "name": "storage_gateway_unavailable",
+      "observed": {
+        "outcome": "failed_closed",
+        "reason": "Pinata pinJSONToIPFS request failed"
+      },
+      "status": "passed"
+    },
+    {
+      "category": "storage_failure",
+      "name": "storage_gateway_returns_invalid_cid",
+      "observed": {
+        "outcome": "rejected",
+        "reason": "Pinata response contained an invalid IpfsHash"
+      },
+      "status": "passed"
+    }
+  ],
+  "schema_version": "1.0",
+  "source_sha256": {
+    "decision_guard": "11df226aa4506686d48d53943b6b8aff9c7c884e0ca54a9fc08a66b1cb82a818",
+    "llm_client": "16eea9b8fa6ab6c395d53e4593970aaed13c2d34867ae9157876857904189ea4",
+    "pinata_client": "791f7185143cf912630a5f3ccc4f44da76e95a80b65ae34e28e758df857892fe",
+    "runner": "b41d765249ccd1bef95ed7e1af2ece63b127d303efa641cf8c2c51d62605b227",
+    "schemas": "bb239870c5bc8a60a5757713ae92a63b4f985639229c5f3dc64101f0dd0b4608",
+    "secure_storage": "7fe66228c53d26b3ffd83e791619dd76d0b87fe5fa0c55add13a751d2e279fa1"
+  },
+  "status": "passed"
+}
