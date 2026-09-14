@@ -13,7 +13,7 @@ on hold. The software is a research prototype, not a clinical allocation system
 or an implementation of an operational transplant policy.
 
 The archived version associated with the paper is available at
-[Zenodo](https://doi.org/10.5281/zenodo.22729788).
+[Zenodo](https://doi.org/10.5281/zenodo.22749808).
 
 ## Repository contents
 
